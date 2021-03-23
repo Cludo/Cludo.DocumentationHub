@@ -1,4 +1,7 @@
-baseURL = "http://example.org/"
+baseURL = "https://wonderful-pond-0f1879903.azurestaticapps.net/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Cludo Documentation Hub"
 theme = "book"
+
+[params]
+    BookLogo = "https://my.cludo.com/assets/img/logo/logo-top-nav-cut.svg"
