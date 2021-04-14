@@ -1,8 +1,7 @@
-baseURL = "http://example.org/"
+baseURL = "https://wonderful-pond-0f1879903.azurestaticapps.net/"
 languageCode = "en-us"
 title = "Cludo Docs"
 theme = "book"
 
 [params]
     site_logo = "https://my.cludo.com/assets/img/logo/logo-top-nav-cut.svg"
-    ananke_process_css = true
