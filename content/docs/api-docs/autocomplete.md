@@ -4,8 +4,13 @@ bookFlatSection: true
 title: "Autocomplete"
 ---
 
-Autocomplete docs
+Autocomplete 
 
 test
 
-## this is markdown
+## this is a markdown table
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |

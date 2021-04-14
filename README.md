@@ -1,4 +1,13 @@
+### Getting started
 
+#### Option 1: Hugo CLI
+
+`hugo server -D -w`
+
+#### Option 2: Docker
+
+1. Open repository in WSL mode using Visual Studio Code
+2. `docker-compose up`
 
 ### Issue with file watching / change detection / live reload
 
