@@ -1,0 +1,19 @@
+services:
+  hugo:
+    image: klakegg/hugo:0.81.0-ext
+    command: server
+    networks:
+      - local
+    volumes:
+      - "./:/src"
+    ports:
+      - "1313:1313"
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    environment:
+      - SWAGGER_JSON_URL=http://search.local/docs/v3/cludo-api.json
+networks:
+  local:
+    driver: bridge
