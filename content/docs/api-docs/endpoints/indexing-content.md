@@ -2,9 +2,7 @@
 weight: 2
 bookFlatSection: false
 bookCollapseSection: false
-title: Search
+title: Indexing Content
 ---
 
-search endpoint
-
-{{< swagger-op operation="Search" >}}
+{{< swagger-op operation="Content" >}}
