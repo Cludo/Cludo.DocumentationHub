@@ -1,0 +1,1436 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v3",
+    "title": "Cludo API"
+  },
+  "host": "search.local",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/v3/{customerId}/crawlers/testpage": {
+      "post": {
+        "tags": [
+          "CrawlerTestPage"
+        ],
+        "operationId": "CrawlerTestPageTestPage",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.TestCrawlerViewModel"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.TestCrawlerResultViewModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v3/{customer}/{siteId}/search/pushstat/{type}": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPushStat",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "values",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/Search/{type}/Post": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/Search/{type}": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/Search/Post": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/Search": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/Search": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/Search": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/Statistics/SearchHistogram": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "operationId": "StatisticsSearchHistogramGET",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "All",
+              "Successful",
+              "Unsuccessful"
+            ]
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filters.filterRules",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {},
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Statistics"
+        ],
+        "operationId": "StatisticsSearchHistogramPOST",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "All",
+              "Successful",
+              "Unsuccessful"
+            ]
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "filters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Cludo.App.Dto.AutocompleteRequest": {
+      "type": "object",
+      "properties": {
+        "Query": {
+          "type": "string"
+        },
+        "Filters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "TopHitsFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.TopHitsRequestField"
+          }
+        },
+        "ResponseType": {
+          "enum": [
+            "NotSpecified",
+            "JsonObject",
+            "JsonHtml"
+          ],
+          "type": "string"
+        },
+        "Overlay": {
+          "type": "string"
+        },
+        "Template": {
+          "type": "string"
+        },
+        "SearchEngine": {
+          "type": "string"
+        },
+        "Results": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "IsInternalSearch": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Cludo.App.Dto.TopHitsRequestField": {
+      "type": "object",
+      "properties": {
+        "Field": {
+          "type": "string"
+        },
+        "Size": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.Common.View.TestCrawlerViewModel": {
+      "required": [
+        "Crawler",
+        "Url"
+      ],
+      "type": "object",
+      "properties": {
+        "Crawler": {
+          "$ref": "#/definitions/Cludo.Common.View.CrawlerView"
+        },
+        "Url": {
+          "type": "string"
+        },
+        "Verbose": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Cludo.Common.View.CrawlerView": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "ignorePatterns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.CrawlerIgnorePatternView"
+          }
+        },
+        "regExpIgnorePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "settings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.CrawlerFieldSettingsViewModel"
+          }
+        },
+        "crawlUrls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.CrawlerWebsiteViewModel"
+          }
+        },
+        "whitelistUrls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.CrawlerWhiteListUrlViewModel"
+          }
+        },
+        "type": {
+          "enum": [
+            "content",
+            "member"
+          ],
+          "type": "string"
+        },
+        "indexingStrategy": {
+          "enum": [
+            "mostRecent",
+            "historical"
+          ],
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "fileSettings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.CrawlerFieldSettingsViewModel"
+          }
+        },
+        "crawlJobId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "isDisabled": {
+          "type": "boolean"
+        },
+        "lastFullCrawl": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lastSmartCrawl": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "extension": {
+          "type": "string"
+        },
+        "extensionSettings": {
+          "type": "string"
+        },
+        "sitemaps": {
+          "type": "string"
+        },
+        "respectNoIndex": {
+          "type": "boolean"
+        },
+        "respectCanonical": {
+          "type": "boolean"
+        },
+        "importSitemaps": {
+          "type": "boolean"
+        },
+        "threadCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ignoreFiles": {
+          "type": "boolean"
+        },
+        "isSslCertificateValidationEnabled": {
+          "type": "boolean"
+        },
+        "shouldStartCrawl": {
+          "type": "boolean"
+        },
+        "preferredStartTime": {
+          "type": "string"
+        },
+        "lastFullCrawlStart": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "index": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.Common.View.CrawlerIgnorePatternView": {
+      "type": "object",
+      "properties": {
+        "regExp": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.Common.View.CrawlerFieldSettingsViewModel": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "fieldType": {
+          "enum": [
+            "title",
+            "description",
+            "category",
+            "url",
+            "image",
+            "custom",
+            "metadescription"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "valueRegExp": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.CrawlerFieldregExpSettingsObjectViewModel"
+          }
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "valueType": {
+          "enum": [
+            "heading",
+            "title",
+            "ogTitle",
+            "cludoTitle",
+            "xPath",
+            "body",
+            "cludoCategory",
+            "metaKeyword",
+            "regExp",
+            "ignore",
+            "ogImage",
+            "cludoImage",
+            "ogGraph",
+            "cludoTag",
+            "metaTag",
+            "media",
+            "httpheader",
+            "autodetect",
+            "metaDescription",
+            "structuredData"
+          ],
+          "type": "string"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "format": {
+          "type": "string"
+        },
+        "dataType": {
+          "enum": [
+            "string",
+            "datetime",
+            "number",
+            "html",
+            "array"
+          ],
+          "type": "string"
+        },
+        "Precedence": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.Common.View.CrawlerWebsiteViewModel": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.Common.View.CrawlerWhiteListUrlViewModel": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.Common.View.CrawlerFieldregExpSettingsObjectViewModel": {
+      "type": "object",
+      "properties": {
+        "displayValue": {
+          "type": "string"
+        },
+        "regExpValue": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.Common.View.TestCrawlerResultViewModel": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.TestCrawlerValueResultViewModel"
+          }
+        },
+        "availableLinks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.TestCrawlLinkViewModel"
+          }
+        },
+        "markup": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.Common.View.TestCrawlerValueResultViewModel": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Cludo.Common.View.TestCrawlLinkViewModel": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Dto.SearchRequest": {
+      "type": "object",
+      "properties": {
+        "Query": {
+          "type": "string"
+        },
+        "NormalizedQuery": {
+          "type": "string",
+          "readOnly": true
+        },
+        "Operator": {
+          "enum": [
+            "Or",
+            "And"
+          ],
+          "type": "string"
+        },
+        "ResponseType": {
+          "enum": [
+            "NotSpecified",
+            "JsonObject",
+            "JsonHtml"
+          ],
+          "type": "string"
+        },
+        "Overlay": {
+          "type": "string"
+        },
+        "Template": {
+          "type": "string"
+        },
+        "Sort": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "type": "string"
+          }
+        },
+        "ValueBoost": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.FacetBoost"
+          }
+        },
+        "PostFilters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "PostFiltersOperator": {
+          "enum": [
+            "Or",
+            "And"
+          ],
+          "type": "string"
+        },
+        "PostFiltersItemOperator": {
+          "enum": [
+            "Or",
+            "And"
+          ],
+          "type": "string"
+        },
+        "AdvancedPostFilter": {
+          "$ref": "#/definitions/Cludo.App.Dto.AdvancedFilter"
+        },
+        "EnableFacetFiltering": {
+          "type": "boolean"
+        },
+        "TopHitsFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.TopHitsRequestField"
+          }
+        },
+        "RangeFacets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Cludo.App.Dto.RangeFacetFilter"
+          }
+        },
+        "Filters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "NotFilters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "IsInternalSearch": {
+          "type": "boolean"
+        },
+        "EnableRelatedSearches": {
+          "type": "boolean"
+        },
+        "PerPage": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Page": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "AutoRankingFactor": {
+          "format": "double",
+          "type": "number"
+        },
+        "JsonFilter": {
+          "type": "string"
+        },
+        "SearchContext": {
+          "enum": [
+            "Search404",
+            "Search",
+            "SAYT"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Dto.FacetBoost": {
+      "type": "object",
+      "properties": {
+        "Boosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.BoostValuePair"
+          }
+        },
+        "FieldName": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Dto.AdvancedFilter": {
+      "type": "object",
+      "properties": {
+        "ComparisonOperator": {
+          "enum": [
+            "Eq",
+            "Ne",
+            "Gte",
+            "Lte",
+            "Gt",
+            "Lt"
+          ],
+          "type": "string"
+        },
+        "Operator": {
+          "enum": [
+            "Or",
+            "And"
+          ],
+          "type": "string"
+        },
+        "Field": {
+          "type": "string"
+        },
+        "Values": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "Filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.AdvancedFilter"
+          }
+        }
+      }
+    },
+    "Cludo.App.Dto.RangeFacetFilter": {
+      "type": "object",
+      "properties": {
+        "FieldName": {
+          "type": "string"
+        },
+        "Ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.RangeFilter"
+          }
+        }
+      }
+    },
+    "Cludo.App.Dto.BoostValuePair": {
+      "type": "object",
+      "properties": {
+        "Values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Boost": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "Cludo.App.Dto.RangeFilter": {
+      "type": "object",
+      "properties": {
+        "From": {
+          "type": "string"
+        },
+        "To": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Dto.IndexDocument": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "documentId": {
+          "type": "string"
+        },
+        "pageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isAddedAlready": {
+          "type": "boolean"
+        },
+        "hasPageId": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters": {
+      "type": "object",
+      "properties": {
+        "filterRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterRuleRequestParameter"
+          }
+        }
+      }
+    },
+    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterRuleRequestParameter": {
+      "type": "object",
+      "properties": {
+        "operator": {
+          "enum": [
+            "And",
+            "Or"
+          ],
+          "type": "string"
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterOperationRequestParameter"
+          }
+        }
+      }
+    },
+    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterOperationRequestParameter": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "Country",
+            "Region",
+            "City",
+            "DeviceType",
+            "IpFilter"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Models.Statistics.TotalSearchesParameters": {
+      "type": "object",
+      "properties": {
+        "From": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "To": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "OnlyIncludeUnique": {
+          "type": "boolean"
+        },
+        "IncludePreviousPeriod": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Cludo.App.Models.Statistics.OverallCtrParameters": {
+      "type": "object",
+      "properties": {
+        "From": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "To": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "OnlyIncludeUnique": {
+          "type": "boolean"
+        },
+        "IncludePreviousPeriod": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Cludo.App.Dto.AutoRankingDiff": {
+      "type": "object",
+      "properties": {
+        "OriginalItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.SearchDocument"
+          }
+        },
+        "AutorankedItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.SearchDocument"
+          }
+        }
+      }
+    },
+    "Cludo.App.Dto.SearchDocument": {
+      "type": "object",
+      "properties": {
+        "ResultIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Sortings": {
+          "type": "array",
+          "items": {
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "Score": {
+          "format": "double",
+          "type": "number"
+        },
+        "Fields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Cludo.App.Dto.DocumentValue"
+          }
+        },
+        "FieldNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Cludo.App.Dto.DocumentValue": {
+      "type": "object",
+      "properties": {
+        "Field": {
+          "type": "string",
+          "readOnly": true
+        },
+        "Value": {
+          "type": "string",
+          "readOnly": true
+        },
+        "Values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Highlights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "IsArray": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic",
+      "description": "Basic HTTP Authentication"
+    }
+  }
+}

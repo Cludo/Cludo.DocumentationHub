@@ -1,12 +1,15 @@
 <script src="/swagger-module/js/swagger-ui-bundle.js" charset="UTF-8"> </script>
 <script src="/swagger-module/js/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
 <script>
+    // const jsonApiPath = "https://petstore.swagger.io/v2/swagger.json";
+    const jsonApiPath = "/swagger-cludo/cludo-api.json";
+
     window.onload = function() {
       window["SwaggerUIBundle"] = window["swagger-ui-bundle"]
       window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
       // Build a system
       const swaggerUi = SwaggerUIBundle({
-        url: "https://petstore.swagger.io/v2/swagger.json",
+        url: jsonApiPath,
         dom_id: '#swagger-ui',
         presets: [
           SwaggerUIBundle.presets.apis,
