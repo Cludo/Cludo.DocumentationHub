@@ -8,6 +8,8 @@ Autocomplete
 
 test
 
+{{< myshortcode >}}
+
 ## this is a markdown table
 
 | Syntax      | Description |
