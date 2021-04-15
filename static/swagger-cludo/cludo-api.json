@@ -2,19 +2,21 @@
   "swagger": "2.0",
   "info": {
     "version": "v3",
-    "title": "Cludo API"
+    "title": "Cludo API Docs"
   },
   "host": "api.cludo.com",
   "schemes": [
     "https"
   ],
   "paths": {
-    "/api/v3/{customerId}/crawlers/testpage": {
+    "/api/v3/{CustomerId}/content/{crawlerId}/pushurls": {
       "post": {
         "tags": [
-          "CrawlerTestPage"
+          "Content"
         ],
-        "operationId": "CrawlerTestPageTestPage",
+        "summary": "URL pushing",
+        "description": "Since full domain crawls are only made rarely (maybe once a day), then new pages to your website won't appear in search results before the domain is recrawled. If you cannot wait for a complete recrawl, then you may push the urls in question, which will be crawled within a couple of minutes.",
+        "operationId": "ContentUrlToUpdate",
         "consumes": [
           "application/json",
           "text/json",
@@ -26,15 +28,27 @@
         ],
         "parameters": [
           {
-            "name": "model",
+            "name": "crawlerId",
+            "in": "path",
+            "description": "The ID of the specific crawler you'd like to crawl the given URLs",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "urls",
             "in": "body",
+            "description": "Array of urls to be crawled",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Cludo.Common.View.TestCrawlerViewModel"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
-            "name": "customerId",
+            "name": "CustomerId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -44,13 +58,98 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Cludo.Common.View.TestCrawlerResultViewModel"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.Common.View.PushUrlsResponse"
+              }
             }
           }
         },
         "security": [
           {
-            "basic": []
+            "Cludo Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v3/{CustomerId}/content/{crawlerId}/push": {
+      "post": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Data pushing",
+        "description": "If you don't have any crawlers setup, or know exactly how your data is stored, you may directly push search results into your data storage with this endpoint.",
+        "operationId": "ContentBatchPush",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "crawlerId",
+            "in": "path",
+            "description": "The id of the crawler to index the data into",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "The body consists of result models of the data you wish to index. Each model consist of the field name with the associated value to set.\r\n            ",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              },
+              "example": [
+                {
+                  "Title": "My title",
+                  "Description": "Description",
+                  "Type": "PageContent",
+                  "CustomField1": 222,
+                  "CustomField2": "News"
+                },
+                {
+                  "Title": "My title",
+                  "Description": "Description",
+                  "Type": "PageContent",
+                  "CustomField1": 123,
+                  "CustomField2": "Events"
+                }
+              ]
+            }
+          },
+          {
+            "name": "CustomerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/System.Collections.Generic.KeyValuePair[System.Collections.Generic.Dictionary[System.String,System.Object],System.String]"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Cludo Basic": []
           }
         ]
       }
@@ -60,6 +159,7 @@
         "tags": [
           "Search"
         ],
+        "summary": "Record a search query or result click.",
         "operationId": "SearchPushStat",
         "consumes": [
           "application/json",
@@ -74,6 +174,7 @@
           {
             "name": "customer",
             "in": "path",
+            "description": "Your id",
             "required": true,
             "type": "integer",
             "format": "int32"
@@ -81,6 +182,7 @@
           {
             "name": "siteId",
             "in": "path",
+            "description": "The ID of the specific engine that was used for the query",
             "required": true,
             "type": "integer",
             "format": "int32"
@@ -88,12 +190,14 @@
           {
             "name": "type",
             "in": "path",
+            "description": "querylog | clicklog",
             "required": true,
             "type": "string"
           },
           {
             "name": "values",
             "in": "body",
+            "description": "Body/Query parameters",
             "required": true,
             "schema": {
               "type": "object",
@@ -113,346 +217,21 @@
         },
         "security": [
           {
-            "basic": []
+            "Cludo Basic": []
+          },
+          {
+            "Cludo SiteKey": []
           }
         ]
       }
     },
-    "/api/v{Version}/{customer}/{siteId}/Search/{type}/Post": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "operationId": "SearchPost",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "name": "requestParams",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
-            }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        },
-        "security": [
-          {
-            "basic": []
-          }
-        ]
-      }
-    },
-    "/api/v{Version}/{customer}/{siteId}/Search/{type}": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "operationId": "SearchPost",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "name": "requestParams",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
-            }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "type",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        },
-        "security": [
-          {
-            "basic": []
-          }
-        ]
-      }
-    },
-    "/api/v{Version}/{customer}/{siteId}/Search/Post": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "operationId": "SearchPost",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "name": "requestParams",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
-            }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        },
-        "security": [
-          {
-            "basic": []
-          }
-        ]
-      }
-    },
-    "/api/v{Version}/{customer}/{siteId}/Search": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "operationId": "SearchPost",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "name": "requestParams",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
-            }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        },
-        "security": [
-          {
-            "basic": []
-          }
-        ]
-      }
-    },
-    "/api/v{Version}/Search": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "operationId": "SearchPost",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "name": "requestParams",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
-            }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        },
-        "security": [
-          {
-            "basic": []
-          }
-        ]
-      }
-    },
-    "/api/Search": {
-      "post": {
-        "tags": [
-          "Search"
-        ],
-        "operationId": "SearchPost",
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/x-www-form-urlencoded"
-        ],
-        "produces": [
-          "application/json",
-          "text/json"
-        ],
-        "parameters": [
-          {
-            "name": "requestParams",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          }
-        },
-        "security": [
-          {
-            "basic": []
-          }
-        ]
-      }
-    },
-    "/api/v{Version}/{customer}/{siteId}/Statistics/SearchHistogram": {
+    "/api/v{Version}/{customer}/{siteId}/statistics/searchHistogram": {
       "get": {
         "tags": [
           "Statistics"
         ],
+        "summary": "Search counts per day",
+        "description": "Retrieves a list of search counts summed by day for a specified period.",
         "operationId": "StatisticsSearchHistogramGET",
         "consumes": [
           "application/json",
@@ -467,6 +246,7 @@
           {
             "name": "type",
             "in": "query",
+            "description": "What statistics do you want. Options are\r\n            all - all statistics\r\n            unsuccessfull - only retrive search statistics without any results\r\n            successful - only retrieve search statistics which returned results",
             "required": true,
             "type": "string",
             "enum": [
@@ -478,6 +258,7 @@
           {
             "name": "from",
             "in": "query",
+            "description": "Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z",
             "required": true,
             "type": "string",
             "format": "date-time"
@@ -485,9 +266,408 @@
           {
             "name": "to",
             "in": "query",
+            "description": "Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z",
             "required": true,
             "type": "string",
             "format": "date-time"
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filters.filterRules",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {},
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.Statistics.SearchHistogramResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Cludo Basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Search counts per day",
+        "description": "Retrieves a list of search counts summed by day for a specified period.",
+        "operationId": "StatisticsSearchHistogramPOST",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "What statistics do you want. Options are\r\n            all - all statistics\r\n            unsuccessfull - only retrive search statistics without any results\r\n            successful - only retrieve search statistics which returned results",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "All",
+              "Successful",
+              "Unsuccessful"
+            ]
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "filters",
+            "in": "body",
+            "description": "Filters for the search historgram endpoint\r\n              ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters",
+              "type": "object",
+              "example": {
+                "test": "hiya"
+              }
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.Statistics.SearchHistogramResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Cludo Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/statistics/totalSearches": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Search count totals",
+        "description": "Retrieves the search count, for a specified period.",
+        "operationId": "StatisticsTotalSearchesGET",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parameters.from",
+            "in": "query",
+            "description": "Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "parameters.to",
+            "in": "query",
+            "description": "Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "parameters.onlyIncludeUnique",
+            "in": "query",
+            "description": "Whether you want to retrieve the unique count only",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "parameters.includePreviousPeriod",
+            "in": "query",
+            "description": "Whether you want to also retrieve the count for the previous period",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "filters.filterRules",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {},
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.Statistics.TotalSearchesResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Cludo Basic": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Search count totals",
+        "description": "Retrieves the search count, for a specified period.",
+        "operationId": "StatisticsTotalSearchesPOST",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "filters",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parameters.from",
+            "in": "query",
+            "description": "Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "parameters.to",
+            "in": "query",
+            "description": "Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "parameters.onlyIncludeUnique",
+            "in": "query",
+            "description": "Whether you want to retrieve the unique count only",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "parameters.includePreviousPeriod",
+            "in": "query",
+            "description": "Whether you want to also retrieve the count for the previous period",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Models.Statistics.TotalSearchesResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Cludo Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/statistics/clickCounts": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Click counts",
+        "description": "Retrieves a list of clicked targets for a specified period, ordered by popularity by default.",
+        "operationId": "StatisticsClickCountsGET",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "A search word to filter results by to only get results for a single search term",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clickTarget",
+            "in": "query",
+            "description": "Click type to get results for, currently only supports 'page' which means ordinary search results",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Page",
+              "Banner"
+            ]
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "Property to order by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort direction (ascending, descending)",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results pr. page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number, zero indexed",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "Version",
@@ -526,7 +706,7 @@
         },
         "security": [
           {
-            "basic": []
+            "Cludo Basic": []
           }
         ]
       },
@@ -534,7 +714,9 @@
         "tags": [
           "Statistics"
         ],
-        "operationId": "StatisticsSearchHistogramPOST",
+        "summary": "Click counts",
+        "description": "Retrieves a list of clicked targets for a specified period, ordered by popularity by default.",
+        "operationId": "StatisticsClickCountsPOST",
         "consumes": [
           "application/json",
           "text/json",
@@ -546,19 +728,9 @@
         ],
         "parameters": [
           {
-            "name": "type",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "All",
-              "Successful",
-              "Unsuccessful"
-            ]
-          },
-          {
             "name": "from",
             "in": "query",
+            "description": "Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z",
             "required": true,
             "type": "string",
             "format": "date-time"
@@ -566,6 +738,7 @@
           {
             "name": "to",
             "in": "query",
+            "description": "Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z",
             "required": true,
             "type": "string",
             "format": "date-time"
@@ -573,10 +746,63 @@
           {
             "name": "filters",
             "in": "body",
+            "description": "",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters"
             }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "A search word to filter results by to only get results for a single search term",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clickTarget",
+            "in": "query",
+            "description": "Click type to get results for, currently only supports 'page' which means ordinary search results",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Page",
+              "Banner"
+            ]
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "Property to order by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort direction (ascending, descending)",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results pr. page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number, zero indexed",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "Version",
@@ -607,405 +833,130 @@
         },
         "security": [
           {
-            "basic": []
+            "Cludo Basic": []
+          }
+        ]
+      }
+    },
+    "/api/v{Version}/{customer}/{siteId}/search": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Full searches {SWAGGER: action summary}",
+        "description": "Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search.",
+        "operationId": "Search",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestParams",
+            "in": "body",
+            "description": "Request body for search {SWAGGER: parameter summary}",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
+            }
+          },
+          {
+            "name": "Version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SearchResult"
+            }
+          }
+        },
+        "security": [
+          {
+            "Cludo Basic": []
+          },
+          {
+            "Cludo SiteKey": []
           }
         ]
       }
     }
   },
   "definitions": {
-    "Cludo.App.Dto.AutocompleteRequest": {
+    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters": {
       "type": "object",
       "properties": {
-        "Query": {
-          "type": "string"
-        },
-        "Filters": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "TopHitsFields": {
+        "filterRules": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Cludo.App.Dto.TopHitsRequestField"
+            "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterRuleRequestParameter"
           }
-        },
-        "ResponseType": {
+        }
+      }
+    },
+    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterRuleRequestParameter": {
+      "type": "object",
+      "properties": {
+        "operator": {
           "enum": [
-            "NotSpecified",
-            "JsonObject",
-            "JsonHtml"
+            "And",
+            "Or"
           ],
           "type": "string"
         },
-        "Overlay": {
-          "type": "string"
-        },
-        "Template": {
-          "type": "string"
-        },
-        "SearchEngine": {
-          "type": "string"
-        },
-        "Results": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "IsInternalSearch": {
-          "type": "boolean"
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterOperationRequestParameter"
+          }
         }
       }
     },
-    "Cludo.App.Dto.TopHitsRequestField": {
+    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterOperationRequestParameter": {
       "type": "object",
       "properties": {
-        "Field": {
-          "type": "string"
-        },
-        "Size": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "Cludo.Common.View.TestCrawlerViewModel": {
-      "required": [
-        "Crawler",
-        "Url"
-      ],
-      "type": "object",
-      "properties": {
-        "Crawler": {
-          "$ref": "#/definitions/Cludo.Common.View.CrawlerView"
-        },
-        "Url": {
-          "type": "string"
-        },
-        "Verbose": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Cludo.Common.View.CrawlerView": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "ignorePatterns": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.CrawlerIgnorePatternView"
-          }
-        },
-        "regExpIgnorePatterns": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "settings": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.CrawlerFieldSettingsViewModel"
-          }
-        },
-        "crawlUrls": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.CrawlerWebsiteViewModel"
-          }
-        },
-        "whitelistUrls": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.CrawlerWhiteListUrlViewModel"
-          }
-        },
         "type": {
           "enum": [
-            "content",
-            "member"
-          ],
-          "type": "string"
-        },
-        "indexingStrategy": {
-          "enum": [
-            "mostRecent",
-            "historical"
-          ],
-          "type": "string"
-        },
-        "language": {
-          "type": "string"
-        },
-        "fileSettings": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.CrawlerFieldSettingsViewModel"
-          }
-        },
-        "crawlJobId": {
-          "format": "uuid",
-          "type": "string",
-          "example": "00000000-0000-0000-0000-000000000000"
-        },
-        "isDisabled": {
-          "type": "boolean"
-        },
-        "lastFullCrawl": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "lastSmartCrawl": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "customerId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "extension": {
-          "type": "string"
-        },
-        "extensionSettings": {
-          "type": "string"
-        },
-        "sitemaps": {
-          "type": "string"
-        },
-        "respectNoIndex": {
-          "type": "boolean"
-        },
-        "respectCanonical": {
-          "type": "boolean"
-        },
-        "importSitemaps": {
-          "type": "boolean"
-        },
-        "threadCount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "ignoreFiles": {
-          "type": "boolean"
-        },
-        "isSslCertificateValidationEnabled": {
-          "type": "boolean"
-        },
-        "shouldStartCrawl": {
-          "type": "boolean"
-        },
-        "preferredStartTime": {
-          "type": "string"
-        },
-        "lastFullCrawlStart": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "index": {
-          "type": "string"
-        }
-      }
-    },
-    "Cludo.Common.View.CrawlerIgnorePatternView": {
-      "type": "object",
-      "properties": {
-        "regExp": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "Cludo.Common.View.CrawlerFieldSettingsViewModel": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "fieldType": {
-          "enum": [
-            "title",
-            "description",
-            "category",
-            "url",
-            "image",
-            "custom",
-            "metadescription"
+            "Country",
+            "Region",
+            "City",
+            "DeviceType",
+            "IpFilter"
           ],
           "type": "string"
         },
         "value": {
-          "type": "string"
-        },
-        "valueRegExp": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.CrawlerFieldregExpSettingsObjectViewModel"
-          }
-        },
-        "defaultValue": {
-          "type": "string"
-        },
-        "valueType": {
-          "enum": [
-            "heading",
-            "title",
-            "ogTitle",
-            "cludoTitle",
-            "xPath",
-            "body",
-            "cludoCategory",
-            "metaKeyword",
-            "regExp",
-            "ignore",
-            "ogImage",
-            "cludoImage",
-            "ogGraph",
-            "cludoTag",
-            "metaTag",
-            "media",
-            "httpheader",
-            "autodetect",
-            "metaDescription",
-            "structuredData"
-          ],
-          "type": "string"
-        },
-        "isRequired": {
-          "type": "boolean"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "format": {
-          "type": "string"
-        },
-        "dataType": {
-          "enum": [
-            "string",
-            "datetime",
-            "number",
-            "html",
-            "array"
-          ],
-          "type": "string"
-        },
-        "Precedence": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "Cludo.Common.View.CrawlerWebsiteViewModel": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "Cludo.Common.View.CrawlerWhiteListUrlViewModel": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "Cludo.Common.View.CrawlerFieldregExpSettingsObjectViewModel": {
-      "type": "object",
-      "properties": {
-        "displayValue": {
-          "type": "string"
-        },
-        "regExpValue": {
-          "type": "string"
-        }
-      }
-    },
-    "Cludo.Common.View.TestCrawlerResultViewModel": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.TestCrawlerValueResultViewModel"
-          }
-        },
-        "availableLinks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.Common.View.TestCrawlLinkViewModel"
-          }
-        },
-        "markup": {
-          "type": "string"
-        }
-      }
-    },
-    "Cludo.Common.View.TestCrawlerValueResultViewModel": {
-      "type": "object",
-      "properties": {
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Cludo.Common.View.TestCrawlLinkViewModel": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "reason": {
           "type": "string"
         }
       }
     },
     "Cludo.App.Dto.SearchRequest": {
+      "description": "The search request body.",
       "type": "object",
       "properties": {
         "Query": {
+          "description": "When making a search, the main feature is the user text input, specified with the query property. This property is used by the searchengine to filter and rank the search results based on importance. A query is simply just the terms you wish to exist in the search result, such as:\r\n   \r\nschool activity\r\n\r\nIn this example search results containing either school or activity will be returned, but if a search result contains both terms, it will be considered more important, and will be shown before search results containin only one of the terms.",
           "type": "string"
         },
         "NormalizedQuery": {
@@ -1120,9 +1071,11 @@
         },
         "Page": {
           "format": "int32",
+          "description": "Search results page",
           "type": "integer"
         },
         "Fields": {
+          "description": "Fields to search",
           "type": "array",
           "items": {
             "type": "string"
@@ -1133,13 +1086,13 @@
           "type": "number"
         },
         "JsonFilter": {
+          "description": "For advanced filtering please reffer to\r\nhttp://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-filters.html\r\nNOTE! If you are using JsonFilter than Facets are ignored",
           "type": "string"
         },
         "SearchContext": {
           "enum": [
-            "Search404",
             "Search",
-            "SAYT"
+            "Search404"
           ],
           "type": "string"
         }
@@ -1197,17 +1150,15 @@
         }
       }
     },
-    "Cludo.App.Dto.RangeFacetFilter": {
+    "Cludo.App.Dto.TopHitsRequestField": {
       "type": "object",
       "properties": {
-        "FieldName": {
+        "Field": {
           "type": "string"
         },
-        "Ranges": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.App.Dto.RangeFilter"
-          }
+        "Size": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
@@ -1226,141 +1177,161 @@
         }
       }
     },
-    "Cludo.App.Dto.RangeFilter": {
+    "Cludo.Common.View.PushUrlsResponse": {
       "type": "object",
       "properties": {
-        "From": {
+        "Url": {
           "type": "string"
         },
-        "To": {
-          "type": "string"
-        }
-      }
-    },
-    "Cludo.App.Dto.IndexDocument": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "documentId": {
-          "type": "string"
-        },
-        "pageId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "isAddedAlready": {
-          "type": "boolean"
-        },
-        "hasPageId": {
-          "type": "boolean",
-          "readOnly": true
-        }
-      }
-    },
-    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FiltersRequestParameters": {
-      "type": "object",
-      "properties": {
-        "filterRules": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterRuleRequestParameter"
-          }
-        }
-      }
-    },
-    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterRuleRequestParameter": {
-      "type": "object",
-      "properties": {
-        "operator": {
+        "Status": {
           "enum": [
-            "And",
-            "Or"
+            "Ok",
+            "Invalid"
           ],
           "type": "string"
-        },
-        "operations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterOperationRequestParameter"
-          }
         }
       }
     },
-    "Cludo.App.Models.AnalyticsRequestParameters.Filters.FilterOperationRequestParameter": {
+    "System.Collections.Generic.KeyValuePair[System.Collections.Generic.Dictionary[System.String,System.Object],System.String]": {
       "type": "object",
       "properties": {
-        "type": {
-          "enum": [
-            "Country",
-            "Region",
-            "City",
-            "DeviceType",
-            "IpFilter"
-          ],
-          "type": "string"
+        "key": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
         },
         "value": {
           "type": "string"
         }
       }
     },
-    "Cludo.App.Models.Statistics.TotalSearchesParameters": {
+    "Cludo.Common.View.EngineFacetView": {
       "type": "object",
       "properties": {
-        "From": {
-          "format": "date-time",
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
           "type": "string"
         },
-        "To": {
-          "format": "date-time",
+        "field": {
           "type": "string"
         },
-        "OnlyIncludeUnique": {
+        "orderBy": {
+          "enum": [
+            "DocCount",
+            "DocScore",
+            "Alphabetically"
+          ],
+          "type": "string"
+        },
+        "orderDirection": {
+          "enum": [
+            "Desc",
+            "Asc"
+          ],
+          "type": "string"
+        },
+        "size": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "includeEmpty": {
           "type": "boolean"
         },
-        "IncludePreviousPeriod": {
-          "type": "boolean"
+        "WebsiteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "engineFacetId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "operator": {
+          "enum": [
+            "Or",
+            "And"
+          ],
+          "type": "string"
+        },
+        "facets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.Common.View.EngineFacetView"
+          }
         }
       }
     },
-    "Cludo.App.Models.Statistics.OverallCtrParameters": {
+    "Cludo.App.Dto.SearchResult": {
       "type": "object",
       "properties": {
-        "From": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "To": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "OnlyIncludeUnique": {
-          "type": "boolean"
-        },
-        "IncludePreviousPeriod": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Cludo.App.Dto.AutoRankingDiff": {
-      "type": "object",
-      "properties": {
-        "OriginalItems": {
+        "TypedDocuments": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Cludo.App.Dto.SearchDocument"
           }
         },
-        "AutorankedItems": {
+        "TopHits": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Cludo.App.Dto.SearchDocument"
+            "$ref": "#/definitions/Cludo.App.Dto.TopHitsField"
           }
+        },
+        "TotalDocument": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Suggestions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.Suggestion"
+          }
+        },
+        "Facets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Cludo.App.Dto.FacetGroup"
+          }
+        },
+        "Banners": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.ResultBanner"
+          }
+        },
+        "RangeFacets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "format": "int64",
+              "type": "integer"
+            }
+          }
+        },
+        "RelatedSearchDocuments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cludo.App.Dto.RelatedSearchDocument"
+          }
+        },
+        "FixedQuery": {
+          "type": "string"
+        },
+        "ResponseTime": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Synonyms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "QueryId": {
+          "type": "string"
         }
       }
     },
@@ -1397,40 +1368,122 @@
         }
       }
     },
-    "Cludo.App.Dto.DocumentValue": {
+    "Cludo.App.Dto.TopHitsField": {
       "type": "object",
       "properties": {
         "Field": {
-          "type": "string",
-          "readOnly": true
-        },
-        "Value": {
-          "type": "string",
-          "readOnly": true
+          "type": "string"
         },
         "Values": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/Cludo.App.Dto.TopHitsFieldValue"
           }
+        }
+      }
+    },
+    "Cludo.App.Dto.Suggestion": {
+      "type": "object",
+      "properties": {
+        "Text": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Dto.ResultBanner": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int64",
+          "type": "integer"
         },
-        "Highlights": {
+        "Banner": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        }
+      }
+    },
+    "Cludo.App.Dto.RelatedSearchDocument": {
+      "type": "object",
+      "properties": {
+        "SearchTerm": {
+          "type": "string"
+        },
+        "DocsCount": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.App.Dto.TopHitsFieldValue": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "type": "string"
+        },
+        "Hits": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/Cludo.App.Dto.SearchDocument"
+          }
+        }
+      }
+    },
+    "Cludo.App.Models.Statistics.SearchHistogramResponse": {
+      "type": "object",
+      "properties": {
+        "totalSearches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/System.Collections.Generic.KeyValuePair[System.String,System.Int32]"
           }
         },
-        "IsArray": {
-          "type": "boolean",
-          "readOnly": true
+        "uniqueSearches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/System.Collections.Generic.KeyValuePair[System.String,System.Int32]"
+          }
+        }
+      }
+    },
+    "System.Collections.Generic.KeyValuePair[System.String,System.Int32]": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Cludo.App.Models.Statistics.TotalSearchesResponse": {
+      "type": "object",
+      "properties": {
+        "withinCurrentPeriod": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "withinPreviousPeriod": {
+          "format": "int64",
+          "type": "integer"
         }
       }
     }
   },
   "securityDefinitions": {
-    "basic": {
+    "Cludo Basic": {
       "type": "basic",
-      "description": "Basic HTTP Authentication"
+      "description": "Authenticate using your Customer Id (username) and API Key (password)"
+    },
+    "Cludo SiteKey": {
+      "type": "apiKey",
+      "description": "The value needs to be in the form `SiteKey {{ base64 encoded 'customerId:engineId:SearchKey'`",
+      "name": "Authorization",
+      "in": "header"
     }
   }
 }
