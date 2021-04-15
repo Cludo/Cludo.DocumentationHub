@@ -7,3 +7,5 @@ title: "Autocomplete"
 Autocomplete 
 
 Welcome to the autocomplete template
+
+{{< myshortcode >}}
