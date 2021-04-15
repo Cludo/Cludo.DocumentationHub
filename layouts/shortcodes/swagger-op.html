@@ -1,0 +1,13 @@
+<div class="swagger-operation" data-operation="{{ .Get "operation" }}"></div>
+<script>
+  
+// Listen for the event or render if it's already ready.
+if (!window.swaggerUi) {
+  window.addEventListener('swagger-loaded', function (e) {
+    swaggerUi.renderSingleOperation('{{ .Get "operation" }}', document.querySelector('.swagger-operation[data-operation="{{ .Get "operation" }}"]'))
+  });
+} else {
+  swaggerUi.renderSingleOperation('{{ .Get "operation" }}', document.querySelector('.swagger-operation[data-operation="{{ .Get "operation" }}"]'))
+}
+
+</script>
