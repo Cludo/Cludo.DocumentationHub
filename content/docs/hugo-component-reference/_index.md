@@ -41,4 +41,6 @@ Currently, this is pointing to Cludo API's OpenApi json file. The code example o
 
 {{< swagger-op operation="Statistics" >}}
 
+{{< swagger-op operation="Search" >}}
+
 

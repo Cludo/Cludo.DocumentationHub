@@ -4,9 +4,9 @@
     "version": "v3",
     "title": "Cludo API"
   },
-  "host": "search.local",
+  "host": "api.cludo.com",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/v3/{customerId}/crawlers/testpage": {
