@@ -1,2 +1,187 @@
-
 // Add styles here to override default book styles
+
+// Colors
+$purple22: #222337;
+$purlple82: #824fd3;
+$purpleAF: #fafaff;
+
+$yellowFF: #ffc000;
+
+$greyCC: #cccccc;
+$grey88: #888888;
+$grey66: #666666;
+$grey33: #333333;
+
+$white: #fff;
+$black: #000;
+
+//Montserrat Fonts
+@font-face {
+    font-family: "Montserrat Semi-Bold";
+    font-weight: 600;
+    font-style: normal;
+    src: url(/static/fonts/Montserrat/montserrat-semibold-webfont.woff2?#iefix) format("woff2"),
+        url(../fonts/Montserrat/montserrat-semibold-webfont.woff) format("woff"),
+        url(../fonts/Montserrat/Montserrat-SemiBold.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Montserrat Medium";
+    font-weight: 500;
+    font-style: normal;
+    src: url(/static/fonts/Montserrat/montserrat-medium-webfont.woff2?#iefix) format("woff2"),
+        url(../fonts/Montserrat/montserrat-medium-webfont.woff) format("woff"),
+        url(../fonts/Montserrat/Montserrat-Medium.ttf) format("truetype");
+}
+
+//Source Sans Pro Fonts
+@font-face {
+    font-family: SourceSansProRegular;
+    font-weight: 400;
+    font-style: normal;
+    src: url(/static/fonts/SourceSansPro/sourcesanspro-regular-webfont.woff2?#iefix) format("woff2"),
+        url(../fonts/SourceSansPro/sourcesanspro-regular-webfont.woff) format("woff"),
+        url(../fonts/SourceSansPro/SourceSansPro-Regular.ttf) format("truetype");
+}
+
+//Source Code Pro Fonts
+@font-face {
+    font-family: "SourceCodePro SemiBold";
+    font-weight: 600;
+    font-style: normal;
+    src: url(/static/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff?#iefix) format("woff"),
+        url(../fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff) format("woff"),
+        url(../fonts/SourceCodePro/SourceCodePro-SemiBold.ttf) format("truetype");
+}
+
+body {
+    .book-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        background: $purple22;
+        height: 156px;
+        margin-bottom: 0;
+
+        img {
+            width: 200px;
+            margin-left: 80px;
+        }
+        .navbar {
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+
+            li {
+                font-family: SourceSansProRegular;
+                float: left;
+                font-size: 17px;
+                color: $greyCC;
+                text-align: center;
+                margin-right: 55px;
+                text-decoration: none;
+
+                &.dropdown {
+                    float: left;
+                    overflow: hidden;
+
+                    .dropbtn {
+                        font-size: 17px;
+                        color: $greyCC;
+                        border: none;
+                        outline: none;
+                        padding: 14px 16px;
+                        background-color: inherit;
+                        font-family: inherit;
+                        margin: 0;
+
+                        &:hover {
+                            color: $yellowFF;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .dropdown-content {
+                        display: none;
+                        position: fixed;
+                        background-color: #f9f9f9;
+                        min-width: 160px;
+                        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                        z-index: 1;
+                        top: 94px;
+                        padding: 0;
+
+                        li {
+                            float: none;
+                            color: $purple22;
+                            padding: 12px 28px;
+                            text-decoration: none;
+                            display: block;
+                            text-align: left;
+                            width: 100%;
+
+                            &:hover {
+                                background-color: #ddd;
+                            }
+                        }
+                    }
+                }
+
+                &:hover,
+                &.dropdown:hover {
+                    color: #fd6;
+                    cursor: pointer;
+                }
+
+                &.dropdown:hover .dropdown-content {
+                    display: block;
+                }
+            }
+        }
+
+        .search {
+            padding-right: 50px;
+            width: 400px;
+            height: 60px;
+            .search-wrapper {
+                position: relative;
+                input {
+                    background: $greyCC;
+                    border-radius: 58px;
+                    height: 60px;
+
+                    &::placeholder {
+                        font-size: 18px;
+                        line-height: 26px;
+                        color: $grey88;
+                        font-family: "SourceSansProRegular";
+                        padding-left: 10px;
+                    }
+                }
+                i {
+                    position: absolute;
+                    color: $purlple82;
+                    right: 23px;
+                    top: 18px;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+
+    // General Setting
+    aside {
+        > div:first-child {
+            top: 156px !important;
+            background: $purpleAF !important;
+        }
+    }
+    main {
+        padding: 0 !important;
+        margin: 0;
+    }
+}

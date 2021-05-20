@@ -1,0 +1,38 @@
+<!-- <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="{{ "svg/menu.svg" | relURL }}" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>{{ partial "docs/title" . }}</strong>
+
+  <label for="toc-control">
+    {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
+    <img src="{{ "svg/toc.svg" | relURL }}" class="book-icon" alt="Table of Contents" />
+    {{ end }}
+  </label>
+</div> -->
+
+<figure>
+    <img  src="{{ .Site.Params.site_logo }}">
+</figure>
+<ul class=" navbar">
+    <li class="nav-item"> Lorem </li>
+    <li class="nav-item dropdown">
+        <button class="dropbtn">Dropdown
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <ul class="dropdown-content">
+            <li href="#">Link 1</li>
+            <li href="#">Link 2</li>
+            <li href="#">Link 3</li>
+        </ul>
+    <li class="nav-item"> Lorem </li>
+    <li class="nav-item"> Lorem </li>
+    </li>
+</ul>
+<div class="search">
+  <div class="search-wrapper">
+    <input type="text" maxlength="64" data-hotkeys="s/" class="form-control" placeholder="Search here for documentation"/>
+    <i class="fa fa-search"></i>
+  </div>
+</div>
