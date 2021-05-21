@@ -6,6 +6,17 @@ title: "Hugo Component Reference"
 
 This is intended to be component usage examples and will be removed when development is underway or complete.
 
+## List W/ sublisting
+
+1. Remansit notam Stygia feroxque
+2. Et dabit materna
+3. Vipereas Phrygiaeque umbram sollicito cruore conlucere suus
+4. Quarum Elis corniger
+5. Nec ieiunia dixit
+
+### 1. Remansit notam Stygia feroxque
+### 2. Remansit notam Stygia feroxque
+
 ## Markdown table
 
 **Code**

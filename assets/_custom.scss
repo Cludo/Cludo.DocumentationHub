@@ -11,6 +11,7 @@ $greyCC: #cccccc;
 $grey88: #888888;
 $grey66: #666666;
 $grey33: #333333;
+$greyE8: #ebe9f1;
 
 $white: #fff;
 $black: #000;
@@ -20,9 +21,9 @@ $black: #000;
     font-family: "Montserrat Semi-Bold";
     font-weight: 600;
     font-style: normal;
-    src: url(/static/fonts/Montserrat/montserrat-semibold-webfont.woff2?#iefix) format("woff2"),
-        url(../fonts/Montserrat/montserrat-semibold-webfont.woff) format("woff"),
-        url(../fonts/Montserrat/Montserrat-SemiBold.ttf) format("truetype");
+    src: url(/fonts/Montserrat/montserrat-semibold-webfont.woff2?#iefix) format("woff2"),
+        url(/fonts/Montserrat/montserrat-semibold-webfont.woff) format("woff"),
+        url(/fonts/Montserrat/Montserrat-SemiBold.ttf) format("truetype");
 }
 @font-face {
     font-family: "Montserrat Medium";
@@ -38,21 +39,40 @@ $black: #000;
     font-family: SourceSansProRegular;
     font-weight: 400;
     font-style: normal;
-    src: url(/static/fonts/SourceSansPro/sourcesanspro-regular-webfont.woff2?#iefix) format("woff2"),
-        url(../fonts/SourceSansPro/sourcesanspro-regular-webfont.woff) format("woff"),
-        url(../fonts/SourceSansPro/SourceSansPro-Regular.ttf) format("truetype");
+    src: url(/fonts/SourceSansPro/sourcesanspro-regular-webfont.woff2?#iefix) format("woff2"),
+        url(/fonts/SourceSansPro/sourcesanspro-regular-webfont.woff) format("woff"),
+        url(/fonts/SourceSansPro/SourceSansPro-Regular.ttf) format("truetype");
 }
 
+@font-face {
+    font-family: SourceSansProSemibold;
+    font-weight: 600;
+    font-style: normal;
+    src: url(/fonts/SourceSansPro/sourcesanspro-semibold-webfont.woff2?#iefix) format("woff2"),
+        url(/fonts/SourceSansPro/sourcesanspro-semibold-webfont.woff) format("woff"),
+        url(/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf) format("truetype");
+}
 //Source Code Pro Fonts
 @font-face {
     font-family: "SourceCodePro SemiBold";
     font-weight: 600;
     font-style: normal;
-    src: url(/static/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff?#iefix) format("woff"),
-        url(../fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff) format("woff"),
-        url(../fonts/SourceCodePro/SourceCodePro-SemiBold.ttf) format("truetype");
+    src: url(/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff?#iefix) format("woff"),
+        url(/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff) format("woff"),
+        url(/fonts/SourceCodePro/SourceCodePro-SemiBold.ttf) format("truetype");
 }
 
+@function calculateRem($size) {
+    @return ($size / 16) + rem;
+}
+
+@mixin font-size($sizeValue: 14, $lineHeight: 25) {
+    font-size: $sizeValue + px;
+    font-size: calculateRem($sizeValue);
+    line-height: $lineHeight + px;
+}
+
+// SCSS
 body {
     .book-header {
         display: flex;
@@ -78,7 +98,7 @@ body {
             li {
                 font-family: SourceSansProRegular;
                 float: left;
-                font-size: 17px;
+                @include font-size(17);
                 color: $greyCC;
                 text-align: center;
                 margin-right: 55px;
@@ -89,7 +109,7 @@ body {
                     overflow: hidden;
 
                     .dropbtn {
-                        font-size: 17px;
+                        @include font-size(17);
                         color: $greyCC;
                         border: none;
                         outline: none;
@@ -171,13 +191,112 @@ body {
             }
         }
     }
+    .book-menu {
+        .book-menu-content {
+            background: none;
 
+            .book-brand {
+                display: none;
+            }
+            ul {
+                li {
+                    &.book-section-flat {
+                        border-bottom: 1px solid $greyE8;
+                        padding-left: 68px;
+                        > a {
+                            text-transform: uppercase;
+                            color: $purlple82;
+                            font-family: SourceSansProSemibold;
+                        }
+                    }
+
+                    &:last-of-type {
+                        a {
+                            margin: 26px 0px;
+                        }
+                    }
+
+                    a {
+                        text-decoration: none;
+                        padding: 0 8px;
+                        &:hover,
+                        &.active {
+                            background: $purlple82;
+                            color: $white;
+                            border-radius: 6px;
+                        }
+                    }
+                    label {
+                        &:hover {
+                            background: $purlple82;
+                            border-radius: 6px;
+                            a {
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .book-toc {
+        .book-toc-content {
+            padding-left: 30px;
+            padding-top: 60px;
+            .toc-page-title {
+                span {
+                    font-family: SourceSansProSemibold;
+                    @include font-size(15, 18);
+                    color: $grey33;
+                    text-transform: uppercase;
+                    margin-bottom: 12px;
+                    display: block;
+                }
+            }
+            ul {
+                li {
+                    a {
+                        font-family: "SourceSansProRegular";
+                        text-decoration: none;
+                        @include font-size(14, 17);
+                        color: $grey66;
+
+                        &:hover {
+                            background: $purpleAF;
+                        }
+                        &:active {
+                            color: $purlple82;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .book-page {
+        padding: 59px 57px;
+
+        .page-title {
+            font-family: "Montserrat Semi-Bold";
+            @include font-size(36,46);
+            color: $purlple82;
+            padding-bottom: 32px;
+        }
+    }
 
     // General Setting
     aside {
+        background: $purpleAF !important;
+        height: 83vh;
+        min-width: 343px;
+
         > div:first-child {
             top: 156px !important;
             background: $purpleAF !important;
+            width: 21rem !important;
+            font-family: SourceSansProRegular;
+            @include font-size(17);
+            color: $grey33;
         }
     }
     main {
