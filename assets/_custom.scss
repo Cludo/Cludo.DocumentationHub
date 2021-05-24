@@ -2,7 +2,7 @@
 
 // Colors
 $purple22: #222337;
-$purlple82: #824fd3;
+$purple82: #824fd3;
 $purpleAF: #fafaff;
 
 $yellowFF: #ffc000;
@@ -57,7 +57,7 @@ $black: #000;
     font-family: "SourceCodePro SemiBold";
     font-weight: 600;
     font-style: normal;
-    src: url(/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff?#iefix) format("woff"),
+    src: url(/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff2?#iefix) format("woff2"),
         url(/fonts/SourceCodePro/sourcecodepro-semibold-webfont.woff) format("woff"),
         url(/fonts/SourceCodePro/SourceCodePro-SemiBold.ttf) format("truetype");
 }
@@ -71,14 +71,17 @@ $black: #000;
     font-size: calculateRem($sizeValue);
     line-height: $lineHeight + px;
 }
+@mixin display-flex($justify, $align, $wrap, $display: flex) {
+    display: $display;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
 
 // SCSS
 body {
     .book-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+        @include display-flex(space-between, center, wrap);
         width: 100%;
         background: $purple22;
         height: 156px;
@@ -90,8 +93,7 @@ body {
         }
         .navbar {
             overflow: hidden;
-            display: flex;
-            align-items: center;
+            @include display-flex(space-between, center, wrap);
             list-style: none;
             padding: 0;
 
@@ -117,10 +119,29 @@ body {
                         background-color: inherit;
                         font-family: inherit;
                         margin: 0;
+                        @include display-flex(space-between, center, nowrap, inline-flex);
+
+                        i {
+                            padding-left: 15px;
+                            @include font-size(18);
+
+                            &.close {
+                                display: none;
+                            }
+                        }
 
                         &:hover {
                             color: $yellowFF;
                             cursor: pointer;
+
+                            i {
+                                &.close {
+                                    display: inline-block;
+                                }
+                                &.open {
+                                    display: none;
+                                }
+                            }
                         }
                     }
 
@@ -183,7 +204,7 @@ body {
                 }
                 i {
                     position: absolute;
-                    color: $purlple82;
+                    color: $purple82;
                     right: 23px;
                     top: 18px;
                     font-size: 24px;
@@ -205,14 +226,11 @@ body {
                         padding-left: 68px;
                         > a {
                             text-transform: uppercase;
-                            color: $purlple82;
+                            color: $purple82;
                             font-family: SourceSansProSemibold;
-                        }
-                    }
-
-                    &:last-of-type {
-                        a {
-                            margin: 26px 0px;
+                            &:last-of-type {
+                                margin: 26px 0px;
+                            }
                         }
                     }
 
@@ -221,17 +239,34 @@ body {
                         padding: 0 8px;
                         &:hover,
                         &.active {
-                            background: $purlple82;
+                            background: $purple82;
                             color: $white;
                             border-radius: 6px;
                         }
                     }
+                    span {
+                        padding: 0 8px;
+                    }
+
                     label {
+                        i {
+                            &.close {
+                                display: none;
+                            }
+                        }
                         &:hover {
-                            background: $purlple82;
+                            background: $purple82;
                             border-radius: 6px;
                             a {
                                 color: $white;
+                            }
+                            i {
+                                &.close {
+                                    display: inline-block;
+                                }
+                                &.open {
+                                    display: none;
+                                }
                             }
                         }
                     }
@@ -266,7 +301,7 @@ body {
                             background: $purpleAF;
                         }
                         &:active {
-                            color: $purlple82;
+                            color: $purple82;
                         }
                     }
                 }
@@ -278,9 +313,77 @@ body {
 
         .page-title {
             font-family: "Montserrat Semi-Bold";
-            @include font-size(36,46);
-            color: $purlple82;
+            @include font-size(36, 46);
+            color: $purple82;
             padding-bottom: 32px;
+        }
+        .markdown {
+            h1 {
+                font-family: "Montserrat Semi-Bold";
+                @include font-size(36, 46);
+                color: $purple82;
+            }
+            h2 {
+                font-family: "Montserrat Medium";
+                @include font-size(28, 38);
+                letter-spacing: -0.005em;
+                color: $black;
+            }
+            h3 {
+                font-family: "Montserrat Medium";
+                @include font-size(22, 32);
+            }
+            p {
+                font-family: SourceSansProRegular;
+                @include font-size(18, 26);
+                color: $black;
+                code {
+                    color: $purple82;
+                    background: rgba(130, 79, 211, 0.2);
+                    border-radius: 2px;
+                    
+                }
+            }
+            code {
+                font-family: "SourceCodePro SemiBold";
+                @include font-size(15, 28);
+                color: $black;
+            }
+            pre {
+                background: $purple22;
+                border-radius: 6px;
+                code {
+                    color: $yellowFF;
+                }
+            }
+
+            ol {
+                font-family: SourceSansProSemibold;
+                @include font-size(18, 26);
+                li{
+                    &::marker{
+                        color:$purple22;
+                    }
+                    color: $purple82;
+                }
+            }
+            .ordered-list-title {
+                span {
+                    width: 38px;
+                    height: 38px;
+                    background: $purple82;
+                    border: 2px solid $purple82;
+                    color: $white;
+                    border-radius: 50%;
+                    @include display-flex(center, flex-end, wrap, inline-flex);
+                    margin-right: 12px;
+                }
+                a.anchor {
+                    opacity: 0;
+                    vertical-align: middle;
+                    text-decoration: none;
+                }
+            }
         }
     }
 

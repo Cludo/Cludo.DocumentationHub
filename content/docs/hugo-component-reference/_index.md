@@ -14,7 +14,7 @@ This is intended to be component usage examples and will be removed when develop
 4. Quarum Elis corniger
 5. Nec ieiunia dixit
 
-### 1. Remansit notam Stygia feroxque
+{{< ordered-list-title number="1" title="Remansit notam Stygia feroxque" id="1-Remansit-notam-Stygia-feroxque" >}}
 ### 2. Remansit notam Stygia feroxque
 
 ## Markdown table
@@ -38,9 +38,9 @@ This is intended to be component usage examples and will be removed when develop
 
 ## Swagger Operation Module
 
-~~The swagger module is currently configured to point to the example data that swagger hosts. It's a pet store api. [Here's a link](https://petstore.swagger.io/) to the full, swagger-hosted solution. The operation attribute on the following shortcode must match an operation on the pet store api.~~
+~~The swagger module is currently **configured** to point to the *example data that* swagger hosts. It's a pet store api. [Here's a link](https://petstore.swagger.io/) to the full, swagger-hosted solution. The operation attribute on the following shortcode must match an operation on the pet store api.~~
 
-Currently, this is pointing to Cludo API's OpenApi json file. The code example output below uses operation `Statistics`.
+Currently, this is pointing to *Cludo API's OpenApi* **json file**. The code example output below uses operation `Statistics`.
 
 **Code**
 
