@@ -4,17 +4,30 @@
 $purple22: #222337;
 $purple82: #824fd3;
 $purpleAF: #fafaff;
+$purple85: #8532c5;
+$purple96: #9636b9;
+
+$blueD9: #D9E2FC;
+$blue43: #436DF0;
+
 
 $yellowFF: #ffc000;
+$yellowCC: #FFF2CC;
+
+$redF5: #F5CCCC;
+$redCC: #CC0000;
 
 $greyCC: #cccccc;
 $grey88: #888888;
 $grey66: #666666;
 $grey33: #333333;
 $greyE8: #ebe9f1;
+$greyEA: #eae8ed;
 
 $white: #fff;
 $black: #000;
+$black11: #111111;
+$black22: #222337;
 
 //Montserrat Fonts
 @font-face {
@@ -43,7 +56,6 @@ $black: #000;
         url(/fonts/SourceSansPro/sourcesanspro-regular-webfont.woff) format("woff"),
         url(/fonts/SourceSansPro/SourceSansPro-Regular.ttf) format("truetype");
 }
-
 @font-face {
     font-family: SourceSansProSemibold;
     font-weight: 600;
@@ -336,12 +348,11 @@ body {
             p {
                 font-family: SourceSansProRegular;
                 @include font-size(18, 26);
-                color: $black;
+                color: $grey33;
                 code {
                     color: $purple82;
                     background: rgba(130, 79, 211, 0.2);
                     border-radius: 2px;
-                    
                 }
             }
             code {
@@ -352,6 +363,7 @@ body {
             pre {
                 background: $purple22;
                 border-radius: 6px;
+                margin-top: 25px;
                 code {
                     color: $yellowFF;
                 }
@@ -360,9 +372,9 @@ body {
             ol {
                 font-family: SourceSansProSemibold;
                 @include font-size(18, 26);
-                li{
-                    &::marker{
-                        color:$purple22;
+                li {
+                    &::marker {
+                        color: $purple22;
                     }
                     color: $purple82;
                 }
@@ -383,18 +395,192 @@ body {
                     vertical-align: middle;
                     text-decoration: none;
                 }
+                .content {
+                    margin: 35px 52px;
+                }
             }
+            .dotted {
+                border-bottom: 1px $greyCC dashed;
+                &.dotted-spaced {
+                    background-image: linear-gradient(to right, #333 10%, rgba(255, 255, 255, 0) 0%);
+                    background-position: top;
+                    background-size: 10px 1px;
+                    background-repeat: repeat-x;
+                }
+            }
+
+            .custom-separator {
+                display: block;
+                width: 100%;
+            }
+            .image-shortcode {
+                &.center {
+                    text-align: center;
+                }
+                &.right {
+                    text-align: right;
+                }
+                &.left {
+                    text-align: left;
+                }
+            }
+            .footer-message {
+                font-family: SourceSansProRegular;
+                @include font-size(16, 26);
+                text-align: center;
+                color: $grey66;
+                margin-top: 50px;
+                a {
+                    color: $purple82;
+                }
+            }
+            .markdown-with-header {
+                .header-detail {
+                    background: $greyEA;
+                    padding: 20px;
+                    border-radius: 5px;
+
+                    .title {
+                        font-family: "Montserrat Semi-Bold";
+                        @include font-size(17, 30);
+                        color: $black22;
+                    }
+
+                    .content {
+                        font-family: SourceSansProRegular;
+                        color: $black22;
+                        @include font-size(18, 22);
+                        display: block;
+                        margin-top: 5px;
+                    }
+                }
+
+                .template {
+                    margin-top: -25px;
+                    pre {
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                    }
+                }
+            }
+
+            .btn {
+                border-radius: 50px;
+                padding: 15px 40px;
+                border: none !important;
+                font-family: SourceSansProSemibold;
+                @include font-size(18, 24);
+                margin-top: 40px;
+
+                &.btn-gradiant {
+                    background: linear-gradient(180deg, $purple85, $purple96);
+                    color: $white;
+                }
+                &.btn-solid {
+                    background: $yellowFF;
+                    color: $black;
+                }
+                &:not(:last-of-type) {
+                    margin-right: 30px;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            table {
+                thead {
+                    border: 2px solid #ece5f8;
+                    box-sizing: border-box;
+                    border-radius: 6px;
+
+                    tr {
+                        background: $purple82;
+                        border-radius: 6px;
+                        color: $white;
+                        font-family: "Montserrat Semi-Bold";
+                        @include font-size(17, 30);
+
+                        th {
+                            border: none !important;
+                            padding: 12px 30px;
+                        }
+                    }
+                }
+                tbody {
+                    border: 2px solid #ece5f8;
+                    box-sizing: border-box;
+                    border-radius: 6px;
+                    tr {
+                        border-radius: 6px;
+                        font-family: SourceSansProRegular;
+                        @include font-size(18, 26);
+
+                        td {
+                            border: none;
+                            padding: 12px 30px;
+                        }
+                        &:nth-child(even) {
+                            background: #ece5f8;
+                        }
+                    }
+                }
+            }
+            .book-hint {
+                border-radius: 6px;
+                font-family: SourceSansProRegular;
+                @include font-size(18, 26);
+                strong:first-of-type{
+                    font-family: "SourceCodePro SemiBold";
+                    @include font-size(15, 28);
+                    color: $white;
+                    padding: 5px;
+                    text-transform: uppercase;
+                    margin: 10px 0;
+                    display: inline-block;
+                }
+                &.info{
+                    background-color: $blueD9;
+                    > strong:first-of-type {
+                        background-color: $blue43;    
+                    }
+                }
+                &.warning{
+                    background-color: $yellowCC;
+                    > strong:first-of-type {
+                        background-color: $yellowFF;    
+                    }
+                }
+                &.danger{
+                    background-color: $redF5;
+                    > strong:first-of-type {
+                        background-color: $redCC;    
+                    }
+                }
+            }
+        }
+    }
+
+    .book-footer {
+        background-color: $black11;
+
+        div {
+            color: $greyCC;
+            font-family: "Montserrat Medium";
+            @include font-size(14, 22);
+            padding: 30px;
         }
     }
 
     // General Setting
     aside {
         background: $purpleAF !important;
-        height: 83vh;
+        // height: 83vh;
         min-width: 343px;
 
         > div:first-child {
-            top: 156px !important;
+            // top: 156px !important;
+            position: relative !important;
             background: $purpleAF !important;
             width: 21rem !important;
             font-family: SourceSansProRegular;

@@ -7,3 +7,7 @@ theme = "book"
     site_logo = "https://my.cludo.com/assets/img/logo/logo-top-nav-cut.svg"
     BookSearch = false
     
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

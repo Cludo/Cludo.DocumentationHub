@@ -1,4 +1,7 @@
 <div class="ordered-list-title">
-    <h3 id="{{ .Get "id" }}"> <span class="number">{{ .Get "number" }}</span>{{ .Get "title" }} </h3>
-    <a class="anchor" href="#{{ .Get "id" }}">#</a>
+    <h3 id="{{ .Get "id" }}"> <span class="number">{{ .Get "number" }}</span>{{ .Get "title" }} <a class="anchor" href="#{{ .Get "id" }}">#</a></h3>
+    <div class="content">
+        {{ .Inner | markdownify }}
+    </div>
 </div>
+<div class="custom-separator dotted-spaced dotted"></div>

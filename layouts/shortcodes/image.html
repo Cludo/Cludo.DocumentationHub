@@ -1,0 +1,7 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $align := .Get "align" | default "center"}}
+
+<div class="image-shortcode {{ $align }}">
+  <img src="{{ $src }}" alt="{{ $alt }}"/>
+</div>

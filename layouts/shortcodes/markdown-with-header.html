@@ -1,0 +1,21 @@
+<div class="markdown-with-header">
+	<div class="header-detail">
+		{{ with .Get "title" }}
+			<label class="title">
+				{{ . }}
+			</label>
+		{{end}}
+
+		{{ with .Get "content" }}
+			<span class="content"> {{ . }} </span>
+		{{end}}
+	</div>
+	<div class="template">
+		{{ .Inner | markdownify }}
+	</div>
+	<!-- This JS function is being loaded in a general JS file in the html head -->
+	<!-- <a class="btn" href="#"> Click Me !</a> -->
+</div>
+<!-- 
+Scripts can be added directly into the shortcode
+<script src="/js/custom.js"></script> -->

@@ -15,25 +15,17 @@ This is intended to be component usage examples and will be removed when develop
 5. Nec ieiunia dixit
 
 {{< ordered-list-title number="1" title="Remansit notam Stygia feroxque" id="1-Remansit-notam-Stygia-feroxque" >}}
+Videt e flammis Scythica parantem rupisque pectora umbras. Haec ficta canistris repercusso simul ego aris Dixit! Esse Fama trepidare hunc crescendo vigor ululasse vertice exspatiantur celer `tepidique` aversata oculis command.
+    
+    ```
+    sudo fallocate -l 1G /swapfile
+    ```
+{{< /ordered-list-title >}}
+
+{{< ordered-list-title number="2" title="Remansit notam Stygia feroxque" id="2-Remansit-notam-Stygia-feroxque" >}}
+{{< image src="/img/img-exemple.png" alt="This is sample image" >}}
+{{< /ordered-list-title >}}
 ### 2. Remansit notam Stygia feroxque
-
-## Markdown table
-
-**Code**
-
-```
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-```
-
-**Output**
-
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
 
 
 ## Swagger Operation Module
@@ -55,3 +47,4 @@ Currently, this is pointing to *Cludo API's OpenApi* **json file**. The code exa
 {{< swagger-op operation="Search" >}}
 
 
+{{< footer-message >}}
