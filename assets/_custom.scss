@@ -6,16 +6,18 @@ $purple82: #824fd3;
 $purpleAF: #fafaff;
 $purple85: #8532c5;
 $purple96: #9636b9;
+$purpleEC: #ece5f8;
 
-$blueD9: #D9E2FC;
-$blue43: #436DF0;
-
+$blueD9: #d9e2fc;
+$blue43: #436df0;
 
 $yellowFF: #ffc000;
-$yellowCC: #FFF2CC;
+$yellowCC: #fff2cc;
 
-$redF5: #F5CCCC;
-$redCC: #CC0000;
+$redF5: #f5cccc;
+$redCC: #cc0000;
+
+$green39: #39AE95;
 
 $greyCC: #cccccc;
 $grey88: #888888;
@@ -359,6 +361,18 @@ body {
                 font-family: "SourceCodePro SemiBold";
                 @include font-size(15, 28);
                 color: $black;
+                &.info {
+                    background-color: $blueD9;
+                    color: $blue43;
+                }
+                &.warning {
+                    background-color: $yellowCC;
+                    color: $yellowFF;
+                }
+                &.danger {
+                    background-color: $redF5;
+                    color: $redCC;
+                }
             }
             pre {
                 background: $purple22;
@@ -412,6 +426,7 @@ body {
             .custom-separator {
                 display: block;
                 width: 100%;
+                margin-top: 54px;
             }
             .image-shortcode {
                 &.center {
@@ -530,7 +545,7 @@ body {
                 border-radius: 6px;
                 font-family: SourceSansProRegular;
                 @include font-size(18, 26);
-                strong:first-of-type{
+                strong:first-of-type {
                     font-family: "SourceCodePro SemiBold";
                     @include font-size(15, 28);
                     color: $white;
@@ -539,22 +554,346 @@ body {
                     margin: 10px 0;
                     display: inline-block;
                 }
-                &.info{
+                &.info {
                     background-color: $blueD9;
                     > strong:first-of-type {
-                        background-color: $blue43;    
+                        background-color: $blue43;
                     }
                 }
-                &.warning{
+                &.warning {
                     background-color: $yellowCC;
                     > strong:first-of-type {
-                        background-color: $yellowFF;    
+                        background-color: $yellowFF;
                     }
                 }
-                &.danger{
+                &.danger {
                     background-color: $redF5;
                     > strong:first-of-type {
-                        background-color: $redCC;    
+                        background-color: $redCC;
+                    }
+                }
+            }
+            .book-tabs {
+                border: 2px solid $purple82;
+                border-radius: 6px;
+                .book-tabs-content {
+                    border-top: 2px solid $purple82;
+                    font-family: SourceSansProRegular;
+                    @include font-size(18, 26);
+                    color: $grey33;
+                    padding: 30px;
+                }
+                input[type="radio"]:checked + label {
+                    border-bottom: 2px solid $purple82;
+                    outline: none;
+                }
+                label {
+                    font-family: "Montserrat Semi-Bold";
+                    color: $grey88;
+                    @include font-size(17, 30);
+                }
+            }
+            .book-expand {
+                border: 2px solid $purple82;
+                label {
+                    width: 100%;
+                    .book-expand-head {
+                        background: $purple82;
+                        color: $white;
+                        font-family: "Montserrat Semi-Bold";
+                        @include font-size(17, 30);
+                    }
+                }
+
+                .book-expand-content {
+                    font-family: SourceSansProRegular;
+                    @include font-size(18, 28);
+                    color: $grey33;
+                }
+            }
+            .swagger-operation {
+                .swagger-ui {
+                    .opblock-tag-section {
+                        border: 2px solid $purple82;
+                        border-radius: 6px;
+                        margin: 20px 0;
+                        .opblock-tag {
+                            font-family: "Montserrat Semi-Bold";
+                            // border-radius: 6px;
+                            @include font-size(17, 30);
+                            background: $purpleEC;
+                            color: $purple82;
+                        }
+
+                        &.is-open {
+                            .opblock-tag {
+                                background: $purple82;
+                                color: $white;
+                            }
+                        }
+                        .no-margin {
+                            padding: 30px;
+                        }
+                    }
+
+                    .operation-tag-content {
+                        .opblock {
+                            border: none;
+                            .opblock-summary {
+                                padding: 11px;
+                                .opblock-summary-method {
+                                    font-family: "Montserrat Semi-Bold";
+                                    @include font-size(15, 22);
+                                }
+                                .opblock-summary-path {
+                                    font-family: "SourceCodePro SemiBold";
+                                    @include font-size(16, 28);
+                                    color: $grey33;
+                                }
+                                .opblock-summary-description {
+                                    font-family: SourceSansProRegular;
+                                    @include font-size(18, 26);
+                                    color: $grey33;
+                                }
+                            }
+                            &.opblock-get {
+                                background: $blueD9;
+                                .opblock-summary-method {
+                                    background: $blue43;
+                                }
+                                .opblock-section-header {
+                                    background: $blue43;
+                                }
+                                .try-out {
+                                    .try-out__btn {
+                                        color: $blue43;
+                                    }
+                                }
+                                table {
+                                    thead {
+                                        tr {
+                                            th,
+                                            td {
+                                                color: $blue43;
+                                            }
+                                        }
+                                    }
+                                    tbody {
+                                        border-top-color: rgba(67, 109, 240, 0.25);
+                                        tr {
+                                            td {
+                                                border-bottom-color: rgba(67, 109, 240, 0.25);
+                                                &:first-of-type {
+                                                    border-right-color: rgba(67, 109, 240, 0.25);
+                                                }
+                                            }
+                                            &:nth-child(even) {
+                                                background: $blueD9;
+                                            }
+                                        }
+                                        .tab {
+                                            li {
+                                                a{
+                                                    color: $blue43;
+    
+                                                }
+                                                &.active {
+                                                    a {
+                                                        border-bottom-color: $blue43;
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                            &.opblock-post {
+                                background: rgba(57, 174, 149, 0.2);
+                                .opblock-summary-method {
+                                    background: $green39;
+                                }
+                                .opblock-section-header {
+                                    background: $green39;
+                                }
+                                .try-out {
+                                    .try-out__btn {
+                                        color: $green39;
+                                    }
+                                }
+                                table {
+                                    thead {
+                                        tr {
+                                            th,
+                                            td {
+                                                color: $green39;
+                                            }
+                                        }
+                                    }
+                                    tbody {
+                                        border-top-color: rgba(57, 174, 149, 0.2);
+                                        tr {
+                                            td {
+                                                border-bottom-color: rgba(57, 174, 149, 0.2);
+                                                &:first-of-type {
+                                                    border-right-color: rgba(57, 174, 149, 0.2);
+                                                }
+                                            }
+                                            &:nth-child(even) {
+                                                background: rgba(57, 174, 149, 0.2);
+                                            }
+                                        }
+                                        .tab {
+                                            li {
+                                                a{
+                                                    color: $green39;
+    
+                                                }
+                                                &.active {
+                                                    a {
+                                                        border-bottom-color: $green39;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .opblock-body {
+                            .opblock-description-wrapper {
+                                padding: 15px 0px;
+                                .opblock-description {
+                                    font-family: SourceSansProRegular;
+                                    @include font-size(16, 26);
+                                    color: $grey33;
+                                }
+                            }
+                            .opblock-section-header {
+                                margin: 0px -31px;
+                                
+                                padding: 23px 31px;
+                                h4, label {
+                                    color: $white;
+                                    font-family: "Montserrat Semi-Bold";
+                                    @include font-size(17, 33);
+                                }
+                                .try-out {
+                                    .try-out__btn {
+                                        margin-top: auto;
+                                        background-color: $white;
+                                        padding: 9px 40px;
+                                    }
+                                }
+                            }
+                            table {
+                                thead {
+                                    border: none;
+                                    tr {
+                                        background: transparent;
+                                        th,
+                                        td {
+                                            font-family: "Montserrat Semi-Bold";
+                                            @include font-size(15, 22);
+                                            border: none;
+                                        }
+                                    }
+                                }
+                                tbody {
+                                    border-top: 2px solid;
+                                    border-bottom: none;
+                                    border-left: none;
+                                    border-right: none;
+                                    tr {
+                                        td {
+                                            border-bottom: 2px solid;
+                                            &:first-of-type {
+                                                border-right: 2px solid;
+                                            }
+                                            &.parameters-col_name {
+                                                .parameter__name {
+                                                    font-family: "Montserrat Semi-Bold";
+                                                    @include font-size(17, 30);
+                                                    color: $grey33;
+                                                    &.required {
+                                                        &::after {
+                                                            font-family: SourceSansProSemibold;
+                                                            @include font-size(12, 28);
+                                                            color: $redCC;
+                                                        }
+                                                    }
+                                                }
+                                                .parameter__type {
+                                                    font-family: "SourceCodePro SemiBold";
+                                                    @include font-size(14, 28);
+                                                    color: $grey33;
+                                                    .prop-format {
+                                                        color: $grey33;
+                                                    }
+                                                }
+                                                .parameter__in {
+                                                    font-family: "SourceCodePro SemiBold";
+                                                    font-style: italic;
+                                                    @include font-size(13, 28);
+                                                    color: $grey66;
+                                                }
+                                            }
+                                            &.parameters-col_description {
+                                               
+                                                input[type="text"] {
+                                                    max-width: unset;
+                                                }
+                                            }
+                                            &.response-col_status {
+                                                font-family: "Montserrat Semi-Bold";
+                                                @include font-size(17, 30);
+                                                color: $grey33;
+                                                padding: 12px 15px;
+                                            }
+                                            &.response-col_description {
+                                                font-family: SourceSansProRegular;
+                                                @include font-size(16, 28);
+                                                color: $grey33;
+                                            }
+                                        }
+                                    }
+                                    
+                                    .tab {
+                                        border-bottom: 2px solid rgba(136, 136, 136, 0.25);
+                                        li {
+                                            a{
+                                                font-family: SourceSansProSemibold;
+                                                @include font-size(15, 26);
+
+                                                &:hover {
+                                                    text-decoration: none;
+                                                }
+                                            }
+                                            &::after{
+                                                display: none;
+                                            }
+                                            &:first-of-type{
+                                                padding-right: 20px;
+                                            }
+                                            &.active {
+                                                a {
+                                                    border-bottom: 3px solid;
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            input,
+                            select {
+                                background: $white;
+                                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+                                border-radius: 59px;
+                                padding: 10px 20px;
+                            }
+                        }
                     }
                 }
             }

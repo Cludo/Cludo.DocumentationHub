@@ -1,6 +1,6 @@
 ---
 weight: 2
-title: "Components Exemple"
+title: "Components Example"
 ---
 
 {{< markdown-with-header title="Example" content="Lorem ipsum">}}
@@ -35,7 +35,7 @@ title: "Components Exemple"
 ## Hints
 
 Hint shortcode can be used as hint/alerts/notification block.
-There are 3 colors to choose: `info`, `warning`, `danger`.
+There are 3 colors to choose: {{< code-color info >}}info{{< /code-color >}}, {{< code-color warning >}}warning{{< /code-color >}}, {{< code-color danger >}}danger{{< /code-color >}}.
 ### Example
 
 {{< hint info >}}
@@ -56,3 +56,4 @@ Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat
 stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa
 {{< /hint >}}
 
+{{< footer-message >}}
