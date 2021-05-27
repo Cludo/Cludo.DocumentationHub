@@ -17,7 +17,7 @@ $yellowCC: #fff2cc;
 $redF5: #f5cccc;
 $redCC: #cc0000;
 
-$green39: #39AE95;
+$green39: #39ae95;
 
 $greyCC: #cccccc;
 $grey88: #888888;
@@ -30,6 +30,47 @@ $white: #fff;
 $black: #000;
 $black11: #111111;
 $black22: #222337;
+
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+//Iphone 5 and very small devices
+$screen-iphone5: 374px;
+
+$screen-small-phones: 390px;
+$screen-phones: 575px;
+
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm: 576px;
+$screen-sm-min: $screen-sm;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md: 768px;
+$screen-md-min: $screen-md;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg: 992px;
+$screen-lg-min: $screen-lg;
+
+// Extra Large screen / extra wide desktop
+$screen-xl: 1200px;
+$screen-xl-min: $screen-xl;
+
+// Extra Extra Large screen / extra extra wide desktop
+$screen-xxl: 1380px;
+$screen-xxl-min: $screen-xxl;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xxs-max: ($screen-xs-min - 1);
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+$screen-md-max: ($screen-lg-min - 1);
+$screen-lg-max: ($screen-xl-min - 1);
+$screen-xl-max: ($screen-xxl-min - 1);
 
 //Montserrat Fonts
 @font-face {
@@ -91,10 +132,35 @@ $black22: #222337;
     align-items: $align;
     flex-wrap: $wrap;
 }
+@mixin for-phone-only {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+@mixin for-desktop-up {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}
 
 // SCSS
 body {
-    .book-header {
+    .book-header-custom  {
         @include display-flex(space-between, center, wrap);
         width: 100%;
         background: $purple22;
@@ -225,6 +291,34 @@ body {
                 }
             }
         }
+        @include for-phone-only {
+            height: 120px;
+            img {
+                margin-top: 6px;
+                width: 100px;
+                margin-left: 20px;
+            }
+            .navbar {
+                display: none;
+            }
+            .search {
+                height: 40px;
+                padding-right: 0;
+                .search-wrapper {
+                    input {
+                        height: 40px;
+    
+                        &::placeholder {
+                            @include font-size(14);
+                        }
+                    }
+                    i {
+                        top: 7px;
+                        @include font-size(18);
+                    }
+                }
+            }
+        }
     }
     .book-menu {
         .book-menu-content {
@@ -282,6 +376,17 @@ body {
                                     display: none;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+        @include for-phone-only {
+            .book-menu-content {
+                ul {
+                    li {
+                        &.book-section-flat {
+                            padding-left: 0;
                         }
                     }
                 }
@@ -623,6 +728,7 @@ body {
                             @include font-size(17, 30);
                             background: $purpleEC;
                             color: $purple82;
+                            margin: 0;
                         }
 
                         &.is-open {
@@ -693,9 +799,8 @@ body {
                                         }
                                         .tab {
                                             li {
-                                                a{
+                                                a {
                                                     color: $blue43;
-    
                                                 }
                                                 &.active {
                                                     a {
@@ -703,7 +808,6 @@ body {
                                                     }
                                                 }
                                             }
-                                            
                                         }
                                     }
                                 }
@@ -745,13 +849,112 @@ body {
                                         }
                                         .tab {
                                             li {
-                                                a{
+                                                a {
                                                     color: $green39;
-    
                                                 }
                                                 &.active {
                                                     a {
                                                         border-bottom-color: $green39;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &.opblock-put {
+                                background: rgba(255, 192, 0, 0.2);
+                                .opblock-summary-method {
+                                    background: $yellowFF;
+                                }
+                                .opblock-section-header {
+                                    background: $yellowFF;
+                                }
+                                .try-out {
+                                    .try-out__btn {
+                                        color: $yellowFF;
+                                    }
+                                }
+                                table {
+                                    thead {
+                                        tr {
+                                            th,
+                                            td {
+                                                color: $yellowFF;
+                                            }
+                                        }
+                                    }
+                                    tbody {
+                                        border-top-color: rgba(255, 192, 0, 0.2);
+                                        tr {
+                                            td {
+                                                border-bottom-color: rgba(255, 192, 0, 0.2);
+                                                &:first-of-type {
+                                                    border-right-color: rgba(255, 192, 0, 0.2);
+                                                }
+                                            }
+                                            &:nth-child(even) {
+                                                background: rgba(255, 192, 0, 0.2);
+                                            }
+                                        }
+                                        .tab {
+                                            li {
+                                                a {
+                                                    color: $yellowFF;
+                                                }
+                                                &.active {
+                                                    a {
+                                                        border-bottom-color: $yellowFF;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &.opblock-delete {
+                                background: rgba(204, 0, 0, 0.2);
+                                .opblock-summary-method {
+                                    background: $redCC;
+                                }
+                                .opblock-section-header {
+                                    background: $redCC;
+                                }
+                                .try-out {
+                                    .try-out__btn {
+                                        color: $redCC;
+                                    }
+                                }
+                                table {
+                                    thead {
+                                        tr {
+                                            th,
+                                            td {
+                                                color: $redCC;
+                                            }
+                                        }
+                                    }
+                                    tbody {
+                                        border-top-color: rgba(204, 0, 0, 0.2);
+                                        tr {
+                                            td {
+                                                border-bottom-color: rgba(204, 0, 0, 0.2);
+                                                &:first-of-type {
+                                                    border-right-color: rgba(204, 0, 0, 0.2);
+                                                }
+                                            }
+                                            &:nth-child(even) {
+                                                background: rgba(204, 0, 0, 0.2);
+                                            }
+                                        }
+                                        .tab {
+                                            li {
+                                                a {
+                                                    color: $redCC;
+                                                }
+                                                &.active {
+                                                    a {
+                                                        border-bottom-color: $redCC;
                                                     }
                                                 }
                                             }
@@ -772,9 +975,10 @@ body {
                             }
                             .opblock-section-header {
                                 margin: 0px -31px;
-                                
+
                                 padding: 23px 31px;
-                                h4, label {
+                                h4,
+                                label {
                                     color: $white;
                                     font-family: "Montserrat Semi-Bold";
                                     @include font-size(17, 33);
@@ -840,7 +1044,6 @@ body {
                                                 }
                                             }
                                             &.parameters-col_description {
-                                               
                                                 input[type="text"] {
                                                     max-width: unset;
                                                 }
@@ -858,11 +1061,11 @@ body {
                                             }
                                         }
                                     }
-                                    
+
                                     .tab {
                                         border-bottom: 2px solid rgba(136, 136, 136, 0.25);
                                         li {
-                                            a{
+                                            a {
                                                 font-family: SourceSansProSemibold;
                                                 @include font-size(15, 26);
 
@@ -870,10 +1073,10 @@ body {
                                                     text-decoration: none;
                                                 }
                                             }
-                                            &::after{
+                                            &::after {
                                                 display: none;
                                             }
-                                            &:first-of-type{
+                                            &:first-of-type {
                                                 padding-right: 20px;
                                             }
                                             &.active {
@@ -882,7 +1085,6 @@ body {
                                                 }
                                             }
                                         }
-                                        
                                     }
                                 }
                             }
@@ -892,11 +1094,22 @@ body {
                                 box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
                                 border-radius: 59px;
                                 padding: 10px 20px;
+                                font-family: SourceSansProSemibold;
+                                @include font-size(15, 16);
+                                color: $grey33;
+
+                                &:focus {
+                                    outline: none;
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+
+        @include for-phone-only {
+            padding: 11px 21px;
         }
     }
 
@@ -925,6 +1138,12 @@ body {
             font-family: SourceSansProRegular;
             @include font-size(17);
             color: $grey33;
+        }
+        @include for-phone-only {
+            min-width: unset;
+            > div:first-child {
+                width: 16rem !important;
+            }
         }
     }
     main {

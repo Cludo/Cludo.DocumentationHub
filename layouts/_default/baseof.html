@@ -10,8 +10,12 @@
 <body dir="{{ .Site.Language.LanguageDirection | default " ltr" }}">
   <input type="checkbox" class="hidden toggle" id="menu-control" />
   <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <header class="book-header container-fluid">
+  <header class="book-header-custom container-fluid">
     {{ template "header" . }}
+    <!-- layout header -->
+  </header>
+  <header class="book-header">
+    {{ template "header-mobile" . }}
     <!-- Mobile layout header -->
   </header>
   <main class="container-fluid flex">
@@ -65,11 +69,13 @@
   {{ template "toc" . }}
 </aside>
 {{ end }}
-{{ end }}
-
-{{ define "footer" }}
+{{ end }}{{ define "footer" }}
 {{ partial "docs/footer" . }}
 {{ end }}
+
+{{ define "header-mobile" }}
+{{ partial "docs/header-mobile" . }}
+{{end}}
 
 {{ define "comments" }}
 {{ if and .Content (default true (default .Site.Params.BookComments .Params.BookComments)) }}
