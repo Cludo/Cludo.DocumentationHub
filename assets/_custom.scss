@@ -1142,7 +1142,7 @@ body {
         @include for-phone-only {
             min-width: unset;
             > div:first-child {
-                width: 16rem !important;
+                // width: 16rem !important;
             }
         }
     }
@@ -1150,4 +1150,73 @@ body {
         padding: 0 !important;
         margin: 0;
     }
+}
+
+
+@media screen and (max-width: $mobile-breakpoint) {
+    #menu-control,
+    #toc-control {
+        
+    }
+  
+    .book-menu {
+        visibility: hidden;
+        margin-inline-start: 0;
+        position: absolute;
+    }
+  
+    .book-toc {
+    
+    }
+  
+    .book-header {
+    
+    }
+  
+    #menu-control:focus ~ main label[for="menu-control"] {
+    
+    }
+  
+    #menu-control:checked ~ main {
+      .book-menu {
+        
+      }
+  
+      .book-menu .book-menu-content {
+        transition: none;
+        transform: none;
+        display: block;
+      }
+  
+      .book-page {
+        
+      }
+  
+      .book-menu-overlay {
+
+      }
+    }
+  
+    #toc-control:focus ~ main label[for="toc-control"] {
+    
+    }
+  
+    #toc-control:checked ~ main {
+      .book-header aside {
+        
+      }
+    }
+  
+    //for RTL support
+    body[dir="rtl"] #menu-control:checked + main {
+      .book-menu .book-menu-content {
+        transform: none;
+        display: none;
+      }
+    }
+  }
+
+
+.book-menu-content {
+    transition: none !important;
 }
