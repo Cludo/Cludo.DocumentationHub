@@ -14,18 +14,31 @@
     {{ template "header" . }}
     <!-- layout header -->
   </header>
-  <header class="book-header">
+  <div class="book-header">
     {{ template "header-mobile" . }}
     <!-- Mobile layout header -->
-  </header>
+  </div>
+
+  {{ if default true (default .Site.Params.SubHeader .Params.SubHeader) }}
+    <div class="containter-fluid sub-header">
+      {{ template "sub-header" . }}
+    </div>
+      
+  {{ end }}
+
   <main class="container-fluid flex">
+    {{ if default true (default .Site.Params.SideMenu .Params.SideMenu) }}
     <aside class="book-menu">
       <div class="book-menu-content">
         {{ template "menu" . }}
         <!-- Left menu Content -->
       </div>
     </aside>
-    <div class="book-page">
+    {{ end }}
+
+
+
+    <div class="book-page" data-menu="{{ .Site.Params.SideMenu }}">
 
       {{ partial "docs/inject/content-before" . }}
       {{ template "main" . }}
@@ -59,6 +72,10 @@
 
 {{ define "menu" }}
 {{ partial "docs/menu" . }}
+{{ end }}
+
+{{ define "sub-header" }}
+{{ partial "docs/sub-header" . }}
 {{ end }}
 
 {{ define "header" }}
