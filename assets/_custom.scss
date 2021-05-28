@@ -160,7 +160,7 @@ $screen-xl-max: ($screen-xxl-min - 1);
 
 // SCSS
 body {
-    .book-header-custom  {
+    .book-header-custom {
         @include display-flex(space-between, center, wrap);
         width: 100%;
         background: $purple22;
@@ -307,7 +307,7 @@ body {
                 .search-wrapper {
                     input {
                         height: 40px;
-    
+
                         &::placeholder {
                             @include font-size(14);
                         }
@@ -1152,71 +1152,71 @@ body {
     }
 }
 
-
 @media screen and (max-width: $mobile-breakpoint) {
     #menu-control,
     #toc-control {
-        
     }
-  
+
     .book-menu {
         visibility: hidden;
         margin-inline-start: 0;
         position: absolute;
+        width: 100%;
+        .book-menu-content {
+            transition: none !important;
+            width: 23rem !important;
+        }
     }
-  
-    .book-toc {
-    
-    }
-  
-    .book-header {
-    
-    }
-  
-    #menu-control:focus ~ main label[for="menu-control"] {
-    
-    }
-  
-    #menu-control:checked ~ main {
-      .book-menu {
-        
-      }
-  
-      .book-menu .book-menu-content {
-        transition: none;
-        transform: none;
-        display: block;
-      }
-  
-      .book-page {
-        
-      }
-  
-      .book-menu-overlay {
 
-      }
+    .book-toc {
     }
-  
-    #toc-control:focus ~ main label[for="toc-control"] {
-    
+
+    .book-header {
+        padding: 13px 20px;
+        background:$purpleAF;
+        color: $purple82;
+        font-family: SourceSansProSemibold;
+        @include font-size(16, 24);
+        margin-bottom: 0;
+        label {
+            @include display-flex(space-between, center, wrap);
+        }
     }
-  
-    #toc-control:checked ~ main {
-      .book-header aside {
+
+    #menu-control:focus ~ main label[for="menu-control"] {
+       
+    }
+
+    #menu-control:checked ~ main {
+        .book-menu {
+            .book-menu-content {
+                transition: none;
+                transform: none;
+                display: block;
+                box-shadow: none;
+            }
+        }
         
-      }
+        .book-page {
+        }
+
+        .book-menu-overlay {
+        }
     }
-  
+
+    #toc-control:focus ~ main label[for="toc-control"] {
+    }
+
+    #toc-control:checked ~ main {
+        .book-header aside {
+        }
+    }
+
     //for RTL support
     body[dir="rtl"] #menu-control:checked + main {
-      .book-menu .book-menu-content {
-        transform: none;
-        display: none;
-      }
+        .book-menu .book-menu-content {
+            transform: none;
+            display: none;
+        }
     }
-  }
-
-
-.book-menu-content {
-    transition: none !important;
 }

@@ -1,13 +1,13 @@
-<div class="flex align-center justify-between">
+<div class="">
   <label for="menu-control">
-    <span class="menu-control__title">{{.FirstSection.Title}} - {{.Title}}</span>
+    <span class="menu-control__title">{{.FirstSection.Title}} - {{.Title}} </span><i class="fa fa-chevron-down"></i>
   </label>
 
   <!-- <strong>{{ partial "docs/title" . }}</strong> -->
 
-  <label for="toc-control">
+  <!-- <label for="toc-control">
     {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
     <img src="{{ "svg/toc.svg" | relURL }}" class="book-icon" alt="Table of Contents" />
     {{ end }}
-  </label>
+  </label> -->
 </div>
