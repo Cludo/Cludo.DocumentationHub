@@ -1168,9 +1168,6 @@ body {
         }
     }
 
-    .book-toc {
-    }
-
     .book-header {
         padding: 13px 20px;
         background:$purpleAF;
@@ -1205,10 +1202,37 @@ body {
     }
 
     #toc-control:focus ~ main label[for="toc-control"] {
+        
+    }
+    label[for="toc-control"] {
+        @include display-flex(flex-end, center, wrap);
+        width: 100%;
+        margin: 9px 0;
+        color: $purple82;
+        @include font-size(18, 22);
+        &:focus,
+        &:active,
+        &:focus-visible {
+            outline: none;
+        }
     }
 
-    #toc-control:checked ~ main {
-        .book-header aside {
+    #toc-control:checked{
+       & ~ .book-header-custom  {
+            aside{
+                transition: none;
+                transform: none;
+                display: block;
+                box-shadow: none;
+                z-index: 3;
+                width: 100%;
+               .toc-page-title {
+                font-family: SourceSansProSemibold;
+                @include font-size(14, 18);
+                text-transform: uppercase;
+               }
+            }
+            
         }
     }
 
