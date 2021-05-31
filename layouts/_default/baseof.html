@@ -17,6 +17,14 @@
   <header class="book-header">
     {{ template "header-mobile" . }}
     <!-- Mobile layout header -->
+    {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
+    <aside class="book-toc book-toc-mobile">
+      <div class="book-toc-content">
+        {{ template "toc" . }}
+        <!-- Table of Contents -->
+      </div>
+    </aside>
+    {{ end }}
   </header>
   <main class="container-fluid flex">
     <aside class="book-menu">

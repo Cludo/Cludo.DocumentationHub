@@ -1,26 +1,35 @@
-
-<figure>
-    <img  src="{{ .Site.Params.site_logo }}">
+<div class="mobile-header-menu">
+    <div>
+        <figure>
+            <img  src="{{ .Site.Params.site_logo }}">
+        </figure>
+        <a class="burger-menu" href="#" onclick="toggleClass();">
+            <i class="fas fa-bars open"></i>
+            <i class="fas fa-times close"></i>
+        </a>
+    </div>
+    <div class="mobile-menu">
+        {{ partial "docs/navbar" . }}
+    </div>
+</div>
+<figure class="desktop">
+    <img src="{{ .Site.Params.site_logo }}">
 </figure>
-<ul class=" navbar">
-    <li class="nav-item"> Lorem </li>
-    <li class="nav-item dropdown">
-        <button class="dropbtn">Dropdown
-            <i class="fa fa-chevron-down open"></i>
-            <i class="fa fa-chevron-up close"></i>
-        </button>
-        <ul class="dropdown-content">
-            <li href="#">Link 1</li>
-            <li href="#">Link 2</li>
-            <li href="#">Link 3</li>
-        </ul>
-    <li class="nav-item"> Lorem </li>
-    <li class="nav-item"> Lorem </li>
-    </li>
-</ul>
+<div class="desktop">
+    {{ partial "docs/navbar" . }}
+</div>
+
 <div class="search">
   <div class="search-wrapper">
     <input type="text" maxlength="64" data-hotkeys="s/" class="form-control" placeholder="Search here for documentation"/>
     <i class="fa fa-search"></i>
   </div>
 </div>
+
+<script>
+    function toggleClass() {
+        var menu = document.querySelector('.book-header-custom') // Using a class instead, see note below.
+            menu.classList.toggle('open');
+    }
+    
+</script>

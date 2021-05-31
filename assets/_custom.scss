@@ -25,52 +25,12 @@ $grey66: #666666;
 $grey33: #333333;
 $greyE8: #ebe9f1;
 $greyEA: #eae8ed;
+$greyFA: #fafaff;
 
 $white: #fff;
 $black: #000;
 $black11: #111111;
 $black22: #222337;
-
-//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
-//Iphone 5 and very small devices
-$screen-iphone5: 374px;
-
-$screen-small-phones: 390px;
-$screen-phones: 575px;
-
-$screen-xs: 480px;
-$screen-xs-min: $screen-xs;
-
-// Small screen / tablet
-//** Deprecated `$screen-sm` as of v3.0.1
-$screen-sm: 576px;
-$screen-sm-min: $screen-sm;
-
-// Medium screen / desktop
-//** Deprecated `$screen-md` as of v3.0.1
-$screen-md: 768px;
-$screen-md-min: $screen-md;
-
-// Large screen / wide desktop
-//** Deprecated `$screen-lg` as of v3.0.1
-$screen-lg: 992px;
-$screen-lg-min: $screen-lg;
-
-// Extra Large screen / extra wide desktop
-$screen-xl: 1200px;
-$screen-xl-min: $screen-xl;
-
-// Extra Extra Large screen / extra extra wide desktop
-$screen-xxl: 1380px;
-$screen-xxl-min: $screen-xxl;
-
-// So media queries don't overlap when required, provide a maximum
-$screen-xxs-max: ($screen-xs-min - 1);
-$screen-xs-max: ($screen-sm-min - 1);
-$screen-sm-max: ($screen-md-min - 1);
-$screen-md-max: ($screen-lg-min - 1);
-$screen-lg-max: ($screen-xl-min - 1);
-$screen-xl-max: ($screen-xxl-min - 1);
 
 //Montserrat Fonts
 @font-face {
@@ -166,10 +126,17 @@ body {
         background: $purple22;
         height: 156px;
         margin-bottom: 0;
-
+        transition: all 0.5s ease-out;
         img {
             width: 200px;
             margin-left: 80px;
+        }
+        .mobile-header-menu {
+            display: none;
+           
+        }
+        .mobile-menu {
+            display: none;
         }
         .navbar {
             overflow: hidden;
@@ -293,17 +260,22 @@ body {
         }
         @include for-phone-only {
             height: 120px;
-            img {
-                margin-top: 6px;
-                width: 100px;
-                margin-left: 20px;
+            padding: 0;
+            > div {
+                padding: 0 10px;
             }
-            .navbar {
+            figure.desktop {
                 display: none;
+            }
+            .desktop {
+                .navbar {
+                    display: none;
+                }
             }
             .search {
                 height: 40px;
                 padding-right: 0;
+                margin-bottom: 18px;
                 .search-wrapper {
                     input {
                         height: 40px;
@@ -316,6 +288,90 @@ body {
                         top: 7px;
                         @include font-size(18);
                     }
+                }
+            }
+            .mobile-header-menu {
+                display: block;
+                width: 100%;
+                > div:not(.mobile-menu) {
+                    width: 100%;
+                    @include display-flex(space-between, center, wrap, inline-flex);
+                    img {
+                        margin-left: 0;
+                        margin-top: 20px;
+                        width: 100px;
+                    }
+                    .burger-menu {
+                        text-decoration: none;
+                        i {
+                            color: $white;
+                            @include font-size(25);
+
+                            &.close {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.open {
+                height: 200px;
+                .mobile-header-menu {
+                    background-color: $greyFA;
+                    z-index: 999;
+                    > div {
+                        .burger-menu {
+                            i {
+                                color: $black;
+                                &.close {
+                                    display: block;
+                                }
+                                &.open {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .mobile-menu {
+                        display: block;
+                        z-index: 3;
+                        padding-left: 30px;
+                        padding-top: 10px;
+                        .navbar {
+                            display: block;
+                            .nav-item {
+                                float: none;
+                                margin-right: 0;
+                                text-align: left;
+                                color: $black22;
+                                padding-bottom: 20px;
+                                @include font-size(18, 22);
+                                &.dropdown {
+                                    .dropbtn {
+                                        padding: 0;
+                                        color: $black22;
+                                        @include font-size(18, 22);
+                                        width: 100%;
+                                    }
+                                    .dropdown-content {
+                                        position: relative;
+                                        box-shadow: none;
+                                        top: 0;
+                                    }
+
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+                .search {
+                    visibility: hidden;
+                }
+                & ~ .book-header {
+                    visibility: hidden;
                 }
             }
         }
@@ -393,11 +449,15 @@ body {
             }
         }
     }
-
+    .toc-control {
+        display: none;
+    }
     .book-toc {
+        
         .book-toc-content {
             padding-left: 30px;
             padding-top: 60px;
+           
             .toc-page-title {
                 span {
                     font-family: SourceSansProSemibold;
@@ -689,7 +749,8 @@ body {
                     padding: 30px;
                 }
                 input[type="radio"]:checked + label {
-                    border-bottom: 2px solid $purple82;
+                    outline: none;
+                    border-bottom: 2px solid $purple82;;
                     outline: none;
                 }
                 label {
@@ -1110,6 +1171,14 @@ body {
 
         @include for-phone-only {
             padding: 11px 21px;
+            .book-tabs {
+                input[type="radio"]:checked + label {
+                    border-bottom: none;
+                    background: $purple82;
+                    color: $white;
+                    border-radius: 49px;
+                }
+            }
         }
     }
 
@@ -1170,7 +1239,7 @@ body {
 
     .book-header {
         padding: 13px 20px;
-        background:$purpleAF;
+        background: $purpleAF;
         color: $purple82;
         font-family: SourceSansProSemibold;
         @include font-size(16, 24);
@@ -1178,10 +1247,19 @@ body {
         label {
             @include display-flex(space-between, center, wrap);
         }
+        .book-toc-mobile {
+            display: none;
+            // transition: all 0.1s ease-out;
+            .book-toc-content {
+                padding: 0;
+                .toc-page-title {
+                    @include font-size(14, 16);
+                }
+            }
+        }
     }
 
     #menu-control:focus ~ main label[for="menu-control"] {
-       
     }
 
     #menu-control:checked ~ main {
@@ -1193,7 +1271,7 @@ body {
                 box-shadow: none;
             }
         }
-        
+
         .book-page {
         }
 
@@ -1202,14 +1280,21 @@ body {
     }
 
     #toc-control:focus ~ main label[for="toc-control"] {
-        
     }
     label[for="toc-control"] {
         @include display-flex(flex-end, center, wrap);
         width: 100%;
         margin: 9px 0;
         color: $purple82;
-        @include font-size(18, 22);
+
+        .book-icon {
+            @include font-size(18, 22);
+
+            &.close {
+                display: none;
+            }
+        }
+
         &:focus,
         &:active,
         &:focus-visible {
@@ -1217,22 +1302,27 @@ body {
         }
     }
 
-    #toc-control:checked{
-       & ~ .book-header-custom  {
-            aside{
+    #toc-control:checked {
+        & ~ .book-header {
+            aside.book-toc-mobile {
                 transition: none;
                 transform: none;
                 display: block;
                 box-shadow: none;
                 z-index: 3;
                 width: 100%;
-               .toc-page-title {
-                font-family: SourceSansProSemibold;
-                @include font-size(14, 18);
-                text-transform: uppercase;
-               }
             }
-            
+
+            label[for="toc-control"] {
+                .book-icon {
+                    &.open {
+                        display: none;
+                    }
+                    &.close {
+                        display: block;
+                    }
+                }
+            }
         }
     }
 

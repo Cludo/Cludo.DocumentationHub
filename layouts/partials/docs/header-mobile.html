@@ -6,3 +6,9 @@
     <!-- <strong>{{ partial "docs/title" . }}</strong> -->
 
 </div>
+<label for="toc-control">
+    {{ if default true (default .Site.Params.BookToC .Params.BookToC) }}
+    <i class="fa fa-plus-circle book-icon open" alt="Table of Contents"></i>
+    <i class="fa fa-minus-circle book-icon close" alt="Table of Contents"></i>
+    {{ end }}
+</label>
