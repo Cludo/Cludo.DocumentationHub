@@ -6,9 +6,9 @@ theme = "book"
 [params]
     site_logo = "https://my.cludo.com/assets/img/logo/logo-top-nav-cut.svg"
     BookSearch = false
-    BookToC = false
+    BookToC = true
     SideMenu = true
-    SubHeader = false
+    SubHeader = true
     
 [markup]
   [markup.goldmark]

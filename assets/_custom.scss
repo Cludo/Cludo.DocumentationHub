@@ -343,12 +343,15 @@ body {
                             }
                         }
                     }
-
+                    .badge {
+                        display: none;
+                    }
                     .mobile-menu {
                         display: block;
                         z-index: 3;
                         padding-left: 30px;
                         padding-top: 10px;
+                        
                         .navbar {
                             display: block;
                             .nav-item {
@@ -494,6 +497,20 @@ body {
                 }
                 &:hover {
                     text-decoration: none;
+                }
+            }
+        }
+        @include for-phone-only {
+            margin-bottom: 21px;
+            > div {
+                padding: 30px 22px;
+
+                .btn {
+                    width: 100%;
+
+                    &:not(:last-of-type) {
+                        margin-right: 0;
+                    }
                 }
             }
         }
@@ -1432,7 +1449,9 @@ body {
 
     #menu-control:focus ~ main label[for="menu-control"] {
     }
-
+    #menu-control:checked ~ .sub-header {
+        display: none;
+    }
     #menu-control:checked ~ main {
         .book-menu {
             .book-menu-content {
@@ -1495,6 +1514,7 @@ body {
                 }
             }
         }
+        
     }
 
     //for RTL support
