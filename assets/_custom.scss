@@ -411,13 +411,13 @@ body {
 
                     a {
                         text-decoration: none;
-                        padding: 0 8px;
+                        padding: 5px 8px;
                         &:hover,
                         &.active {
                             background: $purple82;
                             color: $white;
                             border-radius: 6px;
-                            padding: 5px 8px;
+                            // padding: 5px 8px;
                         }
                     }
                     span {

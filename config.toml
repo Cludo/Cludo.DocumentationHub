@@ -8,7 +8,7 @@ theme = "book"
     BookSearch = false
     BookToC = true
     SideMenu = true
-    SubHeader = true
+    SubHeader = false
     
 [markup]
   [markup.goldmark]
