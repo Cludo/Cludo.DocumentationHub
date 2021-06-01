@@ -461,6 +461,43 @@ body {
     .toc-control {
         display: none;
     }
+    .sub-header{
+        background-color: $purple82;
+        color: $white;
+        > div {
+            padding: 59px 257px;
+
+            label {
+                @include font-size(40, 46);
+                font-family: "Montserrat Semi-Bold";
+                margin-bottom: 15px;
+            }
+            span {
+                display: block;
+                @include font-size(18, 28);
+                font-family: "Montserrat Medium";
+                letter-spacing: -0.005em;
+                opacity: 0.8;
+            }
+            .btn {
+                border-radius: 50px;
+                padding: 12px 40px;
+                font-family: SourceSansProSemibold;
+                @include font-size(18, 24);
+                margin-top: 22px;
+                &.btn-solid {
+                    background: $yellowFF;
+                    color: $black;
+                }
+                &:not(:last-of-type) {
+                    margin-right: 30px;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
     .book-toc {
         .book-toc-content {
             padding-left: 30px;
@@ -513,6 +550,10 @@ body {
     }
     .book-page {
         padding: 59px 57px;
+
+        &[data-menu="false"] {
+            padding: 59px 257px;
+        }
 
         .page-title {
             font-family: "Montserrat Semi-Bold";
@@ -1201,6 +1242,108 @@ body {
                     background: $purple82;
                     color: $white;
                     border-radius: 49px;
+                }
+            }
+            .page-title {
+                @include font-size(33, 44);
+                padding-bottom: 13px;
+            }
+            .markdown {
+                h2 {
+                    @include font-size(26, 32);
+                    margin-top: 13px;
+                    margin-bottom: 13px;
+                }
+                h3 {
+                    @include font-size(22, 26);
+                }
+                p {
+                    @include font-size(16, 24);
+                }
+                ol {
+                    @include font-size(16, 24);
+                }
+                .ordered-list-title {
+                    span {
+                        width: 35px;
+                        height: 35px;
+                    }
+                    .content {
+                        margin-left: 35px;
+                        margin-top: 32px;
+                        margin-right: 0;
+                    }
+                }
+                .swagger-operation {
+                    .swagger-ui {
+                        .opblock-tag-section {
+                            .no-margin{
+                                padding: 20px 17px;
+                            }
+                        }
+                        .operation-tag-content {
+                            .opblock {
+                                .opblock-summary {
+                                    padding: 4px;
+                                    // display: grid;
+                                    // text-align: center;
+                                    .opblock-summary-method {
+                                        min-width: unset;
+                                        padding: 16px 5px;
+                                    }
+                                    .opblock-summary-path {
+                                        word-break: normal;
+                                        @include font-size(13, 20);
+                                        max-width: 142px;
+                                    }
+                                    .opblock-summary-description {
+                                        @include font-size(13, 20);
+                                        word-break: normal;
+                                    }
+                                }
+                                .opblock-body {
+                                    .opblock-description-wrapper {
+                                        padding: 0;
+                                    }
+                                    .opblock-section-header {
+                                        margin: 0 -16px;
+                                        padding: 17px 10px;
+                                        align-items: baseline;
+                                        @include font-size(14);
+                                        .try-out {
+                                            .try-out__btn {
+                                                padding: 8px 27px;
+                                            }
+                                        }
+                                        label {
+                                            flex-wrap: wrap;
+                                            padding-left: 8px;
+                                            justify-content: flex-end;
+                                            @include font-size(13);
+                                        }
+                                    }
+                                    table {
+                                        thead {
+                                            tr {
+                                                th{
+                                                    padding: 12px 0px;
+                                                }
+                                            }
+                                        }
+                                        tbody {
+                                            tr {
+                                                td:first-of-type {
+                                                    max-width: 140px;
+                                                    padding: 12px 0px;
+                                                    word-break: break-all;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

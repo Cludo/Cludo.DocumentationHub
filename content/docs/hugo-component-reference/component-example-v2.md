@@ -14,9 +14,6 @@ Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat str
 {{< tab "Windows" >}} # Windows Content {{< /tab >}}
 {{< tab "Windows" >}} # Windows Content {{< /tab >}}
 {{< tab "Windows" >}} # Windows Content {{< /tab >}}
-{{< tab "Windows" >}} # Windows Content {{< /tab >}}
-{{< tab "Windows" >}} # Windows Content {{< /tab >}}
-{{< tab "Windows" >}} # Windows Content {{< /tab >}}
 {{< /tabs >}}
 
 ## Expand
