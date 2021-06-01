@@ -133,7 +133,6 @@ body {
         }
         .mobile-header-menu {
             display: none;
-           
         }
         .mobile-menu {
             display: none;
@@ -312,6 +311,17 @@ body {
                             }
                         }
                     }
+                    .badge {
+                        @include font-size(13, 13);
+                        border-radius: 120px;
+                        margin-right: 5px;
+                        &.badge-danger {
+                            background-color: $redCC;
+                        }
+                        &.badge-neutral {
+                            background-color: $grey88;
+                        }
+                    }
                 }
             }
 
@@ -360,8 +370,6 @@ body {
                                         box-shadow: none;
                                         top: 0;
                                     }
-
-                                    
                                 }
                             }
                         }
@@ -406,6 +414,7 @@ body {
                             background: $purple82;
                             color: $white;
                             border-radius: 6px;
+                            padding: 5px 8px;
                         }
                     }
                     span {
@@ -453,11 +462,10 @@ body {
         display: none;
     }
     .book-toc {
-        
         .book-toc-content {
             padding-left: 30px;
             padding-top: 60px;
-           
+
             .toc-page-title {
                 span {
                     font-family: SourceSansProSemibold;
@@ -485,6 +493,22 @@ body {
                     }
                 }
             }
+        }
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 22px;
+            i {
+                background: $purple22;
+                padding: 17px;
+                border-radius: 4px;
+                @include font-size(18, 18);
+                color: $purple82;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            
         }
     }
     .book-page {
@@ -750,7 +774,7 @@ body {
                 }
                 input[type="radio"]:checked + label {
                     outline: none;
-                    border-bottom: 2px solid $purple82;;
+                    border-bottom: 2px solid $purple82;
                     outline: none;
                 }
                 label {
@@ -1239,11 +1263,15 @@ body {
 
     .book-header {
         padding: 13px 20px;
-        background: $purpleAF;
-        color: $purple82;
+       
         font-family: SourceSansProSemibold;
         @include font-size(16, 24);
         margin-bottom: 0;
+        > div {
+            background: $purpleAF;
+            color: $purple82;
+            padding: 6px 0;
+        }
         label {
             @include display-flex(space-between, center, wrap);
         }

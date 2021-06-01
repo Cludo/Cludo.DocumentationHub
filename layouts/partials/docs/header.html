@@ -3,10 +3,16 @@
         <figure>
             <img  src="{{ .Site.Params.site_logo }}">
         </figure>
-        <a class="burger-menu" href="#" onclick="toggleClass();">
-            <i class="fas fa-bars open"></i>
-            <i class="fas fa-times close"></i>
-        </a>
+        <div class="">
+            <span class="badge badge-pill badge-danger"><i class="fas fa-eye"></i>1</span>
+            <span class="badge badge-pill badge-neutral"><i class="fas fa-eye"></i>1</span>
+            <a class="burger-menu" href="#" onclick="toggleClass();">
+                <i class="fas fa-bars open"></i>
+                <i class="fas fa-times close"></i>
+            </a>
+        </div>
+        
+        
     </div>
     <div class="mobile-menu">
         {{ partial "docs/navbar" . }}
