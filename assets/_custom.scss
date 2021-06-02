@@ -351,7 +351,7 @@ body {
                         z-index: 3;
                         padding-left: 30px;
                         padding-top: 10px;
-                        
+
                         .navbar {
                             display: block;
                             .nav-item {
@@ -464,7 +464,7 @@ body {
     .toc-control {
         display: none;
     }
-    .sub-header{
+    .sub-header {
         background-color: $purple82;
         color: $white;
         > div {
@@ -562,7 +562,6 @@ body {
                     cursor: pointer;
                 }
             }
-            
         }
     }
     .book-page {
@@ -577,6 +576,17 @@ body {
             @include font-size(36, 46);
             color: $purple82;
             padding-bottom: 32px;
+            @include display-flex(space-between, center, wrap, inline-flex);
+            width: 100%;
+            .edit-page-link {
+                font-family: "SourceSansProRegular";
+                text-decoration: none;
+                @include font-size(15, 17);
+                color: $purple82;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
         .markdown {
             h1 {
@@ -1249,6 +1259,19 @@ body {
                     }
                 }
             }
+            .edit-github {
+                .edit-page-link {
+                    font-family: "SourceSansProRegular";
+                    text-decoration: none;
+                    @include font-size(15, 17);
+                    margin: 13px 0;
+                    display: block;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            
         }
 
         @include for-phone-only {
@@ -1294,7 +1317,7 @@ body {
                 .swagger-operation {
                     .swagger-ui {
                         .opblock-tag-section {
-                            .no-margin{
+                            .no-margin {
                                 padding: 20px 17px;
                             }
                         }
@@ -1342,7 +1365,7 @@ body {
                                     table {
                                         thead {
                                             tr {
-                                                th{
+                                                th {
                                                     padding: 12px 0px;
                                                 }
                                             }
@@ -1423,7 +1446,7 @@ body {
 
     .book-header {
         padding: 13px 20px;
-       
+
         font-family: SourceSansProSemibold;
         @include font-size(16, 24);
         margin-bottom: 0;
@@ -1514,7 +1537,6 @@ body {
                 }
             }
         }
-        
     }
 
     //for RTL support

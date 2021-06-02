@@ -1,4 +1,9 @@
+{{ $fileDir := replace .Page.File.Dir "\\" "/"}}
 
 <div class="page-title">
 	<h1>{{ .Page.Title }}</h1>
+	<a class="edit-page-link" target="_blank"
+		href="{{ .Site.Params.gitLink }}{{ $fileDir }}{{ .Page.File.LogicalName }}">
+		<span> <i class="fas fa-edit"></i>Edit Page </span>
+	</a>
 </div>

@@ -3,7 +3,7 @@ weight: 1
 bookFlatSection: true
 title: "Hugo Component Reference"
 ---
-
+<!-- {{< edit-github >}} -->
 This is intended to be component usage examples and will be removed when development is underway or complete.
 
 ## List W/ sublisting

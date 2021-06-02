@@ -4,12 +4,12 @@ title = "Cludo Docs"
 theme = "book"
 
 [params]
-    site_logo = "https://my.cludo.com/assets/img/logo/logo-top-nav-cut.svg"
+    site_logo = "/img/cludo_docs_logo.svg"
     BookSearch = false
     BookToC = true
     SideMenu = true
     SubHeader = false
-    
+    gitLink = "https://github.com/Cludo/Cludo.DocumentationHub/blob/master/content/"
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
