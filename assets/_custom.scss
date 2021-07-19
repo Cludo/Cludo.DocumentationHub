@@ -127,16 +127,20 @@ body {
         height: 156px;
         margin-bottom: 0;
         transition: all 0.5s ease-out;
+
         img {
             width: 200px;
             margin-left: 80px;
         }
+
         .mobile-header-menu {
             display: none;
         }
+
         .mobile-menu {
             display: none;
         }
+
         .navbar {
             overflow: hidden;
             @include display-flex(space-between, center, wrap);
@@ -184,6 +188,7 @@ body {
                                 &.close {
                                     display: inline-block;
                                 }
+
                                 &.open {
                                     display: none;
                                 }
@@ -202,16 +207,19 @@ body {
                         padding: 0;
 
                         li {
-                            float: none;
-                            color: $purple22;
-                            padding: 12px 28px;
-                            text-decoration: none;
+                            float: none;                    
+                            padding: 12px 28px;                            
                             display: block;
                             text-align: left;
                             width: 100%;
 
                             &:hover {
                                 background-color: #ddd;
+                            }
+
+                            a {
+                                text-decoration: none;
+                                color: $purple22;
                             }
                         }
                     }
@@ -233,8 +241,10 @@ body {
             padding-right: 50px;
             width: 400px;
             height: 60px;
+
             .search-wrapper {
                 position: relative;
+
                 input {
                     background: $greyCC;
                     border-radius: 58px;
@@ -248,6 +258,7 @@ body {
                         padding-left: 10px;
                     }
                 }
+
                 i {
                     position: absolute;
                     color: $purple82;
@@ -257,24 +268,30 @@ body {
                 }
             }
         }
+
         @include for-phone-only {
             height: 120px;
             padding: 0;
+
             > div {
                 padding: 0 10px;
             }
+
             figure.desktop {
                 display: none;
             }
+
             .desktop {
                 .navbar {
                     display: none;
                 }
             }
+
             .search {
                 height: 40px;
                 padding-right: 0;
                 margin-bottom: 18px;
+
                 .search-wrapper {
                     input {
                         height: 40px;
@@ -283,25 +300,31 @@ body {
                             @include font-size(14);
                         }
                     }
+
                     i {
                         top: 7px;
                         @include font-size(18);
                     }
                 }
             }
+
             .mobile-header-menu {
                 display: block;
                 width: 100%;
+
                 > div:not(.mobile-menu) {
                     width: 100%;
                     @include display-flex(space-between, center, wrap, inline-flex);
+
                     img {
                         margin-left: 0;
                         margin-top: 20px;
                         width: 100px;
                     }
+
                     .burger-menu {
                         text-decoration: none;
+
                         i {
                             color: $white;
                             @include font-size(25);
@@ -311,13 +334,16 @@ body {
                             }
                         }
                     }
+
                     .badge {
                         @include font-size(13, 13);
                         border-radius: 120px;
                         margin-right: 5px;
+
                         &.badge-danger {
                             background-color: $redCC;
                         }
+
                         &.badge-neutral {
                             background-color: $grey88;
                         }
@@ -327,25 +353,31 @@ body {
 
             &.open {
                 height: 200px;
+
                 .mobile-header-menu {
                     background-color: $greyFA;
                     z-index: 999;
+
                     > div {
                         .burger-menu {
                             i {
                                 color: $black;
+
                                 &.close {
                                     display: block;
                                 }
+
                                 &.open {
                                     display: none;
                                 }
                             }
                         }
                     }
+
                     .badge {
                         display: none;
                     }
+
                     .mobile-menu {
                         display: block;
                         z-index: 3;
@@ -354,6 +386,7 @@ body {
 
                         .navbar {
                             display: block;
+
                             .nav-item {
                                 float: none;
                                 margin-right: 0;
@@ -361,6 +394,7 @@ body {
                                 color: $black22;
                                 padding-bottom: 20px;
                                 @include font-size(18, 22);
+
                                 &.dropdown {
                                     .dropbtn {
                                         padding: 0;
@@ -368,25 +402,35 @@ body {
                                         @include font-size(18, 22);
                                         width: 100%;
                                     }
+
                                     .dropdown-content {
                                         position: relative;
                                         box-shadow: none;
                                         top: 0;
+
+                                        li {
+                                            .noDecorationLink {
+                                                text-decoration: none !important;
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+
                 .search {
                     visibility: hidden;
                 }
+
                 & ~ .book-header {
                     visibility: hidden;
                 }
             }
         }
     }
+
     .book-menu {
         .book-menu-content {
             background: none;
@@ -394,15 +438,18 @@ body {
             .book-brand {
                 display: none;
             }
+
             ul {
                 li {
                     &.book-section-flat {
                         border-bottom: 1px solid $greyE8;
                         padding-left: 68px;
+
                         > a {
                             text-transform: uppercase;
                             color: $purple82;
                             font-family: SourceSansProSemibold;
+
                             &:last-of-type {
                                 margin: 26px 0px;
                             }
@@ -412,6 +459,7 @@ body {
                     a {
                         text-decoration: none;
                         padding: 5px 8px;
+
                         &:hover,
                         &.active {
                             background: $purple82;
@@ -420,6 +468,7 @@ body {
                             // padding: 5px 8px;
                         }
                     }
+
                     span {
                         padding: 0 8px;
                     }
@@ -430,16 +479,20 @@ body {
                                 display: none;
                             }
                         }
+
                         &:hover {
                             background: $purple82;
                             border-radius: 6px;
+
                             a {
                                 color: $white;
                             }
+
                             i {
                                 &.close {
                                     display: inline-block;
                                 }
+
                                 &.open {
                                     display: none;
                                 }
@@ -449,6 +502,7 @@ body {
                 }
             }
         }
+
         @include for-phone-only {
             .book-menu-content {
                 ul {
@@ -461,12 +515,15 @@ body {
             }
         }
     }
+
     .toc-control {
         display: none;
     }
+
     .sub-header {
         background-color: $purple82;
         color: $white;
+
         > div {
             padding: 59px 257px;
 
@@ -475,6 +532,7 @@ body {
                 font-family: "Montserrat Semi-Bold";
                 margin-bottom: 15px;
             }
+
             span {
                 display: block;
                 @include font-size(18, 28);
@@ -482,26 +540,32 @@ body {
                 letter-spacing: -0.005em;
                 opacity: 0.8;
             }
+
             .btn {
                 border-radius: 50px;
                 padding: 12px 40px;
                 font-family: SourceSansProSemibold;
                 @include font-size(18, 24);
                 margin-top: 22px;
+
                 &.btn-solid {
                     background: $yellowFF;
                     color: $black;
                 }
+
                 &:not(:last-of-type) {
                     margin-right: 30px;
                 }
+
                 &:hover {
                     text-decoration: none;
                 }
             }
         }
+
         @include for-phone-only {
             margin-bottom: 21px;
+
             > div {
                 padding: 30px 22px;
 
@@ -515,6 +579,7 @@ body {
             }
         }
     }
+
     .book-toc {
         .book-toc-content {
             padding-left: 30px;
@@ -530,6 +595,7 @@ body {
                     display: block;
                 }
             }
+
             ul {
                 li {
                     a {
@@ -541,6 +607,7 @@ body {
                         &:hover {
                             background: $purpleAF;
                         }
+
                         &:active {
                             color: $purple82;
                         }
@@ -548,22 +615,26 @@ body {
                 }
             }
         }
+
         .back-top {
             position: fixed;
             right: 20px;
             bottom: 22px;
+
             i {
                 background: $purple22;
                 padding: 17px;
                 border-radius: 4px;
                 @include font-size(18, 18);
                 color: $purple82;
+
                 &:hover {
                     cursor: pointer;
                 }
             }
         }
     }
+
     .book-page {
         padding: 59px 57px;
 
@@ -578,63 +649,76 @@ body {
             padding-bottom: 32px;
             @include display-flex(space-between, center, wrap, inline-flex);
             width: 100%;
+
             .edit-page-link {
                 font-family: "SourceSansProRegular";
                 text-decoration: none;
                 @include font-size(15, 17);
                 color: $purple82;
+
                 &:hover {
                     text-decoration: underline;
                 }
             }
         }
+
         .markdown {
             h1 {
                 font-family: "Montserrat Semi-Bold";
                 @include font-size(36, 46);
                 color: $purple82;
             }
+
             h2 {
                 font-family: "Montserrat Medium";
                 @include font-size(28, 38);
                 letter-spacing: -0.005em;
                 color: $black;
             }
+
             h3 {
                 font-family: "Montserrat Medium";
                 @include font-size(22, 32);
             }
+
             p {
                 font-family: SourceSansProRegular;
                 @include font-size(18, 26);
                 color: $grey33;
+
                 code {
                     color: $purple82;
                     background: rgba(130, 79, 211, 0.2);
                     border-radius: 2px;
                 }
             }
+
             code {
                 font-family: "SourceCodePro SemiBold";
                 @include font-size(15, 28);
                 color: $black;
+
                 &.info {
                     background-color: $blueD9;
                     color: $blue43;
                 }
+
                 &.warning {
                     background-color: $yellowCC;
                     color: $yellowFF;
                 }
+
                 &.danger {
                     background-color: $redF5;
                     color: $redCC;
                 }
             }
+
             pre {
                 background: $purple22;
                 border-radius: 6px;
                 margin-top: 25px;
+
                 code {
                     color: $yellowFF;
                 }
@@ -643,13 +727,16 @@ body {
             ol {
                 font-family: SourceSansProSemibold;
                 @include font-size(18, 26);
+
                 li {
                     &::marker {
                         color: $purple22;
                     }
+
                     color: $purple82;
                 }
             }
+
             .ordered-list-title {
                 span {
                     width: 38px;
@@ -661,17 +748,21 @@ body {
                     @include display-flex(center, flex-end, wrap, inline-flex);
                     margin-right: 12px;
                 }
+
                 a.anchor {
                     opacity: 0;
                     vertical-align: middle;
                     text-decoration: none;
                 }
+
                 .content {
                     margin: 35px 52px;
                 }
             }
+
             .dotted {
                 border-bottom: 1px $greyCC dashed;
+
                 &.dotted-spaced {
                     background-image: linear-gradient(to right, #333 10%, rgba(255, 255, 255, 0) 0%);
                     background-position: top;
@@ -685,27 +776,33 @@ body {
                 width: 100%;
                 margin-top: 54px;
             }
+
             .image-shortcode {
                 &.center {
                     text-align: center;
                 }
+
                 &.right {
                     text-align: right;
                 }
+
                 &.left {
                     text-align: left;
                 }
             }
+
             .footer-message {
                 font-family: SourceSansProRegular;
                 @include font-size(16, 26);
                 text-align: center;
                 color: $grey66;
                 margin-top: 50px;
+
                 a {
                     color: $purple82;
                 }
             }
+
             .markdown-with-header {
                 .header-detail {
                     background: $greyEA;
@@ -729,6 +826,7 @@ body {
 
                 .template {
                     margin-top: -25px;
+
                     pre {
                         border-top-left-radius: 0;
                         border-top-right-radius: 0;
@@ -748,13 +846,16 @@ body {
                     background: linear-gradient(180deg, $purple85, $purple96);
                     color: $white;
                 }
+
                 &.btn-solid {
                     background: $yellowFF;
                     color: $black;
                 }
+
                 &:not(:last-of-type) {
                     margin-right: 30px;
                 }
+
                 &:hover {
                     text-decoration: none;
                 }
@@ -779,10 +880,12 @@ body {
                         }
                     }
                 }
+
                 tbody {
                     border: 2px solid #ece5f8;
                     box-sizing: border-box;
                     border-radius: 6px;
+
                     tr {
                         border-radius: 6px;
                         font-family: SourceSansProRegular;
@@ -792,16 +895,19 @@ body {
                             border: none;
                             padding: 12px 30px;
                         }
+
                         &:nth-child(even) {
                             background: #ece5f8;
                         }
                     }
                 }
             }
+
             .book-hint {
                 border-radius: 6px;
                 font-family: SourceSansProRegular;
                 @include font-size(18, 26);
+
                 strong:first-of-type {
                     font-family: "SourceCodePro SemiBold";
                     @include font-size(15, 28);
@@ -811,28 +917,36 @@ body {
                     margin: 10px 0;
                     display: inline-block;
                 }
+
                 &.info {
                     background-color: $blueD9;
+
                     > strong:first-of-type {
                         background-color: $blue43;
                     }
                 }
+
                 &.warning {
                     background-color: $yellowCC;
+
                     > strong:first-of-type {
                         background-color: $yellowFF;
                     }
                 }
+
                 &.danger {
                     background-color: $redF5;
+
                     > strong:first-of-type {
                         background-color: $redCC;
                     }
                 }
             }
+
             .book-tabs {
                 border: 2px solid $purple82;
                 border-radius: 6px;
+
                 .book-tabs-content {
                     border-top: 2px solid $purple82;
                     font-family: SourceSansProRegular;
@@ -840,21 +954,26 @@ body {
                     color: $grey33;
                     padding: 30px;
                 }
+
                 input[type="radio"]:checked + label {
                     outline: none;
                     border-bottom: 2px solid $purple82;
                     outline: none;
                 }
+
                 label {
                     font-family: "Montserrat Semi-Bold";
                     color: $grey88;
                     @include font-size(17, 30);
                 }
             }
+
             .book-expand {
                 border: 2px solid $purple82;
+
                 label {
                     width: 100%;
+
                     .book-expand-head {
                         background: $purple82;
                         color: $white;
@@ -869,12 +988,14 @@ body {
                     color: $grey33;
                 }
             }
+
             .swagger-operation {
                 .swagger-ui {
                     .opblock-tag-section {
                         border: 2px solid $purple82;
                         border-radius: 6px;
                         margin: 20px 0;
+
                         .opblock-tag {
                             font-family: "Montserrat Semi-Bold";
                             // border-radius: 6px;
@@ -890,6 +1011,7 @@ body {
                                 color: $white;
                             }
                         }
+
                         .no-margin {
                             padding: 30px;
                         }
@@ -898,36 +1020,45 @@ body {
                     .operation-tag-content {
                         .opblock {
                             border: none;
+
                             .opblock-summary {
                                 padding: 11px;
+
                                 .opblock-summary-method {
                                     font-family: "Montserrat Semi-Bold";
                                     @include font-size(15, 22);
                                 }
+
                                 .opblock-summary-path {
                                     font-family: "SourceCodePro SemiBold";
                                     @include font-size(16, 28);
                                     color: $grey33;
                                 }
+
                                 .opblock-summary-description {
                                     font-family: SourceSansProRegular;
                                     @include font-size(18, 26);
                                     color: $grey33;
                                 }
                             }
+
                             &.opblock-get {
                                 background: $blueD9;
+
                                 .opblock-summary-method {
                                     background: $blue43;
                                 }
+
                                 .opblock-section-header {
                                     background: $blue43;
                                 }
+
                                 .try-out {
                                     .try-out__btn {
                                         color: $blue43;
                                     }
                                 }
+
                                 table {
                                     thead {
                                         tr {
@@ -937,24 +1068,30 @@ body {
                                             }
                                         }
                                     }
+
                                     tbody {
                                         border-top-color: rgba(67, 109, 240, 0.25);
+
                                         tr {
                                             td {
                                                 border-bottom-color: rgba(67, 109, 240, 0.25);
+
                                                 &:first-of-type {
                                                     border-right-color: rgba(67, 109, 240, 0.25);
                                                 }
                                             }
+
                                             &:nth-child(even) {
                                                 background: $blueD9;
                                             }
                                         }
+
                                         .tab {
                                             li {
                                                 a {
                                                     color: $blue43;
                                                 }
+
                                                 &.active {
                                                     a {
                                                         border-bottom-color: $blue43;
@@ -965,19 +1102,24 @@ body {
                                     }
                                 }
                             }
+
                             &.opblock-post {
                                 background: rgba(57, 174, 149, 0.2);
+
                                 .opblock-summary-method {
                                     background: $green39;
                                 }
+
                                 .opblock-section-header {
                                     background: $green39;
                                 }
+
                                 .try-out {
                                     .try-out__btn {
                                         color: $green39;
                                     }
                                 }
+
                                 table {
                                     thead {
                                         tr {
@@ -987,24 +1129,30 @@ body {
                                             }
                                         }
                                     }
+
                                     tbody {
                                         border-top-color: rgba(57, 174, 149, 0.2);
+
                                         tr {
                                             td {
                                                 border-bottom-color: rgba(57, 174, 149, 0.2);
+
                                                 &:first-of-type {
                                                     border-right-color: rgba(57, 174, 149, 0.2);
                                                 }
                                             }
+
                                             &:nth-child(even) {
                                                 background: rgba(57, 174, 149, 0.2);
                                             }
                                         }
+
                                         .tab {
                                             li {
                                                 a {
                                                     color: $green39;
                                                 }
+
                                                 &.active {
                                                     a {
                                                         border-bottom-color: $green39;
@@ -1015,19 +1163,24 @@ body {
                                     }
                                 }
                             }
+
                             &.opblock-put {
                                 background: rgba(255, 192, 0, 0.2);
+
                                 .opblock-summary-method {
                                     background: $yellowFF;
                                 }
+
                                 .opblock-section-header {
                                     background: $yellowFF;
                                 }
+
                                 .try-out {
                                     .try-out__btn {
                                         color: $yellowFF;
                                     }
                                 }
+
                                 table {
                                     thead {
                                         tr {
@@ -1037,24 +1190,30 @@ body {
                                             }
                                         }
                                     }
+
                                     tbody {
                                         border-top-color: rgba(255, 192, 0, 0.2);
+
                                         tr {
                                             td {
                                                 border-bottom-color: rgba(255, 192, 0, 0.2);
+
                                                 &:first-of-type {
                                                     border-right-color: rgba(255, 192, 0, 0.2);
                                                 }
                                             }
+
                                             &:nth-child(even) {
                                                 background: rgba(255, 192, 0, 0.2);
                                             }
                                         }
+
                                         .tab {
                                             li {
                                                 a {
                                                     color: $yellowFF;
                                                 }
+
                                                 &.active {
                                                     a {
                                                         border-bottom-color: $yellowFF;
@@ -1065,19 +1224,24 @@ body {
                                     }
                                 }
                             }
+
                             &.opblock-delete {
                                 background: rgba(204, 0, 0, 0.2);
+
                                 .opblock-summary-method {
                                     background: $redCC;
                                 }
+
                                 .opblock-section-header {
                                     background: $redCC;
                                 }
+
                                 .try-out {
                                     .try-out__btn {
                                         color: $redCC;
                                     }
                                 }
+
                                 table {
                                     thead {
                                         tr {
@@ -1087,24 +1251,30 @@ body {
                                             }
                                         }
                                     }
+
                                     tbody {
                                         border-top-color: rgba(204, 0, 0, 0.2);
+
                                         tr {
                                             td {
                                                 border-bottom-color: rgba(204, 0, 0, 0.2);
+
                                                 &:first-of-type {
                                                     border-right-color: rgba(204, 0, 0, 0.2);
                                                 }
                                             }
+
                                             &:nth-child(even) {
                                                 background: rgba(204, 0, 0, 0.2);
                                             }
                                         }
+
                                         .tab {
                                             li {
                                                 a {
                                                     color: $redCC;
                                                 }
+
                                                 &.active {
                                                     a {
                                                         border-bottom-color: $redCC;
@@ -1120,22 +1290,25 @@ body {
                         .opblock-body {
                             .opblock-description-wrapper {
                                 padding: 15px 0px;
+
                                 .opblock-description {
                                     font-family: SourceSansProRegular;
                                     @include font-size(16, 26);
                                     color: $grey33;
                                 }
                             }
+
                             .opblock-section-header {
                                 margin: 0px -31px;
-
                                 padding: 23px 31px;
+
                                 h4,
                                 label {
                                     color: $white;
                                     font-family: "Montserrat Semi-Bold";
                                     @include font-size(17, 33);
                                 }
+
                                 .try-out {
                                     .try-out__btn {
                                         margin-top: auto;
@@ -1144,11 +1317,14 @@ body {
                                     }
                                 }
                             }
+
                             table {
                                 thead {
                                     border: none;
+
                                     tr {
                                         background: transparent;
+
                                         th,
                                         td {
                                             font-family: "Montserrat Semi-Bold";
@@ -1157,22 +1333,27 @@ body {
                                         }
                                     }
                                 }
+
                                 tbody {
                                     border-top: 2px solid;
                                     border-bottom: none;
                                     border-left: none;
                                     border-right: none;
+
                                     tr {
                                         td {
                                             border-bottom: 2px solid;
+
                                             &:first-of-type {
                                                 border-right: 2px solid;
                                             }
+
                                             &.parameters-col_name {
                                                 .parameter__name {
                                                     font-family: "Montserrat Semi-Bold";
                                                     @include font-size(17, 30);
                                                     color: $grey33;
+
                                                     &.required {
                                                         &::after {
                                                             font-family: SourceSansProSemibold;
@@ -1181,14 +1362,17 @@ body {
                                                         }
                                                     }
                                                 }
+
                                                 .parameter__type {
                                                     font-family: "SourceCodePro SemiBold";
                                                     @include font-size(14, 28);
                                                     color: $grey33;
+
                                                     .prop-format {
                                                         color: $grey33;
                                                     }
                                                 }
+
                                                 .parameter__in {
                                                     font-family: "SourceCodePro SemiBold";
                                                     font-style: italic;
@@ -1196,17 +1380,20 @@ body {
                                                     color: $grey66;
                                                 }
                                             }
+
                                             &.parameters-col_description {
                                                 input[type="text"] {
                                                     max-width: unset;
                                                 }
                                             }
+
                                             &.response-col_status {
                                                 font-family: "Montserrat Semi-Bold";
                                                 @include font-size(17, 30);
                                                 color: $grey33;
                                                 padding: 12px 15px;
                                             }
+
                                             &.response-col_description {
                                                 font-family: SourceSansProRegular;
                                                 @include font-size(16, 28);
@@ -1217,6 +1404,7 @@ body {
 
                                     .tab {
                                         border-bottom: 2px solid rgba(136, 136, 136, 0.25);
+
                                         li {
                                             a {
                                                 font-family: SourceSansProSemibold;
@@ -1226,12 +1414,15 @@ body {
                                                     text-decoration: none;
                                                 }
                                             }
+
                                             &::after {
                                                 display: none;
                                             }
+
                                             &:first-of-type {
                                                 padding-right: 20px;
                                             }
+
                                             &.active {
                                                 a {
                                                     border-bottom: 3px solid;
@@ -1241,6 +1432,7 @@ body {
                                     }
                                 }
                             }
+
                             input,
                             select {
                                 background: $white;
@@ -1259,6 +1451,7 @@ body {
                     }
                 }
             }
+
             .edit-github {
                 .edit-page-link {
                     font-family: "SourceSansProRegular";
@@ -1266,16 +1459,17 @@ body {
                     @include font-size(15, 17);
                     margin: 13px 0;
                     display: block;
+
                     &:hover {
                         text-decoration: underline;
                     }
                 }
             }
-            
         }
 
         @include for-phone-only {
             padding: 11px 21px;
+
             .book-tabs {
                 input[type="radio"]:checked + label {
                     border-bottom: none;
@@ -1284,36 +1478,44 @@ body {
                     border-radius: 49px;
                 }
             }
+
             .page-title {
                 @include font-size(33, 44);
                 padding-bottom: 13px;
             }
+
             .markdown {
                 h2 {
                     @include font-size(26, 32);
                     margin-top: 13px;
                     margin-bottom: 13px;
                 }
+
                 h3 {
                     @include font-size(22, 26);
                 }
+
                 p {
                     @include font-size(16, 24);
                 }
+
                 ol {
                     @include font-size(16, 24);
                 }
+
                 .ordered-list-title {
                     span {
                         width: 35px;
                         height: 35px;
                     }
+
                     .content {
                         margin-left: 35px;
                         margin-top: 32px;
                         margin-right: 0;
                     }
                 }
+
                 .swagger-operation {
                     .swagger-ui {
                         .opblock-tag-section {
@@ -1321,6 +1523,7 @@ body {
                                 padding: 20px 17px;
                             }
                         }
+
                         .operation-tag-content {
                             .opblock {
                                 .opblock-summary {
@@ -1331,30 +1534,36 @@ body {
                                         min-width: unset;
                                         padding: 16px 5px;
                                     }
+
                                     .opblock-summary-path {
                                         word-break: normal;
                                         @include font-size(13, 20);
                                         max-width: 142px;
                                     }
+
                                     .opblock-summary-description {
                                         @include font-size(13, 20);
                                         word-break: normal;
                                     }
                                 }
+
                                 .opblock-body {
                                     .opblock-description-wrapper {
                                         padding: 0;
                                     }
+
                                     .opblock-section-header {
                                         margin: 0 -16px;
                                         padding: 17px 10px;
                                         align-items: baseline;
                                         @include font-size(14);
+
                                         .try-out {
                                             .try-out__btn {
                                                 padding: 8px 27px;
                                             }
                                         }
+
                                         label {
                                             flex-wrap: wrap;
                                             padding-left: 8px;
@@ -1362,6 +1571,7 @@ body {
                                             @include font-size(13);
                                         }
                                     }
+
                                     table {
                                         thead {
                                             tr {
@@ -1370,6 +1580,7 @@ body {
                                                 }
                                             }
                                         }
+
                                         tbody {
                                             tr {
                                                 td:first-of-type {
@@ -1399,7 +1610,6 @@ body {
             padding: 30px;
         }
     }
-
     // General Setting
     aside {
         background: $purpleAF !important;
@@ -1415,13 +1625,16 @@ body {
             @include font-size(17);
             color: $grey33;
         }
+
         @include for-phone-only {
             min-width: unset;
+
             > div:first-child {
                 // width: 16rem !important;
             }
         }
     }
+
     main {
         padding: 0 !important;
         margin: 0;
