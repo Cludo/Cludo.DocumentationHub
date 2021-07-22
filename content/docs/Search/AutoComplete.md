@@ -11,16 +11,16 @@ There are two ways you may make a Autocomplete request. GET or POST.
 
 ## Parameters
 
-| Parameter   | Description                                      |
-| ----------- | -------------------------------------------------|
-| CustomerId  | Your customer id                                 | 
-| EngineId    | The id of the search engine to use for the search| 
+| Parameter   |Type| Description                                     |
+| ----------- |----|-------------------------------------------------|
+| CustomerId  |int |Your customer id                                 | 
+| EngineId    |int |The id of the search engine to use for the search| 
 
 ## Query Parameters
-| Parameter   | Description                                      |
-| ----------- | -------------------------------------------------|
-| query       | The string query to search for                   | 
-| responsetype| the format to return the search results in       | 
+| Parameter   |Type |Description                                      |
+| ----------- |--|-------------------------------------------------|
+| query       |string |The string query to search for                   | 
+| responsetype|string |the format to return the search results in       | 
 
 
 ## GET REQUEST

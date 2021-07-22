@@ -4,12 +4,12 @@
     "version": "v3",
     "title": "Cludo API"
   },
-  "host": "api.cludo.com",
+  "host": "search.local",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
-    "/api/v{Version}/{customer}/{siteId}/AutoComplete": {
+    "/api/v3/{customerId}/{engineId}/AutoComplete": {
       "get": {
         "tags": [
           "AutoComplete"
@@ -24,22 +24,20 @@
         ],
         "parameters": [
           {
-            "name": "Version",
+            "name": "customerId",
             "in": "path",
+            "description": "Customer Id",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           },
           {
-            "name": "customer",
+            "name": "engineId",
             "in": "path",
+            "description": "Engine Id",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "query",
@@ -203,6 +201,12 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -234,30 +238,28 @@
         ],
         "parameters": [
           {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
             "name": "request",
             "in": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Cludo.App.Dto.AutocompleteRequest"
             }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -404,6 +406,12 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -418,7 +426,1089 @@
         ]
       }
     },
-    "/api/v3/{customer}/{siteId}/search/pushstat/{type}": {
+    "/api/v3/{customerId}/content/{crawlerId}/pushurls": {
+      "post": {
+        "tags": [
+          "pushurls"
+        ],
+        "summary": "URL pushing",
+        "description": "Since full domain crawls are only made rarely (maybe once a day), then new pages to your website won't appear\r\nin search results before the domain is recrawled. If you cannot wait for a complete recrawl, then you may push the\r\nurls in question, which will be crawled within a couple of minutes.\"",
+        "operationId": "ContentUrlToUpdate",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "crawlerId",
+            "in": "path",
+            "description": "Crawler Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "urls",
+            "in": "body",
+            "description": "Urls to push",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": [
+                "https://www.cludo.com/en/products/",
+                "https://www.cludo.com/en/features/"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.Common.View.PushUrlsResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/v3/{customerId}/content/{crawlerId}/push": {
+      "post": {
+        "tags": [
+          "push"
+        ],
+        "summary": "Data pushing",
+        "description": "If you don't have any crawlers setup, or know exactly how your data is stored, you may directly push search results\r\ninto your data storage with this endpoint.",
+        "operationId": "ContentBatchPush",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "crawlerId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              },
+              "example": [
+                {
+                  "Title": "My title",
+                  "Description": "Description",
+                  "Type": "PageContent",
+                  "CustomField1": 222,
+                  "CustomField2": "News"
+                },
+                {
+                  "Title": "My title",
+                  "Description": "Description",
+                  "Type": "PageContent",
+                  "CustomField1": 123,
+                  "CustomField2": "News"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/v3/{customerId}/content/{crawlerId}/delete": {
+      "post": {
+        "tags": [
+          "deleteData"
+        ],
+        "summary": "Delete data",
+        "description": "If a page or file is removed from your website, you don't want for it to appear in your search results anymore, as\r\nit will lead to dead links. It will be removed upon a recrawl regardless, but if it can't wait, you can use this\r\nendpoint to manually delete it.",
+        "operationId": "ContentBatchDelete",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "crawlerId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resources",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "example": [
+                {
+                  "https://www.cludo.com/some-page/": "PageContent"
+                },
+                {
+                  "some-string": "PageContent"
+                },
+                {
+                  "https://www.cludo.com/some-file.pdf": "FileContent"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/engine/{engineId}/quicklinks": {
+      "get": {
+        "tags": [
+          "Quicklinks"
+        ],
+        "summary": "Get all quicklinks for a specific engine",
+        "description": "Get all quicklinks for a specific engine.",
+        "operationId": "QuicklinksGetBySiteId",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/engine/{engineId}/quicklinkterms": {
+      "get": {
+        "tags": [
+          "Quicklinks"
+        ],
+        "summary": "Get quicklinks by engine and term",
+        "description": "Get quicklinks by engine and term.",
+        "operationId": "QuicklinksGet",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchword",
+            "in": "query",
+            "description": "The specific term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/Quicklinks/{id}": {
+      "get": {
+        "tags": [
+          "Quicklinks"
+        ],
+        "summary": "Get quicklink",
+        "description": "Get quicklink.",
+        "operationId": "QuicklinksGetGET",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the specific quicklink",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+            },
+            "examples": {
+              "application/json": {
+                "id": 5807805,
+                "url": "https://www.cludo.com/contact/",
+                "terms": [
+                  {
+                    "name": "contact"
+                  }
+                ],
+                "websiteid": 7578030,
+                "brokenLinksFoundAt": null
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Quicklinks"
+        ],
+        "summary": "Update quicklink",
+        "description": "Update quicklink.",
+        "operationId": "QuicklinksPutPUT",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the specific quicklink",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "entity",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Quicklinks"
+        ],
+        "summary": "Delete quicklink",
+        "description": "Delete quicklink.",
+        "operationId": "QuicklinksDeleteDELETE",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the specific quicklink",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/Quicklinks": {
+      "post": {
+        "tags": [
+          "Quicklinks"
+        ],
+        "summary": "Create quicklink",
+        "description": "Create quicklink.",
+        "operationId": "QuicklinksPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.QuicklinkView"
+            },
+            "examples": {
+              "application/json": {
+                "id": 5807805,
+                "url": "https://www.cludo.com/contact/",
+                "terms": [
+                  {
+                    "name": "contact"
+                  }
+                ],
+                "websiteid": 7578030,
+                "brokenLinksFoundAt": null
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/rankings/site/{engineId}": {
+      "get": {
+        "tags": [
+          "Rankings"
+        ],
+        "summary": "Get all page rankings by engine",
+        "description": "Get all page rankings for a specific engine.",
+        "operationId": "RankingsGetBySiteId",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.Common.View.RankingView"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "name": "Hello, World!",
+                  "pages": [
+                    {
+                      "id": 0,
+                      "showpage": true,
+                      "rank": 1,
+                      "websiteid": 7578030,
+                      "page": {
+                        "name": null,
+                        "pageurl": "https://www.cludo.com/contact/",
+                        "pageid": "https://www.cludo.com/contact",
+                        "searchable": true,
+                        "websiteid": 7578030,
+                        "website": "http://cludo.com/7578030/",
+                        "id": 0,
+                        "url": "http://cludo.com/0/"
+                      },
+                      "RankingId": 0
+                    }
+                  ],
+                  "rankingterms": [
+                    {
+                      "name": "hello",
+                      "rankingId": 0,
+                      "id": 0
+                    }
+                  ],
+                  "WebsiteId": 7578030,
+                  "id": 0,
+                  "brokenLinksFoundAt": null
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/Rankings": {
+      "get": {
+        "tags": [
+          "Rankings"
+        ],
+        "summary": "Get all page rankings",
+        "description": "Get all page rankings for the entire account.",
+        "operationId": "RankingsGetGET",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.Common.View.RankingView"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "name": "Hello, World!",
+                  "pages": [
+                    {
+                      "id": 0,
+                      "showpage": true,
+                      "rank": 1,
+                      "websiteid": 7578030,
+                      "page": {
+                        "name": null,
+                        "pageurl": "https://www.cludo.com/contact/",
+                        "pageid": "https://www.cludo.com/contact",
+                        "searchable": true,
+                        "websiteid": 7578030,
+                        "website": "http://cludo.com/7578030/",
+                        "id": 0,
+                        "url": "http://cludo.com/0/"
+                      },
+                      "RankingId": 0
+                    }
+                  ],
+                  "rankingterms": [
+                    {
+                      "name": "hello",
+                      "rankingId": 0,
+                      "id": 0
+                    }
+                  ],
+                  "WebsiteId": 7578030,
+                  "id": 0,
+                  "brokenLinksFoundAt": null
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Rankings"
+        ],
+        "summary": "Create page ranking",
+        "description": "Create page ranking.\"",
+        "operationId": "RankingsPostPOST",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.RankingView"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.RankingView"
+            },
+            "examples": {
+              "application/json": {
+                "name": "Hello, World!",
+                "pages": [
+                  {
+                    "id": 0,
+                    "showpage": true,
+                    "rank": 1,
+                    "websiteid": 7578030,
+                    "page": {
+                      "name": null,
+                      "pageurl": "https://www.cludo.com/contact/",
+                      "pageid": "https://www.cludo.com/contact",
+                      "searchable": true,
+                      "websiteid": 7578030,
+                      "website": "http://cludo.com/7578030/",
+                      "id": 0,
+                      "url": "http://cludo.com/0/"
+                    },
+                    "RankingId": 0
+                  }
+                ],
+                "rankingterms": [
+                  {
+                    "name": "hello",
+                    "rankingId": 0,
+                    "id": 0
+                  }
+                ],
+                "WebsiteId": 7578030,
+                "id": 0,
+                "brokenLinksFoundAt": null
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/Rankings/{id}": {
+      "get": {
+        "tags": [
+          "Rankings"
+        ],
+        "summary": "Get single page ranking",
+        "description": "Get a specific page ranking.",
+        "operationId": "RankingsGetGET",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Page Ranking ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.RankingView"
+            },
+            "examples": {
+              "application/json": {
+                "name": "Hello, World!",
+                "pages": [
+                  {
+                    "id": 0,
+                    "showpage": true,
+                    "rank": 1,
+                    "websiteid": 7578030,
+                    "page": {
+                      "name": null,
+                      "pageurl": "https://www.cludo.com/contact/",
+                      "pageid": "https://www.cludo.com/contact",
+                      "searchable": true,
+                      "websiteid": 7578030,
+                      "website": "http://cludo.com/7578030/",
+                      "id": 0,
+                      "url": "http://cludo.com/0/"
+                    },
+                    "RankingId": 0
+                  }
+                ],
+                "rankingterms": [
+                  {
+                    "name": "hello",
+                    "rankingId": 0,
+                    "id": 0
+                  }
+                ],
+                "WebsiteId": 7578030,
+                "id": 0,
+                "brokenLinksFoundAt": null
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Rankings"
+        ],
+        "summary": "Update a specific page ranking.",
+        "description": "Update a specific page ranking\"",
+        "operationId": "RankingsPutPUT",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the specific page ranking",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "entity",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.RankingView"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Cludo.Common.View.RankingView"
+            },
+            "examples": {
+              "application/json": {
+                "name": "Hello, World!",
+                "pages": [
+                  {
+                    "id": 0,
+                    "showpage": true,
+                    "rank": 1,
+                    "websiteid": 7578030,
+                    "page": {
+                      "name": null,
+                      "pageurl": "https://www.cludo.com/contact/",
+                      "pageid": "https://www.cludo.com/contact",
+                      "searchable": true,
+                      "websiteid": 7578030,
+                      "website": "http://cludo.com/7578030/",
+                      "id": 0,
+                      "url": "http://cludo.com/0/"
+                    },
+                    "RankingId": 0
+                  }
+                ],
+                "rankingterms": [
+                  {
+                    "name": "hello",
+                    "rankingId": 0,
+                    "id": 0
+                  }
+                ],
+                "WebsiteId": 7578030,
+                "id": 0,
+                "brokenLinksFoundAt": null
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Rankings"
+        ],
+        "summary": "Delete a specific page ranking.",
+        "description": "Delete a specific page ranking",
+        "operationId": "RankingsDeleteDELETE",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the specific page ranking",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "A successfully delete will return a 204 No Content code"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/v3/{customerId}/{engineId}/search/pushstat/{type}": {
       "post": {
         "tags": [
           "Search"
@@ -437,15 +1527,15 @@
         ],
         "parameters": [
           {
-            "name": "customer",
+            "name": "customerId",
             "in": "path",
-            "description": "Customer ID",
+            "description": "Customer Id",
             "required": true,
             "type": "integer",
             "format": "int32"
           },
           {
-            "name": "siteId",
+            "name": "engineId",
             "in": "path",
             "description": "Engine Id",
             "required": true,
@@ -490,7 +1580,8 @@
                 "cli": "1",
                 "cloi": "",
                 "title": "Government",
-                "it": ""
+                "it": "",
+                "ip": ""
               }
             }
           }
@@ -501,6 +1592,12 @@
             "schema": {
               "type": "object"
             }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -516,14 +1613,14 @@
         ]
       }
     },
-    "/api/v{Version}/{customer}/{siteId}/Search": {
+    "/api/v3/{customerId}/{engineId}/Search/AllDocuments": {
       "post": {
         "tags": [
-          "FullSearch"
+          "Search"
         ],
-        "summary": "Retrieves search results filtered and ranked by importance",
-        "description": "Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search.\"",
-        "operationId": "FullSearch",
+        "summary": "Get indexed documents",
+        "description": "Get indexed documents for an engine by either title or URL similarity.",
+        "operationId": "SearchAllDocuments",
         "consumes": [
           "application/json",
           "text/json",
@@ -535,30 +1632,151 @@
         ],
         "parameters": [
           {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "excludeDocumentIds",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The search term",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "How you want it to match on the filter. Either any, title, or url",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Any",
+              "Url",
+              "Title"
+            ]
+          },
+          {
+            "name": "functionType",
+            "in": "query",
+            "description": "In this context, this must be pageranking",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Pageranking",
+              "Excludedpage"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Used for pagination. If omitted, it will default to 1",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "perpage",
+            "in": "query",
+            "description": "Used for pagination. If omitted, it will default to 25",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Cludo.App.Dto.IndexDocument"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/v3/{customerId}/{engineId}/Search": {
+      "post": {
+        "tags": [
+          "FullSearch"
+        ],
+        "summary": "Retrieves search results filtered and ranked by importance",
+        "description": "Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search.\"",
+        "operationId": "SearchPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
             "name": "requestParams",
             "in": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Cludo.App.Dto.SearchRequest"
             }
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -665,6 +1883,9 @@
           "400": {
             "description": "Bad request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -679,7 +1900,7 @@
         ]
       }
     },
-    "/api/v{Version}/{customer}/{siteId}/Statistics/SearchHistogram": {
+    "/api/v3/{customerId}/{engineId}/Statistics/SearchHistogram": {
       "get": {
         "tags": [
           "Statistics"
@@ -697,6 +1918,22 @@
           "text/json"
         ],
         "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
           {
             "name": "type",
             "in": "query",
@@ -724,24 +1961,6 @@
             "required": true,
             "type": "string",
             "format": "date-time"
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -783,6 +2002,12 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -797,7 +2022,7 @@
         ]
       }
     },
-    "/api/v{Version}/{customer}/{siteId}/Statistics/TotalSearches": {
+    "/api/v3/{customerId}/{engineId}/Statistics/TotalSearches": {
       "get": {
         "tags": [
           "Statistics"
@@ -816,22 +2041,20 @@
         ],
         "parameters": [
           {
-            "name": "Version",
+            "name": "customerId",
             "in": "path",
+            "description": "Customer Id",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           },
           {
-            "name": "customer",
+            "name": "engineId",
             "in": "path",
+            "description": "Engine Id",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           },
           {
             "name": "from",
@@ -868,9 +2091,15 @@
             },
             "examples": {
               "application/json": {
-                "WithinCurrentPeriod": 25000
+                "withinCurrentPeriod": 25000
               }
             }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -886,7 +2115,7 @@
         ]
       }
     },
-    "/api/v{Version}/{customer}/{siteId}/Statistics/ClickCounts": {
+    "/api/v3/{customerId}/{engineId}/Statistics/ClickCounts": {
       "get": {
         "tags": [
           "Statistics"
@@ -904,6 +2133,22 @@
           "text/json"
         ],
         "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "description": "Customer Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "engineId",
+            "in": "path",
+            "description": "Engine Id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
           {
             "name": "from",
             "in": "query",
@@ -971,24 +2216,6 @@
             "required": false,
             "type": "integer",
             "format": "int32"
-          },
-          {
-            "name": "Version",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "customer",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "siteId",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -999,10 +2226,10 @@
             },
             "examples": {
               "application/json": {
-                "PageNumber": 0,
-                "PageSize": 10,
-                "TotalItems": 1,
-                "Items": [
+                "pageNumber": 0,
+                "pageSize": 10,
+                "totalItems": 1,
+                "items": [
                   {
                     "previousCount": 10,
                     "previousUniqueCount": 5,
@@ -1015,6 +2242,315 @@
                 ]
               }
             }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/synonymsgroup": {
+      "put": {
+        "tags": [
+          "SynonymsGroup"
+        ],
+        "summary": "Update synonyms group",
+        "description": "Update a specific synonyms group..\"",
+        "operationId": "SynonymsGroupUpdatePUT",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "synonymsDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SynonymsDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {
+              "application/json": {
+                "words": [
+                  "work",
+                  "job",
+                  "opportunity"
+                ],
+                "language": "en",
+                "groupId": 1
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "SynonymsGroup"
+        ],
+        "summary": "Create synonyms group",
+        "description": "Create a synonyms group.\"",
+        "operationId": "SynonymsGroupCreatePOST",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "synonymsDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Cludo.App.Dto.SynonymsDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {
+              "application/json": {
+                "words": [
+                  "work",
+                  "job",
+                  "opportunity"
+                ],
+                "language": "en",
+                "groupId": 1
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "SynonymsGroup"
+        ],
+        "summary": "Delete synonym",
+        "description": "Delete one or more synonyms groups.\"",
+        "operationId": "SynonymsGroupDeleteDELETE",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupIds",
+            "in": "query",
+            "description": "The IDs of the specific synonyms group",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/synonymsgroup/{language}": {
+      "get": {
+        "tags": [
+          "SynonymsGroup"
+        ],
+        "summary": "Get all synonyms by language",
+        "description": "Get all synonyms groups for a specific language.\"",
+        "operationId": "SynonymsGroupRead",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "A two-letter ISO language code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "words": [
+                    "work",
+                    "job",
+                    "opportunity"
+                  ],
+                  "language": "en",
+                  "groupId": 1
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basic": []
+          },
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/synonymsgroup/{groupId}": {
+      "get": {
+        "tags": [
+          "SynonymsGroup"
+        ],
+        "summary": "Get single synonyms group",
+        "description": "Get a specific synonyms group.\"",
+        "operationId": "SynonymsGroupRead",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "description": "The ID of the specific synonyms group",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {
+              "application/json": {
+                "words": [
+                  "work",
+                  "job",
+                  "opportunity"
+                ],
+                "language": "en",
+                "groupId": 1
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1511,6 +3047,10 @@
           ],
           "type": "string"
         }
+      },
+      "example": {
+        "Query": "The string query to search for",
+        "ResponseType": "JsonObject"
       }
     },
     "Cludo.Common.View.BannerTermViewModel": {
@@ -3317,6 +4857,15 @@
           "format": "date-time",
           "type": "string"
         }
+      },
+      "example": {
+        "url": "https://www.cludo.com/contact/",
+        "terms": [
+          {
+            "name": "contact"
+          }
+        ],
+        "websiteid": 7578030
       }
     },
     "Cludo.Common.View.QuicklinkTermView": {
@@ -3425,6 +4974,37 @@
           "format": "date-time",
           "type": "string"
         }
+      },
+      "example": {
+        "name": "Hello, World!",
+        "pages": [
+          {
+            "id": 0,
+            "showpage": true,
+            "rank": 1,
+            "websiteid": 7578030,
+            "page": {
+              "name": "Name",
+              "pageurl": "https://www.cludo.com/contact/",
+              "pageid": "https://www.cludo.com/contact",
+              "searchable": true,
+              "websiteid": 7578030,
+              "website": "http://cludo.com/7578030/",
+              "id": 0,
+              "url": "http://cludo.com/0/"
+            },
+            "RankingId": 0
+          }
+        ],
+        "rankingterms": [
+          {
+            "name": "hello",
+            "rankingId": 0,
+            "id": 0
+          }
+        ],
+        "WebsiteId": 7578030,
+        "id": 0
       }
     },
     "Cludo.Common.View.EmbededRankingpageViewModel": {
@@ -3805,6 +5385,15 @@
           "format": "int32",
           "type": "integer"
         }
+      },
+      "example": {
+        "words": [
+          "work",
+          "job",
+          "opportunity"
+        ],
+        "language": "en",
+        "groupId": 1
       }
     },
     "Cludo.Common.View.TemplateView": {
@@ -4056,6 +5645,27 @@
         },
         "customEngineSettings": {
           "type": "string"
+        },
+        "subscriptionDigest": {
+          "$ref": "#/definitions/Cludo.Common.View.SubscriptionDigestView"
+        }
+      }
+    },
+    "Cludo.Common.View.SubscriptionDigestView": {
+      "type": "object",
+      "properties": {
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "quotas": {
+          "type": "object",
+          "additionalProperties": {
+            "format": "int64",
+            "type": "integer"
+          }
         }
       }
     }

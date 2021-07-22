@@ -12,3 +12,5 @@ $RECYCLE.BIN/
 # OSX
 .DS_Store
 .vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/Cludo.DocumentationHub/v16/.suo

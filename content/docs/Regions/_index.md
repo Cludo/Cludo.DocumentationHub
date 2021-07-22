@@ -1,7 +1,7 @@
 ---
 weight: 3
 bookFlatSection: true
-title: "Search"
+title: "Regions"
 ---
 
-Search
+Regions

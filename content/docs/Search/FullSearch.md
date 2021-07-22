@@ -9,10 +9,10 @@ Full searches is the standard way to search with Cludo. With these requests you 
 
 ## Parameters
 
-| Parameter   | Description                                      |
-| ----------- | -------------------------------------------------|
-| CustomerId  | Your customer id                                 | 
-| EngineId    | The id of the search engine to use for the search| 
+| Parameter   |Type| Description                                      |
+| ----------- |---| -------------------------------------------------|
+| CustomerId  |int| Your customer id                                 | 
+| EngineId    |int| The id of the search engine to use for the search| 
 
 ## Query Parameters
 There are several features available when making a full search. The features can be grouped into these five categories, each controling a different element of the search:
