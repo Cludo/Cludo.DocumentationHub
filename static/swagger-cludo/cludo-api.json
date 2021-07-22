@@ -1903,7 +1903,7 @@
     "/api/v3/{customerId}/{engineId}/Statistics/SearchHistogram": {
       "get": {
         "tags": [
-          "Statistics"
+          "SearchCounts"
         ],
         "summary": "Search counts summed by day for a specified period.",
         "description": "Retrieves a list of search counts summed by day for a specified period.\"",
@@ -2025,7 +2025,7 @@
     "/api/v3/{customerId}/{engineId}/Statistics/TotalSearches": {
       "get": {
         "tags": [
-          "Statistics"
+          "SearchCountsTotal"
         ],
         "summary": "Search counts for a specified period.",
         "description": "Retrieves the search count, for a specified period\"",
@@ -2118,7 +2118,7 @@
     "/api/v3/{customerId}/{engineId}/Statistics/ClickCounts": {
       "get": {
         "tags": [
-          "Statistics"
+          "ClickCounts"
         ],
         "summary": "Clicks Statistics",
         "description": "Retrieves a list of clicked targets for a specified period, ordered by popularity by default.\"",
