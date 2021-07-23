@@ -1511,7 +1511,7 @@
     "/api/v3/{customerId}/{engineId}/search/pushstat/{type}": {
       "post": {
         "tags": [
-          "Search"
+          "pushstat"
         ],
         "summary": "Tracking",
         "description": "Tracking is the concept of actually recording what your visitors are searching for and what they're interested in. Without it, Cludo would simply serve as a search solution and wouldn't be able to provide you with statistics and other crucial data features\"",
