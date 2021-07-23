@@ -690,7 +690,7 @@
     "/api/engine/{engineId}/quicklinks": {
       "get": {
         "tags": [
-          "Quicklinks"
+          "GetQuicklinksByEngineId"
         ],
         "summary": "Get all quicklinks for a specific engine",
         "description": "Get all quicklinks for a specific engine.",
@@ -743,7 +743,7 @@
     "/api/engine/{engineId}/quicklinkterms": {
       "get": {
         "tags": [
-          "Quicklinks"
+          "GetQuicklinksByEngineIdAndTerm"
         ],
         "summary": "Get quicklinks by engine and term",
         "description": "Get quicklinks by engine and term.",
@@ -803,7 +803,7 @@
     "/api/Quicklinks/{id}": {
       "get": {
         "tags": [
-          "Quicklinks"
+          "GetQuicklinkById"
         ],
         "summary": "Get quicklink",
         "description": "Get quicklink.",
@@ -864,7 +864,7 @@
       },
       "put": {
         "tags": [
-          "Quicklinks"
+          "UpdateQuicklink"
         ],
         "summary": "Update quicklink",
         "description": "Update quicklink.",
@@ -925,7 +925,7 @@
       },
       "delete": {
         "tags": [
-          "Quicklinks"
+          "DeleteQuicklink"
         ],
         "summary": "Delete quicklink",
         "description": "Delete quicklink.",
@@ -969,7 +969,7 @@
     "/api/Quicklinks": {
       "post": {
         "tags": [
-          "Quicklinks"
+          "CreateUpdateQuicklink"
         ],
         "summary": "Create quicklink",
         "description": "Create quicklink.",
@@ -1036,7 +1036,7 @@
     "/api/rankings/site/{engineId}": {
       "get": {
         "tags": [
-          "Rankings"
+          "RankingsByEngine"
         ],
         "summary": "Get all page rankings by engine",
         "description": "Get all page rankings for a specific engine.",
@@ -1125,7 +1125,7 @@
     "/api/Rankings": {
       "get": {
         "tags": [
-          "Rankings"
+          "AllRankings"
         ],
         "summary": "Get all page rankings",
         "description": "Get all page rankings for the entire account.",
@@ -1202,7 +1202,7 @@
       },
       "post": {
         "tags": [
-          "Rankings"
+          "PageRankingCreationUpdate"
         ],
         "summary": "Create page ranking",
         "description": "Create page ranking.\"",
@@ -1290,7 +1290,7 @@
     "/api/Rankings/{id}": {
       "get": {
         "tags": [
-          "Rankings"
+          "RankingsByPageRankingId"
         ],
         "summary": "Get single page ranking",
         "description": "Get a specific page ranking.",
@@ -1372,7 +1372,7 @@
       },
       "put": {
         "tags": [
-          "Rankings"
+          "PageRankingUpdate"
         ],
         "summary": "Update a specific page ranking.",
         "description": "Update a specific page ranking\"",
@@ -1470,7 +1470,7 @@
       },
       "delete": {
         "tags": [
-          "Rankings"
+          "PageRankingDelete"
         ],
         "summary": "Delete a specific page ranking.",
         "description": "Delete a specific page ranking",
@@ -1616,7 +1616,7 @@
     "/api/v3/{customerId}/{engineId}/Search/AllDocuments": {
       "post": {
         "tags": [
-          "Search"
+          "AllDocuments"
         ],
         "summary": "Get indexed documents",
         "description": "Get indexed documents for an engine by either title or URL similarity.",
@@ -2266,7 +2266,7 @@
     "/api/synonymsgroup": {
       "put": {
         "tags": [
-          "SynonymsGroup"
+          "UpdateSynonymsGroup"
         ],
         "summary": "Update synonyms group",
         "description": "Update a specific synonyms group..\"",
@@ -2329,7 +2329,7 @@
       },
       "post": {
         "tags": [
-          "SynonymsGroup"
+          "CreateSynonymsGroup"
         ],
         "summary": "Create synonyms group",
         "description": "Create a synonyms group.\"",
@@ -2392,7 +2392,7 @@
       },
       "delete": {
         "tags": [
-          "SynonymsGroup"
+          "DeleteSynonymsGroup"
         ],
         "summary": "Delete synonym",
         "description": "Delete one or more synonyms groups.\"",
@@ -2446,7 +2446,7 @@
     "/api/synonymsgroup/{language}": {
       "get": {
         "tags": [
-          "SynonymsGroup"
+          "GetSynonymsGroupByLanguage"
         ],
         "summary": "Get all synonyms by language",
         "description": "Get all synonyms groups for a specific language.\"",
@@ -2508,7 +2508,7 @@
     "/api/synonymsgroup/{groupId}": {
       "get": {
         "tags": [
-          "SynonymsGroup"
+          "GetSynonymsGroupByGroupId"
         ],
         "summary": "Get single synonyms group",
         "description": "Get a specific synonyms group.\"",

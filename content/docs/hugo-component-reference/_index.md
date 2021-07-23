@@ -1,5 +1,5 @@
 ---
-weight: 5
+weight: 11
 bookFlatSection: true
 title: "Hugo Component Reference"
 ---
