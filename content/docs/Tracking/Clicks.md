@@ -9,11 +9,11 @@ Record a search result click.
 ## Request
 
 ```
-POST https://api.cludo.com/api/v3/<Customer ID>/<Engine ID>/search/pushstat/clicklog
+POST https://api.cludo.com/api/v3/<CustomeID>/<EngineID>/search/pushstat/clicklog
 
-POST https://api.cludo.com/api/v3/<Customer ID>/<Engine ID>/search/pushstat/clicklog?<Query parameters>
+POST https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/search/pushstat/clicklog?<Query parameters>
 ```
-{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
+
 ## URL Parameters
 
 | Parameter   |Type|Default| Description                                     |
@@ -48,11 +48,11 @@ POST https://api.cludo.com/api/v3/<Customer ID>/<Engine ID>/search/pushstat/clic
 | cloi  |Clicked banner ID       |string    |The ID of the banner, if it was a banner that was clicked| 
 | title  |Title       |string    |The title of the clicked search result| 
 | dt  |Device Type       |string    |The type of device from which the search has been performed. Currently, our cludo.js script supplies the abstract device types - mobile, tablet, or desktop. These accepted values are case sensitive and an important part of our visualization services. If not passed correctly, all services relying on them won't work as expected.| 
-| it  |Input type       |string    |the type of serach, it can be standard or voice| 
+| it  |Input type       |string    |The type of search, it can be standard or voice| 
 
 
 
-{{< markdown-with-header title="" content="Using body parameters:">}}
+{{< markdown-with-header title="Example" content="using body parameters:">}}
 ```
 curl "https://api.cludo.com/api/v3/4545589/7578030/search/pushstat/clicklog"
     -X POST
@@ -78,7 +78,7 @@ curl "https://api.cludo.com/api/v3/4545589/7578030/search/pushstat/clicklog"
 ```
 {{< /markdown-with-header >}} 
 
-{{< markdown-with-header title="" content="Using querystring parameters:">}}
+{{< markdown-with-header title="Example" content="using querystring parameters:">}}
 ```
 curl "https://api.cludo.com/api/v3/4545589/7578030/search/pushstat/clicklog?
 ls=searchresult&sz=4096x2160&ua=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F70.0.3538.77%20Safari%2F537.36&

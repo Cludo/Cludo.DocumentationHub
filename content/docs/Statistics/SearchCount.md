@@ -9,10 +9,10 @@ Retrieves a list of search counts summed by day for a specified period.
 ## Request
 
 ```
-GET https://api.cludo.com/api/v3/<Customer ID>/<Engine ID>/statistics/searchHistogram?
+GET https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/statistics/searchHistogram?
 type=<Type>&from=<From>&to=<To>&timezone=<Timezone>
 ```
-{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
+
 ## URL Parameters
 
 | Parameter   |Type|Default| Description                                     |
@@ -24,13 +24,17 @@ type=<Type>&from=<From>&to=<To>&timezone=<Timezone>
 | To   |string ||Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z| 
 | Timezone   |string |00:00 (UTC)	|The timezone (UTC offset) the histogram should be formatted with, eg.:  <ul><li>`00:00` - UTC</li><li>`02:00`  -  UTC+2 (CEST) </li><li>`-05:00` - UTC-5 (CDT)</li></ul>| |
 
+{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 ## Example
+
+{{< markdown-with-header title="" content="request:">}}
 
 ```
 curl "https://api.cludo.com/api/v3/4545589/7578030/statistics/searchHistogram?
 type=successful&from=2016-08-14T22:00:00.000Z&to=2016-08-22T12:44:38.799Z&timezone=00:00"
     -u 4545589:3ede38fdc0824e18bb3adb9a21fbbdc8
 ```
+{{< /markdown-with-header >}} 
 
 {{< markdown-with-header title="" content="The above command returns daily aggregated data in the following JSON structure:">}}
 ```

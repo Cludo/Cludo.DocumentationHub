@@ -3,11 +3,11 @@ weight: 1
 title: "Url Pushing"
 ---
 
-Since full domain crawls are only made rarely (maybe once a day), then new pages to your website won't appear in search results before the domain is recrawled. If you cannot wait for a complete recrawl, then you may push the urls in question, which will be crawled within a couple of minutes.
+Since full domain crawls are not frequent (maybe once a day), new pages to your website won't appear in search results before the domain is recrawled. If you cannot wait for a complete recrawl, then you may push the urls in question, which will be crawled within a couple of minutes.
 
 ## HTTP request
 ```
-POST https://api.cludo.com/api/v3/<Customer ID>/content/<Crawler ID>/pushurls
+POST https://api.cludo.com/api/v3/<CustomerID>/content/<CrawlerID>/pushurls
 ```
  
 
@@ -20,7 +20,7 @@ POST https://api.cludo.com/api/v3/<Customer ID>/content/<Crawler ID>/pushurls
 
 ## HTTP body
 
-{{< markdown-with-header title="" content="The body content is simply a newline list of urls to crawl.">}}
+{{< markdown-with-header title="" content="The body content is a list of urls to crawl.">}}
 ```
 curl "https://api.cludo.com/api/v3/4545589/content/2368899/pushurls"
     -X POST

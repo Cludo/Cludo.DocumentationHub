@@ -8,7 +8,7 @@ title: "Data Indexing"
  Data indexing requires <a href="/docs/authentication/basicauthentication/">basic authentication</a>.
 {{< /hint >}}
 
-Usually all indexing of pages, files and so on will be handled by the Cludo crawlers, but if nessesary, then Cludo provides some API endpoints to control the data in your data storage.
+Usually all indexing of pages, files and so on will be handled by the Cludo crawlers, but if necessary, Cludo provides some API endpoints to control the data in your data storage.
 
 The following three endpoints are currently available:
 

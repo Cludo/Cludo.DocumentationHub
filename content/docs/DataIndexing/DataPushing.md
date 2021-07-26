@@ -9,7 +9,7 @@ If you don't have any crawlers setup, or know exactly how your data is stored, y
 
 
 ```
-POST https://api.cludo.com/api/v3/<Customer ID>/content/<Crawler ID>/pushurls
+POST https://api.cludo.com/api/v3/{CustomerId}/content/{CrawlerId}/push
 ```
 
 
@@ -18,7 +18,7 @@ POST https://api.cludo.com/api/v3/<Customer ID>/content/<Crawler ID>/pushurls
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
 | CustomerId  |int |Your customer id                                 | 
-| CrawlerId   |int |The ID of the specific crawler you'd like to crawl the given URLs| 
+| CrawlerId   |int |The id of the crawler to index the data into| 
 
 {{< markdown-with-header title="HTTP request" content="The command below indexes data directly:">}}
 ```
@@ -40,8 +40,8 @@ The body consists of result models of the data you wish to index. Each model con
 
 | Parameter   |Type   | Description                                     |
 | ----------- |----   |-------------------------------------------------|
-| Title       |string |The description of a search result                                | 
-| Description   |string    |The ID of the specific crawler you'd like to crawl the given URLs| 
+| Title       |string |The title of a search result                                | 
+| Description   |string    |The description of a search result| 
 | Type   |string    |Must be **PageContent** for pages and **FileContent** for files| 
 | CustomField   |string/int    |Custom field, can be set to anything| 
 

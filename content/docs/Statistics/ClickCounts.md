@@ -9,11 +9,11 @@ Retrieves a list of clicked targets for a specified period, ordered by popularit
 ## Request
 
 ```
-GET https://api.cludo.com/api/v3/<Customer ID>/<Engine ID>/statistics/clickCounts?
+GET https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/statistics/clickCounts?
 from=<From>&to=<To>&query=<Query>&clickTarget=<Click Target>&orderBy=<Order By>&sortOrder=<Sort Order>&
 limit=<Limit>&pageNumber=<Page Number>
 ```
-{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
+
 ## URL Parameters
 
 | Parameter   |Type|Default| Description                                     |
@@ -29,15 +29,18 @@ limit=<Limit>&pageNumber=<Page Number>
 | Limit|int |10	|Number of results pr. page| 
 | Page Number|int |1	|Page number, zero indexed| 
 
+{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 
 ## Example
-
+{{< markdown-with-header title="" content="request:">}}
 ```
 curl "https://api.cludo.com/api/v3/4545589/7578030/statistics/clickCounts?
 from=2019-03-28T22:00:00.000Z&to=2019-04-30T21:59:59.999Z&query=&clickTarget=page&orderBy=count&
 sortOrder=descending&limit=10&pageNumber=1"
     -u 4545589:3ede38fdc0824e18bb3adb9a21fbbdc8
 ```
+{{< /markdown-with-header >}} 
+
 {{< markdown-with-header title="" content="The above command returns daily aggregated data in the following JSON structure:">}}
 ```
 [

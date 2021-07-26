@@ -20,14 +20,16 @@ curl
 ```
 {{< /markdown-with-header >}} 
 
-{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
+
 
 ## Body Parameters
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
 | CustomerId  |int |Your customer id                                 | 
-| CrawlerId   |int |The ID of the specific crawler you'd like to crawl the given URLs| 
+| CrawlerId   |int |The id of the crawler to delete the results from| 
+
+{{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 
 ## HTTP body
 

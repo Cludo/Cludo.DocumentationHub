@@ -13,7 +13,7 @@ You can do so by providing an additional HTTP header with the tracking request o
 `X-Real-IP: <ip>`
 
 
-{{< markdown-with-header title="" content="Using header parameter:">}}
+{{< markdown-with-header title="Example" content="using header parameter:">}}
 ```
 curl "https://api.cludo.com/api/v3/4545589/7578030/search/pushstat/querylog"
     -H "X-Real-IP: 127.0.0.1"
@@ -31,7 +31,7 @@ curl "https://api.cludo.com/api/v3/4545589/7578030/search/pushstat/clicklog"
 | ----------- |----      |-------|-----------------------------------------------|
 | ip  |The IP address of the visitor       |string    |ip address|
 
-{{< markdown-with-header title="" content="Using body parameters:">}}
+{{< markdown-with-header title="Example" content="using body parameters:">}}
 ```
 curl "https://api.cludo.com/api/v3/4545589/7578030/search/pushstat/clicklog"
     -X POST
