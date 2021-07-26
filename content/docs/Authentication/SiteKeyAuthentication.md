@@ -26,13 +26,14 @@ The credentials must be Base64-encoded as a single unit.
 
 {{< markdown-with-header title="Header" content="Note that the last part of the credentials is not a parameter, but literally the string SearchKey.">}}
 ```
-Authorization: SiteKey <Customer ID>:<Engine ID>:SearchKey
+Authorization: SiteKey <CustomerID>:<EngineID>:SearchKey
 ```
 {{< /markdown-with-header >}} 
 
 
-
+{{< markdown-with-header title="Example" content="NDU0NTU4OTo3NTc4MDMwOlNlYXJjaEtleQ== is the base64 string of : CustomerID:EngineId:SearchKey">}}
 ```
 curl "https://api.cludo.com/api/v3/search"
 -H "Authorization: SiteKey NDU0NTU4OTo3NTc4MDMwOlNlYXJjaEtleQ=="
 ```
+{{< /markdown-with-header >}} 
