@@ -37,8 +37,8 @@ You can read more about page rankings <a href="https://cludo.zendesk.com/hc/en-u
 ### Ranked page
 | Key         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| id           |int | The ID of the ranking group                       | 
-| WebsiteId    |int | The ID of the engine the ranking group belongs to| 
+| id           |int | The ID of the ranked page                      | 
+| WebsiteId    |int | The ID of the engine the ranked page belongs to| 
 | RankingId	    |int | The ID of the ranking group the ranked page belongs to| 
 | rank    |int | The rank of the ranked page| 
 | showpage    |bool | Whether the ranked page should be included| 
@@ -59,8 +59,8 @@ You can read more about page rankings <a href="https://cludo.zendesk.com/hc/en-u
 
 | Key         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| id           |int | The ID of the ranking group                       | 
-| WebsiteId    |int | The ID of the engine the ranking group belongs to| 
+| id           |int | The ID of the page                      | 
+| WebsiteId    |int | The ID of the engine the page belongs to| 
 | pageid	    |string | The unique identifier of the page. Usually the URL but could be any string| 
 | pageurl    |string | The URL of the page| 
 | searchable    |bool | Whether the page is searchable| 
@@ -83,8 +83,8 @@ You can read more about page rankings <a href="https://cludo.zendesk.com/hc/en-u
 
 | Key         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| id           |int | The ID of the ranking group                       | 
-| RankingId	    |int | The ID of the ranking group the ranked page belongs to| 
+| id           |int | The ID of the term                       | 
+| RankingId	    |int | The ID of the ranking group this term belongs to| 
 | name    |string | The actual term| 
  
 ```
@@ -136,9 +136,13 @@ Get all page rankings for a specific engine.
 
 ### Request
 ```
-GET https://api.cludo.com/api/rankings/site/<Engine ID>
+GET https://api.cludo.com/api/rankings/site/<engineID>
 ```
 
+### URL Parameters
+| Parameter         |Type | Description                                      |
+| ----------- |---  | -------------------------------------------------|
+| engineId           |int | The ID of the specific engine                       | 
 
 {{< markdown-with-header title="Example">}}
 ```
@@ -159,9 +163,12 @@ Get a specific page ranking.
 
 ### Request
 ```
-GET https://api.cludo.com/api/rankings/<Page ranking ID>
+GET https://api.cludo.com/api/rankings/<id>
 ```
-
+### URL Parameters
+| Parameter         |Type | Description                                      |
+| ----------- |---  | -------------------------------------------------|
+| id           |int | The ID of the specific page ranking                    | 
 
 {{< markdown-with-header title="Example">}}
 ```
@@ -179,18 +186,18 @@ Will return an array of ranking groups. See <a href="#ranking-group">data struct
 
 ## Get indexed documents
 
-Get a specific page ranking.
+Get indexed documents for an engine by either title or URL similarity.
 
 ### Request
 ```
-POST https://api.cludo.com/api/v3/<Customer ID>/<Engine ID>/search/alldocuments?filter=<Filter>&type=<Type>&functionType=<Function type>&page=<Page>&perpage=<Per page>
+POST https://api.cludo.com/api/v3/<customerID>/<engineID>/search/alldocuments?filter=<Filter>&type=<Type>&functionType=<Function type>&page=<Page>&perpage=<Per page>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Customer ID           |int | Your ID                      | 
-| Engine ID	    |int | The ID of the specific engine| 
+| customerID           |int | Your ID                      | 
+| engineID	    |int | The ID of the specific engine| 
 | Filter    |string | The search term| 
 | Type    |string | How you want it to match on the filter. Either **any**, **title**, or **url**| 
 | Function type|string    |In this context, this **must** be **pageranking**| 
