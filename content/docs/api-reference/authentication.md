@@ -1,6 +1,6 @@
 ---
-weight: 2
+weight: 1
 title: "Authentication"
 ---
 
-Welcome to auth docs
+Auth

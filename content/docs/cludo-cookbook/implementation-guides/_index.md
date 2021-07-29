@@ -4,5 +4,3 @@ bookFlatSection: false
 bookCollapseSection: true
 title: "Implementation Guides"
 ---
-
-Implement

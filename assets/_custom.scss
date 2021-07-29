@@ -1,5 +1,16 @@
 // Add styles here to override default book styles
 
+// Spacing
+$spacer: 1rem / 2;
+$spacer-0: 0;
+$spacer-1: $spacer;         // $spacer-1
+$spacer-2: $spacer * 2;     // 16px
+$spacer-3: $spacer * 3;     // 24px
+$spacer-4: $spacer * 4;     // 32px
+
+// Border radius
+$default-br: 6px;
+
 // Colors
 $purple22: #222337;
 $purple82: #824fd3;
@@ -201,14 +212,14 @@ body {
                         position: fixed;
                         background-color: #f9f9f9;
                         min-width: 160px;
-                        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                        box-shadow: 0px $spacer-1 16px 0px rgba(0, 0, 0, 0.2);
                         z-index: 1;
                         top: 94px;
                         padding: 0;
 
                         li {
                             float: none;                    
-                            padding: 12px 28px;                            
+                            padding: 12px 28px;
                             display: block;
                             text-align: left;
                             width: 100%;
@@ -290,7 +301,7 @@ body {
             .search {
                 height: 40px;
                 padding-right: 0;
-                margin-bottom: 18px;
+                margin-bottom: 1px;
 
                 .search-wrapper {
                     input {
@@ -441,9 +452,10 @@ body {
 
             ul {
                 li {
+                    
                     &.book-section-flat {
                         border-bottom: 1px solid $greyE8;
-                        padding-left: 68px;
+                        // padding-left: 68px;
 
                         > a {
                             text-transform: uppercase;
@@ -455,25 +467,56 @@ body {
                             }
                         }
                     }
+                    
 
                     a {
                         text-decoration: none;
-                        padding: 5px 8px;
-
+                        padding: 5px $spacer-1;
+                        
+                        
                         &:hover,
                         &.active {
                             background: $purple82;
                             color: $white;
-                            border-radius: 6px;
-                            // padding: 5px 8px;
+                            border-radius: $default-br;
+
+                            opacity: initial;
+                            
+                            &:not([href]) {
+                                opacity: initial;
+                            }
+
+                        }
+
+                        & ~ i {
+                            position: absolute;
+                            right: $spacer-1;
+                            top: 50%;
+                            transform: translateY(-50%);
                         }
                     }
 
                     span {
-                        padding: 0 8px;
+                        display: block;
+                        margin-bottom: 5px;
+                        padding: 0 $spacer-1;
+                    }
+
+                    input.toggle:checked+label {
+                        content: "▾";
+
+                        i.close {
+                            display: inline-block;
+                        }
+
+                        i.open {
+                            display: none;
+                        }
                     }
 
                     label {
+                        position: relative;
+
                         i {
                             &.close {
                                 display: none;
@@ -482,20 +525,22 @@ body {
 
                         &:hover {
                             background: $purple82;
-                            border-radius: 6px;
+                            border-radius: $default-br;
 
                             a {
                                 color: $white;
                             }
 
                             i {
-                                &.close {
-                                    display: inline-block;
-                                }
+                                color: $white;
+                                
+                                // &.close {
+                                //     display: inline-block;
+                                // }
 
-                                &.open {
-                                    display: none;
-                                }
+                                // &.open {
+                                //     display: none;
+                                // }
                             }
                         }
                     }
@@ -716,7 +761,7 @@ body {
 
             pre {
                 background: $purple22;
-                border-radius: 6px;
+                border-radius: $default-br;
                 margin-top: 25px;
 
                 code {
@@ -865,11 +910,11 @@ body {
                 thead {
                     border: 2px solid #ece5f8;
                     box-sizing: border-box;
-                    border-radius: 6px;
+                    border-radius: $default-br;
 
                     tr {
                         background: $purple82;
-                        border-radius: 6px;
+                        border-radius: $default-br;
                         color: $white;
                         font-family: "Montserrat Semi-Bold";
                         @include font-size(17, 30);
@@ -884,10 +929,10 @@ body {
                 tbody {
                     border: 2px solid #ece5f8;
                     box-sizing: border-box;
-                    border-radius: 6px;
+                    border-radius: $default-br;
 
                     tr {
-                        border-radius: 6px;
+                        border-radius: $default-br;
                         font-family: SourceSansProRegular;
                         @include font-size(18, 26);
 
@@ -904,7 +949,7 @@ body {
             }
 
             .book-hint {
-                border-radius: 6px;
+                border-radius: $default-br;
                 font-family: SourceSansProRegular;
                 @include font-size(18, 26);
 
@@ -945,7 +990,7 @@ body {
 
             .book-tabs {
                 border: 2px solid $purple82;
-                border-radius: 6px;
+                border-radius: $default-br;
 
                 .book-tabs-content {
                     border-top: 2px solid $purple82;
@@ -993,12 +1038,12 @@ body {
                 .swagger-ui {
                     .opblock-tag-section {
                         border: 2px solid $purple82;
-                        border-radius: 6px;
+                        border-radius: $default-br;
                         margin: 20px 0;
 
                         .opblock-tag {
                             font-family: "Montserrat Semi-Bold";
-                            // border-radius: 6px;
+                            // border-radius: $default-br;
                             @include font-size(17, 30);
                             background: $purpleEC;
                             color: $purple82;
@@ -1560,13 +1605,13 @@ body {
 
                                         .try-out {
                                             .try-out__btn {
-                                                padding: 8px 27px;
+                                                padding: $spacer-1 27px;
                                             }
                                         }
 
                                         label {
                                             flex-wrap: wrap;
-                                            padding-left: 8px;
+                                            padding-left: $spacer-1;
                                             justify-content: flex-end;
                                             @include font-size(13);
                                         }
@@ -1624,6 +1669,15 @@ body {
             font-family: SourceSansProRegular;
             @include font-size(17);
             color: $grey33;
+        }
+
+        nav ul li {
+            margin: 0;
+
+            // Spacing between left nav items
+            & > span, & > a, & > label {
+                margin-bottom: 2px;
+            }
         }
 
         @include for-phone-only {
