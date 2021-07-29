@@ -10,7 +10,7 @@ Unless stated otherwise, basic authentication is required for all API requests.
 
 {{< markdown-with-header title="Header" content="">}}
 ```
-Authorization: Basic <CustomerID>:<APIKey>
+Authorization: Basic <customerId>:<APIKey>
 ```
 {{< /markdown-with-header >}} 
 
@@ -18,11 +18,11 @@ Authorization: Basic <CustomerID>:<APIKey>
 
 | Parameter   |Type| Description                                      |
 | ----------- |---|-------------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
+| customerId  |int |Your customer id                                 | 
 | APIKey    | string |Your API key| 
 
 
-{{< markdown-with-header title="Example" content="NDU0NTU4OTozZWRlMzhmZGMwODI0ZTE4YmIzYWRiOWEyMWZiYmRjOA== is the base64 string of : CustomerID:ApiKey">}}
+{{< markdown-with-header title="Example" content="NDU0NTU4OTozZWRlMzhmZGMwODI0ZTE4YmIzYWRiOWEyMWZiYmRjOA== is the base64 string of : customerId:ApiKey">}}
 ```
 curl "https://api.cludo.com/api/v3/someEndpoint"
     -u 4545589:3ede38fdc0824e18bb3adb9a21fbbdc8

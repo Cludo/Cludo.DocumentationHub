@@ -13,8 +13,8 @@ There are two ways you may make a Autocomplete request. GET or POST.
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
-| EngineId    |int |The id of the search engine to use for the search| 
+| customerId  |int |Your customer id                                 | 
+| engineId    |int |The id of the search engine to use for the search| 
 
 ## Query Parameters
 | Parameter   |Type |Description                                      |
@@ -27,7 +27,7 @@ There are two ways you may make a Autocomplete request. GET or POST.
 
 {{< markdown-with-header title="HTTP GET request" content="">}}
 ```
-GET https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/autocomplete?query={query}&responsetype={responseType}}
+GET https://api.cludo.com/api/v3/{customerId}/{engineId}/autocomplete?query={query}&responsetype={responseType}}
 ```
 {{< /markdown-with-header >}} 
 
@@ -38,8 +38,8 @@ GET https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/autocomplete?query={que
 ```
 curl 
 -X GET \
--I -G https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/autocomplete \
--u {CustomerId}:{API_Key} \
+-I -G https://api.cludo.com/api/v3/{customerId}/{engineId}/autocomplete \
+-u {customerId}:{API_Key} \
 -d query={query} \
 -d responsetype={responseType} \
 -d filters={filters} \
@@ -55,7 +55,7 @@ curl
 ## POST REQUEST
 {{< markdown-with-header title="HTTP POST request" content="">}}
 ```
-POST https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/autocomplete
+POST https://api.cludo.com/api/v3/{customerId}/{engineId}/autocomplete
 ```
 {{< /markdown-with-header >}} 
 
@@ -65,8 +65,8 @@ POST https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/autocomplete
 curl 
 curl 
 -X POST \
--I https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/autocomplete \
--u {CustomerId}:{API_Key} \
+-I https://api.cludo.com/api/v3/{customerId}/{engineId}/autocomplete \
+-u {customerId}:{API_Key} \
 -H "Content-Type: application/json" \
 -d <JSON BODY> \
 ```

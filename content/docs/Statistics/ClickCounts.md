@@ -9,7 +9,7 @@ Retrieves a list of clicked targets for a specified period, ordered by popularit
 ## Request
 
 ```
-GET https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/statistics/clickCounts?
+GET https://api.cludo.com/api/v3/<customerId>/<EngineID>/statistics/clickCounts?
 from=<From>&to=<To>&query=<Query>&clickTarget=<Click Target>&orderBy=<Order By>&sortOrder=<Sort Order>&
 limit=<Limit>&pageNumber=<Page Number>
 ```
@@ -18,8 +18,8 @@ limit=<Limit>&pageNumber=<Page Number>
 
 | Parameter   |Type|Default| Description                                     |
 | ----------- |----|-------|------------------------------------------|
-| CustomerId  |int ||Your customer id                                 | 
-| EngineId   |int ||The ID of the specific engine| 
+| customerId  |int ||Your customer id                                 | 
+| engineId   |int ||The ID of the specific engine| 
 | From    |string ||Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z| 
 | To   |string ||Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z| 
 | Query  |string |optional	|A search word to filter results by to only get results for a single search term| 

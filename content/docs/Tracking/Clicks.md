@@ -9,17 +9,17 @@ Record a search result click.
 ## Request
 
 ```
-POST https://api.cludo.com/api/v3/<CustomeID>/<EngineID>/search/pushstat/clicklog
+POST https://api.cludo.com/api/v3/<CustomeID>/<engineId>/search/pushstat/clicklog
 
-POST https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/search/pushstat/clicklog?<Query parameters>
+POST https://api.cludo.com/api/v3/<customerId>/<engineId>/search/pushstat/clicklog?<Query parameters>
 ```
 
 ## URL Parameters
 
 | Parameter   |Type|Default| Description                                     |
 | ----------- |----|-------|------------------------------------------|
-| CustomerId  |int ||Your customer id                                 | 
-| EngineId   |int ||The ID of the specific engine| 
+| customerId  |int ||Your customer id                                 | 
+| engineId   |int ||The ID of the specific engine| 
 
 
 

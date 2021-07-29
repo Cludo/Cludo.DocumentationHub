@@ -11,8 +11,8 @@ Full searches is the standard way to search with Cludo. With these requests you 
 
 | Parameter   |Type| Description                                      |
 | ----------- |---| -------------------------------------------------|
-| CustomerId  |int| Your customer id                                 | 
-| EngineId    |int| The id of the search engine to use for the search| 
+| customerId  |int| Your customer id                                 | 
+| engineId    |int| The id of the search engine to use for the search| 
 
 ## Query Parameters
 There are several features available when making a full search. The features can be grouped into these five categories, each controling a different element of the search:
@@ -34,7 +34,7 @@ There are several features available when making a full search. The features can
 
 {{< markdown-with-header title="HTTP GET request" content="">}}
 ```
-POST https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/search
+POST https://api.cludo.com/api/v3/{customerId}/{engineId}/search
 ```
 {{< /markdown-with-header >}} 
 
@@ -43,9 +43,9 @@ POST https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/search
 ```
 curl 
 -x POST \
--i https://api.cludo.com/api/v3/{CustomerId}/{EngineId}/search \
+-i https://api.cludo.com/api/v3/{customerId}/{engineId}/search \
 -H "Content-Type: application/json" \
--u {CustomerId}:{API_Key} \
+-u {customerId}:{API_Key} \
 -d <JSON BODY> \
 ```
 

@@ -8,15 +8,15 @@ If a page or file is removed from your website, you don't want for it to appear 
 ## HTTP request
 
 ```
-POST https://api.cludo.com/api/v3/{CustomerId}/content/{CrawlerId}/delete
+POST https://api.cludo.com/api/v3/{customerId}/content/{crawlerId}/delete
 ```
 
 {{< markdown-with-header title="" content="The command below deletes search results:">}}
 ```
 curl
 -X POST \
--I https://api.cludo.com/api/v3/{CustomerId}/content/{CrawlerId}/delete \
--u {CustomerId}:{API_Key} \
+-I https://api.cludo.com/api/v3/{customerId}/content/{crawlerId}/delete \
+-u {customerId}:{API_Key} \
 ```
 {{< /markdown-with-header >}} 
 
@@ -26,8 +26,8 @@ curl
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
-| CrawlerId   |int |The id of the crawler to delete the results from| 
+| customerId  |int |Your customer id                                 | 
+| crawlerId   |int |The id of the crawler to delete the results from| 
 
 {{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 

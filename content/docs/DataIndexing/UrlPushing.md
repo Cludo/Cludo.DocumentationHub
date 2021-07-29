@@ -7,7 +7,7 @@ Since full domain crawls are not frequent (maybe once a day), new pages to your 
 
 ## HTTP request
 ```
-POST https://api.cludo.com/api/v3/<CustomerID>/content/<CrawlerID>/pushurls
+POST https://api.cludo.com/api/v3/<customerId>/content/<crawlerId>/pushurls
 ```
  
 
@@ -15,8 +15,8 @@ POST https://api.cludo.com/api/v3/<CustomerID>/content/<CrawlerID>/pushurls
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
-| CrawlerId   |int |The ID of the specific crawler you'd like to crawl the given URLs| 
+| customerId  |int |Your customer id                                 | 
+| crawlerId   |int |The ID of the specific crawler you'd like to crawl the given URLs| 
 
 ## HTTP body
 

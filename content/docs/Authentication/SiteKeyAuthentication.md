@@ -17,8 +17,8 @@ The credentials must be Base64-encoded as a single unit.
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
-| EngineId    |int |The id of the search engine to use for the search| 
+| customerId  |int |Your customer id                                 | 
+| engineId    |int |The id of the search engine to use for the search| 
 
 
 
@@ -26,12 +26,12 @@ The credentials must be Base64-encoded as a single unit.
 
 {{< markdown-with-header title="Header" content="Note that the last part of the credentials is not a parameter, but literally the string SearchKey.">}}
 ```
-Authorization: SiteKey <CustomerID>:<EngineID>:SearchKey
+Authorization: SiteKey <customerId>:<engineId>:SearchKey
 ```
 {{< /markdown-with-header >}} 
 
 
-{{< markdown-with-header title="Example" content="NDU0NTU4OTo3NTc4MDMwOlNlYXJjaEtleQ== is the base64 string of : CustomerID:EngineId:SearchKey">}}
+{{< markdown-with-header title="Example" content="NDU0NTU4OTo3NTc4MDMwOlNlYXJjaEtleQ== is the base64 string of : customerId:engineId:SearchKey">}}
 ```
 curl "https://api.cludo.com/api/v3/search"
 -H "Authorization: SiteKey NDU0NTU4OTo3NTc4MDMwOlNlYXJjaEtleQ=="

@@ -9,7 +9,7 @@ If you don't have any crawlers setup, or know exactly how your data is stored, y
 
 
 ```
-POST https://api.cludo.com/api/v3/{CustomerId}/content/{CrawlerId}/push
+POST https://api.cludo.com/api/v3/{customerId}/content/{crawlerId}/push
 ```
 
 
@@ -17,15 +17,15 @@ POST https://api.cludo.com/api/v3/{CustomerId}/content/{CrawlerId}/push
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|-------------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
-| CrawlerId   |int |The id of the crawler to index the data into| 
+| customerId  |int |Your customer id                                 | 
+| crawlerId   |int |The id of the crawler to index the data into| 
 
 {{< markdown-with-header title="HTTP request" content="The command below indexes data directly:">}}
 ```
 curl
 -X POST \
--I https://api.cludo.com/api/v3/{CustomerId}/content/{CrawlerId}/push \
--u {CustomerId}:{API_Key} \
+-I https://api.cludo.com/api/v3/{customerId}/content/{crawlerId}/push \
+-u {customerId}:{API_Key} \
 ```
 {{< /markdown-with-header >}} 
 

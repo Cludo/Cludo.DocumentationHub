@@ -8,7 +8,7 @@ Retrieves the search count, for a specified period.
 ## Request
 
 ```
-GET https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/statistics/totalSearches?
+GET https://api.cludo.com/api/v3/<customerId>/<engineId>/statistics/totalSearches?
 from=<From>&to=<To>&onlyIncludeUnique=<Only Include Unique>&includePreviousPeriod=<Include Previous Period>
 ```
 
@@ -16,8 +16,8 @@ from=<From>&to=<To>&onlyIncludeUnique=<Only Include Unique>&includePreviousPerio
 
 | Parameter   |Type|Default| Description                                     |
 | ----------- |----|-------|------------------------------------------|
-| CustomerId  |int ||Your customer id                                 | 
-| EngineId   |int ||The ID of the specific engine| 
+| customerId  |int ||Your customer id                                 | 
+| engineId   |int ||The ID of the specific engine| 
 | From    |string ||Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z| 
 | To   |string ||Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z| 
 | Only Include Unique   |bool |false	|Whether you want to retrieve the unique count only| 

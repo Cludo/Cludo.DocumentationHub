@@ -9,7 +9,7 @@ Retrieves a list of search counts summed by day for a specified period.
 ## Request
 
 ```
-GET https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/statistics/searchHistogram?
+GET https://api.cludo.com/api/v3/<customerId>/<engineId>/statistics/searchHistogram?
 type=<Type>&from=<From>&to=<To>&timezone=<Timezone>
 ```
 
@@ -17,8 +17,8 @@ type=<Type>&from=<From>&to=<To>&timezone=<Timezone>
 
 | Parameter   |Type|Default| Description                                     |
 | ----------- |----|-------|------------------------------------------|
-| CustomerId  |int ||Your customer id                                 | 
-| EngineId   |int ||The ID of the specific engine| 
+| customerId  |int ||Your customer id                                 | 
+| engineId   |int ||The ID of the specific engine| 
 | Type   |string |all|What statistics do you want. Options are: <ul><li>`All` - all statistics</li><li>`unsuccessfull`  - only retrive search statistics without any results </li><li>`successful` - only retrieve search statistics which returned results</li></ul>| 
 | From    |string ||Datetime when you want statistics from eg. 2016-08-14T22:00:00.000Z| 
 | To   |string ||Datetime when you want the statistics to eg. 2016-08-18T22:00:00.000Z| 

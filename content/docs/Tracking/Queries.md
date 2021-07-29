@@ -9,17 +9,17 @@ Record a search query.
 ## Request
 
 ```
-POST https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/search/pushstat/querylog
+POST https://api.cludo.com/api/v3/<customerId>/<engineId>/search/pushstat/querylog
 
-POST https://api.cludo.com/api/v3/<CustomerID>/<EngineID>/search/pushstat/querylog?<Query parameters>
+POST https://api.cludo.com/api/v3/<customerId>/<engineId>/search/pushstat/querylog?<Query parameters>
 ```
 
 ## URL Parameters
 
 | Parameter   |Type| Description                                     |
 | ----------- |----|------------------------------------------|
-| CustomerId  |int |Your customer id                                 | 
-| EngineId   |int |The ID of the specific engine| 
+| customerId  |int |Your customer id                                 | 
+| engineId   |int |The ID of the specific engine| 
 
 {{< button relref="#try-it" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 
