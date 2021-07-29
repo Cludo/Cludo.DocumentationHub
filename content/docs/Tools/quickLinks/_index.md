@@ -48,13 +48,13 @@ Get a specific quicklink.
 
 ### Request
 ```
-GET https://api.cludo.com/api/quicklinks/<Quicklink ID>
+GET https://api.cludo.com/api/quicklinks/<id>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Quicklink ID           |int | The ID of the specific quicklink | 
+| id           |int | The ID of the specific quicklink | 
 
 
 {{< markdown-with-header title="Example">}}
@@ -78,13 +78,13 @@ Get all quicklinks for a specific engine.
 
 ### Request
 ```
-GET https://api.cludo.com/api/engine/<Engine ID>/quicklinks
+GET https://api.cludo.com/api/engine/<engineId>/quicklinks
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Engine ID           |int | The ID of the specific engine | 
+| engineId          |int | The ID of the specific engine | 
 
 
 {{< markdown-with-header title="Example">}}
@@ -107,13 +107,13 @@ Get all quicklinks for a specific engine and term.
 
 ### Request
 ```
-GET https://api.cludo.com/api/engine/<Engine ID>/quicklinkterms?searchword=<Term>
+GET https://api.cludo.com/api/engine/<engineId>/quicklinkterms?searchword=<Term>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Engine ID           |int | The ID of the specific engine | 
+| engineId          |int | The ID of the specific engine | 
 
 ### Query Parameters
 | Parameter         |Type | Description                                      |
@@ -145,7 +145,7 @@ Create a quicklink.
 POST https://api.cludo.com/api/quicklinks
 ```
 
-###Body
+### Body
 
 {{< hint warning >}}
 The id key must be omitted.
@@ -182,7 +182,7 @@ Update a specific quicklink.
 
 ### Request
 ```
-PUT https://api.cludo.com/api/quicklinks/<Quicklink ID>
+PUT https://api.cludo.com/api/quicklinks/<id>
 
 POST https://api.cludo.com/api/quicklinks
 ```
@@ -190,16 +190,17 @@ POST https://api.cludo.com/api/quicklinks
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Quicklink  ID           |int | The ID of the specific quicklink | 
+| id           |int | The ID of the specific quicklink | 
 
-###Body
+### Body
 
 {{< hint info >}}
 The id key can be omitted with a PUT request, as it won't be respected.
 {{< /hint >}}
 
 {{< hint warning >}}
-The id key must be included with a POST request.
+**Please note**   
+The id key **must** be included with a POST request.
 {{< /hint >}}
 
 A single quicklink. See <a href="#quicklink">data structures</a>
@@ -242,7 +243,7 @@ curl "https://api.cludo.com/api/quicklinks/5807805"
 {{< /markdown-with-header >}} 
 
 ### TRY IT Create or Update QuickLink
-{{< swagger-op operation="CreateUpdateQuicklink" >}}
+{{< swagger-op operation="CreateOrUpdateQuicklink" >}}
 {{< swagger-op operation="UpdateQuicklink" >}}
 
 ### Response
@@ -255,13 +256,13 @@ Delete a quicklink.
 
 ### Request
 ```
-DELETE https://api.cludo.com/api/quicklinks/<Quicklink ID>
+DELETE https://api.cludo.com/api/quicklinks/<id>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Quicklink  ID           |int | The ID of the specific quicklink | 
+| id           |int | The ID of the specific quicklink | 
 
 
 {{< markdown-with-header title="Example">}}

@@ -84,7 +84,7 @@ You can read more about page rankings <a href="https://cludo.zendesk.com/hc/en-u
 | Key         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
 | id           |int | The ID of the term                       | 
-| RankingId	    |int | The ID of the ranking group this term belongs to| 
+| rankingId	    |int | The ID of the ranking group this term belongs to| 
 | name    |string | The actual term| 
  
 ```
@@ -295,7 +295,7 @@ Update a specific page ranking.
 
 ### Request
 ```
-PUT https://api.cludo.com/api/rankings/<Page ranking ID>
+PUT https://api.cludo.com/api/rankings/<id>
 
 POST https://api.cludo.com/api/rankings
 ```
@@ -303,7 +303,7 @@ POST https://api.cludo.com/api/rankings
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Page ranking ID           |int | The ID of the specific page ranking | 
+| id           |int | The ID of the specific page ranking | 
 
 
 ### Body
@@ -408,7 +408,7 @@ curl "https://api.cludo.com/api/rankings/1689348"
 {{< /markdown-with-header >}} 
 
 ### TRY IT Create or Update Page Ranking
-{{< swagger-op operation="PageRankingCreationUpdate" >}}
+{{< swagger-op operation="PageRankingCreationOrUpdate" >}}
 
 
 {{< swagger-op operation="PageRankingUpdate" >}}
@@ -425,13 +425,13 @@ Delete a specific page ranking.
 
 ### Request
 ```
-DELETE https://api.cludo.com/api/rankings/<Page ranking ID>
+DELETE https://api.cludo.com/api/rankings/<id>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Page ranking ID           |int | The ID of the specific page ranking | 
+| id           |int | The ID of the specific page ranking | 
 
 ```
 curl "https://api.cludo.com/api/rankings/1689348"

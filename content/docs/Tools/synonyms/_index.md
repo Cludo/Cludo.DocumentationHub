@@ -35,13 +35,13 @@ Get all synonyms groups for a specific language.
 
 ### Request
 ```
-GET https://api.cludo.com/api/synonymsgroup/<Language>
+GET https://api.cludo.com/api/synonymsgroup/<language>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Language    |string | A two-letter ISO language code | 
+| language    |string | A two-letter ISO language code | 
 
 
 {{< markdown-with-header title="Example">}}
@@ -64,13 +64,13 @@ Get a specific synonyms group.
 
 ### Request
 ```
-GET https://api.cludo.com/api/synonymsgroup/<Synonym Group ID>
+GET https://api.cludo.com/api/synonymsgroup/<groupId>
 ```
 
 ### URL Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| Synonym Group ID    |int | The ID of the specific synonyms group| 
+| groupId    |int | The ID of the specific synonyms group| 
 
 
 {{< markdown-with-header title="Example">}}
@@ -148,7 +148,7 @@ curl "https://api.cludo.com/api/synonymsgroup"
 ### Body Parameters
 | Parameter         |Type | Description                                      |
 | ----------- |---  | -------------------------------------------------|
-| group Id   |int | group Id to update | 
+| groupId   |int | group Id to update | 
 | words   |array | array with synonyms words | 
 | language   |string | A two-letter ISO language code | 
 

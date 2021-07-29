@@ -969,7 +969,7 @@
     "/api/Quicklinks": {
       "post": {
         "tags": [
-          "CreateUpdateQuicklink"
+          "CreateOrUpdateQuicklink"
         ],
         "summary": "Create quicklink",
         "description": "Create quicklink.",
@@ -1202,7 +1202,7 @@
       },
       "post": {
         "tags": [
-          "PageRankingCreationUpdate"
+          "PageRankingCreationOrUpdate"
         ],
         "summary": "Create page ranking",
         "description": "Create page ranking.\"",
