@@ -51,3 +51,26 @@ Now, reference the shortcode in one of the `content` markdown files with the fol
 `{{< myshortcode >}}`
 
 You should see your custom shortcode html snippet rendered on the site. Shortcodes can take variables and contain their own template logic when needed. You can find documentation for Hugo templates [here](https://gohugo.io/templates/shortcode-templates/).
+
+
+# Swagger UI Custom Module
+
+## Getting started
+
+1. Run `git submodule update --init --recursive` to get the submodule
+2. CD into Forked Swagger UI repo folder (`static/swagger-module/Cludo.DocumentationHub.SwaggerUiFork`)
+3. `npm install`
+
+### Development
+
+1. CD into Forked Swagger UI repo folder (`static/swagger-module/Cludo.DocumentationHub.SwaggerUiFork`)
+2. run `npm run dev`
+3. Open http://localhost:3200 for local web server
+4. Make changes
+
+### Release
+
+1. CD into Forked Swagger UI repo folder (`static/swagger-module/Cludo.DocumentationHub.SwaggerUiFork`)
+2. Run `npm run cludo-build`
+
+This should result in new Swagger UI files copied to swagger-module/js folder.
