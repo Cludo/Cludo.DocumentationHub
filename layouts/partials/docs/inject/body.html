@@ -24,24 +24,32 @@
   
       window.swaggerUi = swaggerUi;
   
-      swaggerUi.initOAuth({
-        clientId: "your-client-id",
-        clientSecret: "your-client-secret-if-required",
-        realm: "your-realms",
-        appName: "your-app-name",
-        scopeSeparator: " ",
-        scopes: "openid profile email phone address",
-        additionalQueryStringParams: {},
-        usePkceWithAuthorizationCodeGrant: false
-      });
+      //swaggerUi.initOAuth({
+      //  clientId: "your-client-id",
+      //  clientSecret: "your-client-secret-if-required",
+      //  realm: "your-realms",
+      //  appName: "your-app-name",
+      //  scopeSeparator: " ",
+      //  scopes: "openid profile email phone address",
+      //  additionalQueryStringParams: {},
+      //  usePkceWithAuthorizationCodeGrant: false
+      //});
         
         setTimeout(function () {
-            console.log("Tineout");
+            var scrollToTopBtn = document.getElementsByClassName("fas fa-chevron-up");
+            scrollToTopBtn[0].addEventListener("click", scrollToTop);
             document.querySelectorAll(".opblock-tag-section h4 a span").forEach(formatString);
         }, 500);
 
     function formatString(item) {
         item.innerText = item.innerText.match(/[A-Z][a-z]+|[0-9]+/g).join(" ");
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
       // Dispatch the swagger loaded event.
