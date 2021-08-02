@@ -16,7 +16,7 @@ The Cludo query string syntax supports the following command types within the se
 - <a href="#ranges">Ranges</a>
 - <a href="#boosting">Boosting</a>
 
-To avoid expressing everything as one big string, when making requests from a server, See Filtering, and Ranking(INCOMPLETE).
+To avoid expressing everything as one big string, when making requests from a server, See <a href="/docs/searching/fullsearch/#filtering">Filtering</a> , and <a href="/docs/searching/fullsearch/#ranking">Ranking</a>.
 
 {{< hint warning >}}
  Remember to escape symbols if you wish to search after the symbol and not use it as a command.
@@ -62,7 +62,7 @@ To match a specific sentence, simply wrap the terms with quotes:
 
 `"Quick brown fox"`
 
-This enforces that all terms must be found, and in the order specified. It's possible to use fuzzyness(**LINK HERE**) on sentences to allow unknown terms to occur between the terms specified, but the order of the terms must still be the same. To do this use `~`:
+This enforces that all terms must be found, and in the order specified. It's possible to use <a href="/docs/searching/querystringsyntax/#fuzzyness">fuzzyness</a> on sentences to allow unknown terms to occur between the terms specified, but the order of the terms must still be the same. To do this use `~`:
 
 `"Quick fox"~`
 
@@ -140,10 +140,20 @@ skhool~  -> school (substitution)
 ## Ranges
 
 To search for ranges of numbers, dates or strings, use square bracks to specify inclusive ranges `<field>:[min TO max]` and exclusive ranges with curly brackets `<field>:{min TO max}`. It is allowed to mix inclusive and exclusive ranges, and if an open range is required, use `*` as value.
+
+{{< markdown-with-header title=""  content="Examples on using ranges:">}}
+```
+Price:[20 TO 40]
+ProductionYear:[2016 TO 2017]
+ShoeSize:[8 TO *]
+Price:[20 TO 40}
+```
+{{< /markdown-with-header >}} 
+
 ## Boosting
 
 Sometimes, to the user, one term is more important than another.
-To indicate this importance to the searchengine, add a boosting score to terms with `^#` where # is the boosting factor.
+To indicate this importance to the search engine, add a boosting score to terms with `^#` where # is the boosting factor.
 The boost value must be a positive number, and decimals are allowed.
 A boosting value between 0 and 1 reduces the importance of a word, whereas one over 1 increases the importance.
 

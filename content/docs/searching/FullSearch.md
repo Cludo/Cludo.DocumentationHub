@@ -4,7 +4,7 @@ title: "Full Search"
 ---
 
 Full searches
-Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search. To read more about the HTTP response, click here.
+Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search. To read more about the HTTP response, click <a href="/docs/searching/fullsearch/#http-response">here</a>.
 
 ## Request
 
@@ -25,16 +25,16 @@ POST https://api.cludo.com/api/v3/{customerId}/{engineId}/search
 There are several features available when making a full search. The features can be grouped into these five categories, each controling a different element of the search:
 
 
-- Query  
-- Filtering    
-- Ranking    
-- Grouping    
-- Rendering    
+- <a href="/docs/searching/fullsearch/#query">Query</a>
+- <a href="/docs/searching/fullsearch/#filtering">Filtering</a>
+- <a href="/docs/searching/fullsearch/#ranking">Ranking</a>   
+- <a href="/docs/searching/fullsearch/#grouping">Grouping</a>   
+- <a href="/docs/searching/fullsearch/#rendering">Rendering</a>  
 
 
 
 {{< hint info >}}
- To se a full table of all HTTP request body properties, click here (INCOMPLETE).
+ To se a full table of all HTTP request body properties, click <a href="/docs/searching/fullsearch/#table-of-request-properties">here</a>.
 {{< /hint >}}
 
 
@@ -49,6 +49,9 @@ curl
 -d <JSON BODY> \
 ```
 
+{{< hint info >}}
+ Go <a href="/docs/searching/fullsearch/#full-http-request-example">here</a> to se a full example of a request body and <a href="/docs/searching/fullsearch/#jsonobject-response">here</a> to se a response body.
+{{< /hint >}}
 ## TRY IT
 {{< swagger-op operation="FullSearch" >}}
 
@@ -72,7 +75,7 @@ Possible values for the `operator` are:
 - **and**
 
 {{< hint info >}}
- It is possible to change the default operator behavior for all searches by <a href="https://www.cludo.com/en/contact/">contacting</a> Cludo.
+ It is possible to change the default operator behavior for all searches by <a target="_blank" href="https://www.cludo.com/en/contact/">contacting</a> Cludo.
 {{< /hint >}}
 
 {{< markdown-with-header title="Query body example" content="">}}
@@ -90,7 +93,7 @@ Possible values for the `operator` are:
 
 {{< hint info >}}
 
- If more advanced queries are needed, either use the other <a href="#query-parameters">HTTP request properties</a>, or use the query string syntax.(Incomplete)
+ If more advanced queries are needed, either use the other <a href="#table-of-request-properties">HTTP request properties</a>, or use the <a href="/docs//searching/querystringsyntax/">query string syntax</a> .
 {{< /hint >}}
 
 ## Filtering
@@ -99,9 +102,32 @@ Filtering limits search request fields to match given values, such as a price wi
 
 Currently, three properties are used to set filters: `filters`, `notFilters` and `postFilters`. Which property you use, depends on when in the search process the filter is added: `filters` and `notFilters` are executed along with the query, and will affect the ranking and facets, whereas the `postFilter` only filters out not matching search results, but does not affect facets. To enable `postFilters` on facets use the `enableFacetFiltering` property.
 
-By default, when specifying multiple post filters, then all filters must match, before a search result is valid. To change this behavior use the `postFilterOperator` property. Its possible values are:
+By default, when specifying multiple post filters, all filters must match, before a search result is valid. To change this behavior use the `postFilterOperator` property. Its possible values are:
 - **and**
 - **or**
+
+{{< markdown-with-header content="Filtering options:">}}
+```
+{
+  "postFilters": {
+    "Category": ["Publications", "Events"],
+    "date": ["EventDate", "20170601", "20170630"]
+  },
+  "postFilterOperator": "or",
+
+  "filters": {
+    "Domain": ["http://www.mydomain.com"],
+    "range": ["Price", 20, 100],
+    "date": ["EventDate", "20170601", "20170630"]
+  },
+
+  "notFilters": {
+    "date": ["ProductionYear", "", 2015]
+  }, 
+  "enableFacetFiltering": true
+}
+```
+{{< /markdown-with-header >}} 
 
 ### Syntax
 When adding a filter to any of the properties, you must first decide which type of filter is neded:
@@ -126,7 +152,7 @@ The value filter type is simply just a range of values to match.
 
 **Range**  
 
-The range filter is used to limit a number field to be within or greater- or less-than-or-equal-to than the specified value(s). The filter consists of three parameters:
+The range filter is used to limit a number field to be `within`, `greater` or `less-than-or-equal-to` than the specified value(s). The filter consists of three parameters:
 
 - Field to filter
 - Minimum value
@@ -145,13 +171,13 @@ Use comma ',' as the parameter separator, and a dot '.' as a decimal separator. 
 
 **Date** 
 
-The date filter is used to limit a date-time field to be within, before or after the specified date(e). The filter consists of three parameters:
+The date filter is used to limit a date-time field to be within, before or after the specified date. The filter consists of three parameters:
 
 - Field to filter
 - Minimum date-time
 - Maximum date-time
 
-Both date-time values must be strings and in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format, such as:
+Both date-time values must be strings and in <a target="_blank" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format, such as:
 
 - 2017-06-13T02:50:25+00:00
 - 2017-06-13T02:50:25Z
@@ -233,7 +259,7 @@ For this you use the `responseType` property with one of the following options:
 - **JsonObject**
 - **JsonHtml**
 
-To read more about the variation in the HTTP Response click **here(INCOMPLETE)**.
+To read more about the variation in the HTTP Response click <a href="/docs/searching/fullsearch/#http-response">here</a>.
 
 *JsonObject* returns all data as json, wheras *JsonHtml* pre-renders the search results, and the facets with a pre-determined template.
 
@@ -270,10 +296,10 @@ To enable this feature, use the enableRelatedSearches property.
 
 ## HTTP Response
 
-Depending on the requested `responseType` described <a href="/docs/searching/fullsearch/#related-searches">here</a>, one of the two types of responses may be received. Their differences lies within how the search results, facets and suggestions are returned.
+Depending on the requested `responseType` described <a href="/docs/searching/fullsearch/#http-response">here</a>, one of the two types of responses may be received. Their differences lies within how the search results, facets and suggestions are returned.
 
 {{< hint info >}}
-  To se a full table of all HTTP response body properties, click <a href="/docs/searching/fullsearch/#table-of-request-properties">here</a>.
+  To se a full table of all HTTP response body properties, click <a href="/docs/searching/fullsearch/#table-of-response-properties">here</a>.
 {{< /hint >}}
 
 ***JsonObject* response**
@@ -331,7 +357,7 @@ The *JsonHtml* response returns search results and facets as pre-rendered HTML c
 | overlay       |no     |string |      |The name of the overlay template to use for rendering JsonHTML.    | 
 
 
-###  <a href="/docs/searching/fullsearch/#related-searches">Related searches</a>
+###  <a href="/docs/searching/fullsearch/#related-searches">Related searches *</a>
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|
