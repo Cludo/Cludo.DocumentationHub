@@ -2,42 +2,15 @@
 title: 
 type: docs
 ---
+Welcome to the Cludo API!
 
-# Cludo Documentation Corner
-
-{{< columns >}}
-## Astris ipse furtiva
+You can use our API to do searches, access your statistics, and manage pretty much anything related to your service. In short - all functionality found in My Cludo can be achieved through the API.
 
 
+{{< hint info >}}
+We're actively working on improving and expanding our API documentation. If you have any questions or feedback, we'd love to <a href="https://www.cludo.com/contact/" target="_blank">hear from you</a>
+{{< /hint >}}
 
-Est. in vagis et Pittheus tu arge accipiter regia iram vocatur nurus. Omnes ut
-olivae sensit **arma sorori** deducit, inesset **crudus**, ego vetuere aliis,
-modo arsit? Utinam rapta fiducia valuere litora _adicit cursu_, ad facies. Cool right?
-
-<--->
-
-## Suis quot vota
-
-Ea _furtique_ risere fratres edidit terrae magis. Colla tam mihi tenebat:
-miseram excita suadent es pecudes iam. Concilio _quam_ velatus posset ait quod
-nunc! Fragosis suae dextra geruntur functus vulgata.
-{{< /columns >}}
-
-
-## Tempora nisi nunc
-
-Lorem **markdownum** emicat gestu. Cannis sol pressit ducta. **Est** Idaei,
-tremens ausim se tutaeque, illi ulnis hausit, sed, lumina cutem. Quae avis
-sequens!
-
-    var panel = ram_design;
-    if (backup + system) {
-        file.readPoint = network_native;
-        sidebar_engine_device(cell_tftp_raster,
-                dual_login_paper.adf_vci.application_reader_design(
-                graphicsNvramCdma, lpi_footer_snmp, integer_model));
-    }
-
-## Locis suis novi cum suoque decidit eadem
-
-Idmoniae ripis, at aves, ali missa adest, ut _et autem_, et ab?
+{{< hint warning >}}
+Some features don't work out of the box without using the Cludo JavaScript. You will have to do your own implementation of quicklinks and tracking.
+{{< /hint >}}
