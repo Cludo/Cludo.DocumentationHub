@@ -1,6 +1,7 @@
 ---
-weight: 8
-bookFlatSection: true
+weight: 15
+bookFlatSection: false
+bookCollapseSection: true
 title: "Data Indexing"
 ---
 

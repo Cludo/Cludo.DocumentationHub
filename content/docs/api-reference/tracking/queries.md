@@ -1,6 +1,6 @@
 ---
 weight: 1
-bookFlatSection: true
+bookFlatSection: false
 title: "Queries"
 ---
 

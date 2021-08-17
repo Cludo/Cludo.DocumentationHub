@@ -1,6 +1,7 @@
 ---
-weight: 7
-bookFlatSection: true
+weight: 25
+bookFlatSection: false
+bookCollapseSection: true
 title: "Tools"
 ---
 

@@ -1,6 +1,7 @@
 ---
-weight: 6
-bookFlatSection: true
+weight: 20
+bookFlatSection: false
+bookCollapseSection: true
 title: "Statistics"
 ---
 

@@ -1,6 +1,6 @@
 ---
 weight: 3
-bookFlatSection: true
+bookFlatSection: false
 title: "Ip addresses"
 ---
 

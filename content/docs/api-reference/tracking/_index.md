@@ -1,6 +1,7 @@
 ---
-weight: 5
-bookFlatSection: true
+weight: 10
+bookFlatSection: false
+bookCollapseSection: true
 title: "Tracking"
 ---
 

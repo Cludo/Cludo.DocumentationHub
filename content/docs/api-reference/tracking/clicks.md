@@ -1,6 +1,6 @@
 ---
 weight: 2
-bookFlatSection: true
+bookFlatSection: false
 title: "Clicks"
 ---
 

@@ -1,8 +1,8 @@
 ---
 weight: 1
-bookFlatSection: true
-title: "Introduction"
+title: Getting Started
 ---
+
 
 Welcome to the Cludo API!
 
