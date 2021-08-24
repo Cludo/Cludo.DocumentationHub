@@ -19,6 +19,9 @@ $purple85: #8532c5;
 $purple96: #9636b9;
 $purpleEC: #ece5f8;
 
+// new
+$purpleE1: #e1d4f7;
+
 $blueD9: #d9e2fc;
 $blue43: #436df0;
 
@@ -126,6 +129,27 @@ $black22: #222337;
 @mixin for-big-desktop-up {
     @media (min-width: 1800px) {
         @content;
+    }
+}
+
+@mixin selected-left-nav--bubble {
+    border-radius: $default-br;
+    background: $purpleE1;
+    color: $grey33;
+}
+
+@mixin selected-left-nav--simple {
+    color: $purple82;
+}
+
+@mixin selected-left-nav {
+
+    @include selected-left-nav--simple();
+
+    opacity: initial;
+    
+    &:not([href]) {
+        opacity: initial;
     }
 }
 
@@ -445,19 +469,33 @@ body {
     .book-menu {
         .book-menu-content {
             background: none;
+            padding: $spacer-4 $spacer-3;
 
             .book-brand {
                 display: none;
             }
 
             ul {
+
+                .book-section-flat > span {
+                    margin-bottom: $spacer-2;
+                }
+
                 li {
-                    
+                    // Spacing between left nav items
+                    &, &>span, &>a, &>label {
+                        margin: 0 0 $spacer-1 0;
+                        display: block;
+                        padding: 0;
+                    }
+
                     &.book-section-flat {
                         border-bottom: 1px solid $greyE8;
-                        // padding-left: 68px;
 
-                        > a {
+                        margin-bottom: $spacer-2;
+                        padding-bottom: $spacer-2;
+
+                        & > a {
                             text-transform: uppercase;
                             color: $purple82;
                             font-family: SourceSansProSemibold;
@@ -469,23 +507,52 @@ body {
                     }
                     
 
+                    // Line dot sub nav
+                    $li-padding: $spacer-2;
+                    $line-weight: $spacer-1 / 4;
+                    $line-color: $greyEA;
+                    $dot-weight: .75rem;
+                    $dot-color: $purple85;
+                    
+
+                    .book-section-collapse__label ~ ul {
+                        position: relative;
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            left: ($li-padding / 2) - ($line-weight / 2);
+                            top: 0;
+                            bottom: 0;
+                            width: $line-weight;
+                            background: $line-color;
+                        }
+
+                        &>li>a.active {
+                            position: relative;
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                
+                                left: -($li-padding / 2) - ($dot-weight / 2);
+                                top: 50%;
+                                transform: translateY(-50%);
+                                z-index: 1;
+
+                                width: $dot-weight;
+                                height: $dot-weight;
+                                border-radius: 50%;
+                                background-color: $dot-color;
+                                
+                            }
+                        }
+                    }
+
                     a {
                         text-decoration: none;
-                        padding: 5px $spacer-1;
-                        
                         
                         &:hover,
                         &.active {
-                            background: $purple82;
-                            color: $white;
-                            border-radius: $default-br;
-
-                            opacity: initial;
-                            
-                            &:not([href]) {
-                                opacity: initial;
-                            }
-
+                            @include selected-left-nav;
                         }
 
                         & ~ i {
@@ -494,12 +561,6 @@ body {
                             top: 50%;
                             transform: translateY(-50%);
                         }
-                    }
-
-                    span {
-                        display: block;
-                        margin-bottom: 5px;
-                        padding: 0 $spacer-1;
                     }
 
                     input.toggle:checked+label {
@@ -524,24 +585,26 @@ body {
                         }
 
                         &:hover {
-                            background: $purple82;
-                            border-radius: $default-br;
+                            @include selected-left-nav;
 
-                            a {
-                                color: $white;
-                            }
+                            // background: $purple82;
+                            // border-radius: $default-br;
 
-                            i {
-                                color: $white;
+                            // a {
+                            //     color: $white;
+                            // }
+
+                            // i {
+                            //     color: $white;
                                 
-                                // &.close {
-                                //     display: inline-block;
-                                // }
+                            //     // &.close {
+                            //     //     display: inline-block;
+                            //     // }
 
-                                // &.open {
-                                //     display: none;
-                                // }
-                            }
+                            //     // &.open {
+                            //     //     display: none;
+                            //     // }
+                            // }
                         }
                     }
                 }
@@ -1671,14 +1734,14 @@ body {
             color: $grey33;
         }
 
-        nav ul li {
-            margin: 0;
+        // nav ul li {
+        //     margin: 0;
 
-            // Spacing between left nav items
-            & > span, & > a, & > label {
-                margin-bottom: 2px;
-            }
-        }
+        //     // Spacing between left nav items
+        //     & > span, & > a, & > label {
+        //         margin-bottom: 2px;
+        //     }
+        // }
 
         @include for-phone-only {
             min-width: unset;

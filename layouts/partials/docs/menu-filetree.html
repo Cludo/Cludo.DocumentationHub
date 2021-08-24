@@ -30,7 +30,7 @@
 
   {{ if .Page.Params.bookCollapseSection }}
     <input type="checkbox" id="section-{{ md5 .Page }}" class="toggle" {{ if or $current $ancestor }}checked{{ end }} />
-    <label for="section-{{ md5 .Page }}" class="flex justify-between align-center">
+    <label for="section-{{ md5 .Page }}" class="flex justify-between align-center book-section-collapse__label">
       <a {{ if .Page.Content }}href="{{ .Page.Permalink }}"{{ end }} class="{{ if $current }}active{{ end }}">
         {{- partial "docs/title" .Page -}}
       </a>
