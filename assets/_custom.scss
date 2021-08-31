@@ -1883,3 +1883,7 @@ body {
         }
     }
 }
+
+.book-menu-content, .book-toc-content, .book-page, .book-header aside, .markdown {
+    will-change: initial;
+}
