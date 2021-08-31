@@ -5,7 +5,7 @@ theme = "book"
 
 [params]
     site_logo = "/img/cludo_docs_logo.svg"
-    BookSearch = true
+    BookSearch = false
     BookToC = true
     SideMenu = true
     SubHeader = false

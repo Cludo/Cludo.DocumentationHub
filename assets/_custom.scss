@@ -490,10 +490,13 @@ body {
                     }
 
                     &.book-section-flat {
-                        border-bottom: 1px solid $greyE8;
+                        &:not(:last-child) {
 
+                            border-bottom: 1px solid $greyE8;
+
+                            padding-bottom: $spacer-2;
+                        }
                         margin-bottom: $spacer-2;
-                        padding-bottom: $spacer-2;
 
                         & > a {
                             text-transform: uppercase;
@@ -511,7 +514,7 @@ body {
                     $li-padding: $spacer-2;
                     $line-weight: $spacer-1 / 4;
                     $line-color: $greyEA;
-                    $dot-weight: .75rem;
+                    $dot-weight: .5rem;
                     $dot-color: $purple85;
                     
 
@@ -520,7 +523,8 @@ body {
                         &:after {
                             content: "";
                             position: absolute;
-                            left: ($li-padding / 2) - ($line-weight / 2);
+                            // left: ($li-padding / 2) - ($line-weight / 2);
+                            left: 0;
                             top: 0;
                             bottom: 0;
                             width: $line-weight;
@@ -530,7 +534,7 @@ body {
                         &>li>a.active {
                             position: relative;
                             &:after {
-                                content: "";
+                                // content: "";
                                 position: absolute;
                                 
                                 left: -($li-padding / 2) - ($dot-weight / 2);
@@ -692,6 +696,8 @@ body {
         .book-toc-content {
             padding-left: 30px;
             padding-top: 60px;
+
+            position: sticky !important;
 
             .toc-page-title {
                 span {
