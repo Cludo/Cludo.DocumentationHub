@@ -98,7 +98,7 @@ Possible values for the `operator` are:
 
 ## Filtering
 
-Filtering limits search request fields to match given values, such as a price within a given range, a date within a specific month, or have a given category.
+Filtering limits search request fields to match given values, such as a price within a given range, a date within a specific month, have a given category, or a geographic location within a given radius.
 
 Currently, three properties are used to set filters: `filters`, `notFilters` and `postFilters`. Which property you use, depends on when in the search process the filter is added: `filters` and `notFilters` are executed along with the query, and will affect the ranking and facets, whereas the `postFilter` only filters out not matching search results, but does not affect facets. To enable `postFilters` on facets use the `enableFacetFiltering` property.
 
@@ -118,7 +118,8 @@ By default, when specifying multiple post filters, all filters must match, befor
   "filters": {
     "Domain": ["http://www.mydomain.com"],
     "range": ["Price", 20, 100],
-    "date": ["EventDate", "20170601", "20170630"]
+    "date": ["EventDate", "20170601", "20170630"],
+    "geo_distance": ["Geo Location_geo_point", "50.3453456", "-954645645", "100", "km"]
   },
 
   "notFilters": {
@@ -194,6 +195,33 @@ If no time part is specified, then the full date is included in the search, mean
 ```
 {{< /markdown-with-header >}} 
 
+**Geographic Location** 
+
+The geographic location filter limits a geopoint field to a radius of a given coordinate made up of a latitude and longitude values. 
+The filter consists of:
+
+- Field name: the name of the geopoint field stored in Elastic Search, composed of a custom name and the suffix "_geo_point".
+- Latitude: the value representing the latitude coordinate.
+- Longitude: the value representing the longitude coordinate.
+- Distance: the radius of the search.
+- Distance Unit: the unit of measurement of the search radius. 
+
+The available units of measurement and corresponding representations are:
+- Mile: "mi" or "miles".
+- Yard: "yd" or "yards".
+- Feet: "ft" or "feet".
+- Inch: "in" or "inch".
+- Kilometer: "km" or "kilometeres".
+- Meter: "m" or "meters".
+- Centimeter: "cm" or "centimeters".
+- Millimeter: "mm" or "millimeters".
+- Nautical mile: "NM", "nmi" or "nauticalmiles".
+
+{{< markdown-with-header content="Example on using a geographic location filter:">}}
+```
+"geo_distance": ["Geo Location_geo_point", "50.3453456", "-954645645", "100", "km"]
+```
+{{< /markdown-with-header >}} 
 
 ## Ranking
 When searching, the Cludo will attempt to order the search results, based on how well they match the given query.
