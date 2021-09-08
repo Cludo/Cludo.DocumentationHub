@@ -119,7 +119,7 @@ By default, when specifying multiple post filters, all filters must match, befor
     "Domain": ["http://www.mydomain.com"],
     "range": ["Price", 20, 100],
     "date": ["EventDate", "20170601", "20170630"],
-    "geo_distance": ["Geo Location_geo_point", "50.3453456", "-954645645", "100", "km"]
+    "geo_distance": ["Location_geo_point", "50.3453456", "-954645645", "100", "Kilometers"]
   },
 
   "notFilters": {
@@ -206,20 +206,20 @@ The filter consists of:
 - Distance: the radius of the search.
 - Distance Unit: the unit of measurement of the search radius. 
 
-The available units of measurement and corresponding representations are:
-- Mile: "mi" or "miles".
-- Yard: "yd" or "yards".
-- Feet: "ft" or "feet".
-- Inch: "in" or "inch".
-- Kilometer: "km" or "kilometeres".
-- Meter: "m" or "meters".
-- Centimeter: "cm" or "centimeters".
-- Millimeter: "mm" or "millimeters".
-- Nautical mile: "NM", "nmi" or "nauticalmiles".
+The available units of measurement are:
+ - Inch
+ - Feet
+ - Yards 
+ - Miles
+ - NauticalMiles
+ - Kilometers
+ - Meters
+ - Centimeters
+ - Millimeters
 
 {{< markdown-with-header content="Example on using a geographic location filter:">}}
 ```
-"geo_distance": ["Geo Location_geo_point", "50.3453456", "-954645645", "100", "km"]
+"geo_distance": ["Location_geo_point", "50.3453456", "-954645645", "100", "Kilometers"]
 ```
 {{< /markdown-with-header >}} 
 
