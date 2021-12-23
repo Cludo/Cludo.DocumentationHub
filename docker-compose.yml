@@ -13,7 +13,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SWAGGER_JSON_URL=http://search.local/docs/v3/cludo-api.json
+      - SWAGGER_JSON_URL=http://search.local/docs/v3/cludo-api.eu.json
 networks:
   local:
     driver: bridge

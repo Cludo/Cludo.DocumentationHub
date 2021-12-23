@@ -4,7 +4,7 @@ title: "Full Search"
 ---
 
 Full searches
-Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search. To read more about the HTTP response, click <a href="/docs/searching/fullsearch/#http-response">here</a>.
+Full searches is the standard way to search with Cludo. With these requests you have a great variety of functions available to express your search. To read more about the HTTP response, click [here](#http-response).
 
 ## Request
 
@@ -25,16 +25,16 @@ POST https://api.cludo.com/api/v3/{customerId}/{engineId}/search
 There are several features available when making a full search. The features can be grouped into these five categories, each controling a different element of the search:
 
 
-- <a href="/docs/searching/fullsearch/#query">Query</a>
-- <a href="/docs/searching/fullsearch/#filtering">Filtering</a>
-- <a href="/docs/searching/fullsearch/#ranking">Ranking</a>   
-- <a href="/docs/searching/fullsearch/#grouping">Grouping</a>   
-- <a href="/docs/searching/fullsearch/#rendering">Rendering</a>  
+- [Query](#query)
+- [Filtering](#filtering)
+- [Ranking](#ranking)
+- [Grouping](#grouping)
+- [Rendering](#rendering)
 
 
 
 {{< hint info >}}
- To se a full table of all HTTP request body properties, click <a href="/docs/searching/fullsearch/#table-of-request-properties">here</a>.
+ To se a full table of all HTTP request body properties, click [here](#table-of-request-properties).
 {{< /hint >}}
 
 
@@ -50,7 +50,7 @@ curl
 ```
 
 {{< hint info >}}
- Go <a href="/docs/searching/fullsearch/#full-http-request-example">here</a> to se a full example of a request body and <a href="/docs/searching/fullsearch/#jsonobject-response">here</a> to se a response body.
+ Go [here](#full-http-request-example) to se a full example of a request body and [here](#jsonobject-response) to se a response body.
 {{< /hint >}}
 ## TRY IT
 {{< swagger-op operation="FullSearch" >}}
@@ -93,7 +93,7 @@ Possible values for the `operator` are:
 
 {{< hint info >}}
 
- If more advanced queries are needed, either use the other <a href="#table-of-request-properties">HTTP request properties</a>, or use the <a href="/docs//searching/querystringsyntax/">query string syntax</a> .
+ If more advanced queries are needed, either use the other [HTTP request properties](#table-of-request-properties), or use the [query string syntax](../query-string-syntax) .
 {{< /hint >}}
 
 ## Filtering
@@ -287,7 +287,7 @@ For this you use the `responseType` property with one of the following options:
 - **JsonObject**
 - **JsonHtml**
 
-To read more about the variation in the HTTP Response click <a href="/docs/searching/fullsearch/#http-response">here</a>.
+To read more about the variation in the HTTP Response click [here](#http-response).
 
 *JsonObject* returns all data as json, wheras *JsonHtml* pre-renders the search results, and the facets with a pre-determined template.
 
@@ -324,10 +324,10 @@ To enable this feature, use the enableRelatedSearches property.
 
 ## HTTP Response
 
-Depending on the requested `responseType` described <a href="/docs/searching/fullsearch/#http-response">here</a>, one of the two types of responses may be received. Their differences lies within how the search results, facets and suggestions are returned.
+Depending on the requested `responseType` described [here](#http-response), one of the two types of responses may be received. Their differences lies within how the search results, facets and suggestions are returned.
 
 {{< hint info >}}
-  To se a full table of all HTTP response body properties, click <a href="/docs/searching/fullsearch/#table-of-response-properties">here</a>.
+  To se a full table of all HTTP response body properties, click [here](#table-of-response-properties).
 {{< /hint >}}
 
 ***JsonObject* response**
@@ -344,14 +344,14 @@ The *JsonHtml* response returns search results and facets as pre-rendered HTML c
   Features marked with a * denotes that it's not included with all subscription levels. If you want to know more, please <a href="https://www.cludo.com/contact/" target="_blank">contact us</a>.
 {{< /hint >}}
 
-###  <a href="/docs/searching/fullsearch/#query">Query</a>
+###  [Query](#query)
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|
 | query       |yes     |string |       | The text you want to search for.              | 
 | operator    |no     |enum    |Engine specific|Specify if one or more query terms should match, or all terms must match.Possible values are: <ul><li>`or`<li>`and`</li></ul>| 
 
-###  <a href="/docs/searching/fullsearch/#filtering">Filtering</a>
+###  [Filtering](#filtering)
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|
@@ -361,14 +361,14 @@ The *JsonHtml* response returns search results and facets as pre-rendered HTML c
 | postFiltersOperator    |no     |enum|and    |The relation between post filters.Possible values are:<ul><li>`or`<li>`and`</li></ul>| 
 | enableFacetFiltering    |no     |bool|false   |If you require post filters to be set on the HTTP response facets. See also **Response facets(Broken Link)**.| 
 
-###  <a href="/docs/searching/fullsearch/#ranking">Ranking</a>
+###  [Ranking](#ranking)
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|
 | sort       |no     |Sort Model |       | Set a value to override the default sort behavior with an explicit one.           | 
 | valueBoost       |no     |ValueBoost Model |       | Allows explicit search result boosting based on specific values.              | 
 
-###  <a href="/docs/searching/fullsearch/#grouping">Grouping</a>
+### [Grouping](#grouping)
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|
@@ -376,7 +376,7 @@ The *JsonHtml* response returns search results and facets as pre-rendered HTML c
 | page       |no     |uint32 |   1    |The page index of search results to return. Use together with `perPage` to batch the results.            | 
 
 
-###  <a href="/docs/searching/fullsearch/#rendering">Rendering</a>
+###  [Rendering](#rendering)
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|
@@ -385,7 +385,7 @@ The *JsonHtml* response returns search results and facets as pre-rendered HTML c
 | overlay       |no     |string |      |The name of the overlay template to use for rendering JsonHTML.    | 
 
 
-###  <a href="/docs/searching/fullsearch/#related-searches">Related searches *</a>
+###  [Related searches *](#related-searches)
 
 | Parameter   |Required|Type|Default| Description                                     |
 | ----------- |--------|----|-------|------------------------------------------|

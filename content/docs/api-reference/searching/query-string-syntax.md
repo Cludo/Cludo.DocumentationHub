@@ -7,16 +7,16 @@ title: "Query string syntax"
 The Cludo query string syntax supports the following command types within the search query string:
 
 
-- <a href="#operators">Operators</a>
-- <a href="#grouping">Grouping</a>
-- <a href="#sentences">Sentences</a>
-- <a href="#fields">Fields</a>
-- <a href="#wildcards">WildCards</a>
-- <a href="#fuzzyness">Fuzzyness</a>
-- <a href="#ranges">Ranges</a>
-- <a href="#boosting">Boosting</a>
+- [Operators](#operators)
+- [Grouping](#grouping)
+- [Sentences](#sentences)
+- [Fields](#fields)
+- [WildCards](#wildcards)
+- [Fuzzyness](#fuzzyness)
+- [Ranges](#ranges)
+- [Boosting](#boosting)
 
-To avoid expressing everything as one big string, when making requests from a server, See <a href="/docs/searching/fullsearch/#filtering">Filtering</a> , and <a href="/docs/searching/fullsearch/#ranking">Ranking</a>.
+To avoid expressing everything as one big string, when making requests from a server, See [Filtering](#filtering), and [Ranking](#ranking).
 
 {{< hint warning >}}
  Remember to escape symbols if you wish to search after the symbol and not use it as a command.
@@ -62,7 +62,7 @@ To match a specific sentence, simply wrap the terms with quotes:
 
 `"Quick brown fox"`
 
-This enforces that all terms must be found, and in the order specified. It's possible to use <a href="/docs/searching/querystringsyntax/#fuzzyness">fuzzyness</a> on sentences to allow unknown terms to occur between the terms specified, but the order of the terms must still be the same. To do this use `~`:
+This enforces that all terms must be found, and in the order specified. It's possible to use [fuzzyness](#fuzzyness) on sentences to allow unknown terms to occur between the terms specified, but the order of the terms must still be the same. To do this use `~`:
 
 `"Quick fox"~`
 

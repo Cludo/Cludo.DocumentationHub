@@ -2,14 +2,16 @@
 <script src="/swagger-module/js/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
 <script>
     // const jsonApiPath = "https://petstore.swagger.io/v2/swagger.json";
-    const jsonApiPath = "/swagger-cludo/cludo-api.json";
-
+    const jsonApiPath = "/swagger-cludo/cludo-api.eu.json";
+    const jsonApiPaths = [{name: 'EU', url: "/swagger-cludo/cludo-api.eu.json"}, { name: 'US', url: "/swagger-cludo/cludo-api.us.json"}]
     window.onload = function() {
       window["SwaggerUIBundle"] = window["swagger-ui-bundle"]
       window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
       // Build a system
       const swaggerUi = SwaggerUIBundle({
         url: jsonApiPath,
+        // urls: jsonApiPaths,
+        // primaryName: 'EU',
         dom_id: '#swagger-ui',
         presets: [
           SwaggerUIBundle.presets.apis,
@@ -20,6 +22,7 @@
         ],
         layout: "OperationsLayout",
         initOnly: true,
+        persistAuthorization: true,
       });
   
       window.swaggerUi = swaggerUi;
