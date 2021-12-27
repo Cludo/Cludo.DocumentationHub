@@ -128,7 +128,7 @@ curl "https://api.cludo.com/api/rankings"
 {{< swagger-op operation="AllRankings" >}}
 
 ### Response
-Will return an array of ranking groups. See <a href="#ranking-group">data structures</a>
+Will return an array of ranking groups. See [data structures](#ranking-group)
 
 ## Get all page rankings by engine
 
@@ -155,7 +155,7 @@ curl "https://api.cludo.com/api/rankings/site/7578030"
 {{< swagger-op operation="RankingsByEngine" >}}
 
 ### Response
-Will return an array of ranking groups. See <a href="#ranking-group">data structures</a>
+Will return an array of ranking groups. See [data structures](#ranking-group)
 
 ## Get single page ranking
 
@@ -181,7 +181,7 @@ curl "https://api.cludo.com/api/rankings/1689348"
 {{< swagger-op operation="RankingsByPageRankingId" >}}
 
 ### Response
-Will return an array of ranking groups. See <a href="#ranking-group">data structures</a>
+Will return an array of ranking groups. See [data structures](#ranking-group)
 
 
 ## Get indexed documents
@@ -225,7 +225,7 @@ curl "https://api.cludo.com/api/v3/9056485/7578030/search/alldocuments?filter=co
 {{< swagger-op operation="AllDocuments" >}}
 
 ### Response
-Will return an array of indexed documents. See <a href="#indexed-document">data structures</a>
+Will return an array of indexed documents. See [data structures](#indexed-document)
 
 
 
@@ -246,10 +246,10 @@ The id key must be omitted.
 
 
 {{< hint warning >}}
-It's important that the pageid key is an exact match with the unique identifier we have for the document internally. It's usually the same as the URL, but it could be any string. See <a href="#get-indexed-documents">Get indexed documents</a>  for a way to obtain it.
+It's important that the pageid key is an exact match with the unique identifier we have for the document internally. It's usually the same as the URL, but it could be any string. See [Get indexed documents](#get-indexed-documents) for a way to obtain it.
 {{< /hint >}}
 
-A single ranking group. See <a href="#ranking-group">data structures</a> .
+A single ranking group. See [data structures](#ranking-group).
 
 {{< markdown-with-header title="Example">}}
 ```
@@ -285,7 +285,7 @@ curl "https://api.cludo.com/api/rankings"
 {{< button relref="#try-it-create-or-update-page-ranking" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 
 ### Response
-Will return the created ranking group. See <a href="#ranking-group">data structures</a>
+Will return the created ranking group. See [data structures](#ranking-group)
 
 
 
@@ -318,10 +318,10 @@ The id key must be included with a POST request.
 {{< /hint >}}
 
 {{< hint warning >}}
-It's important that the pageid key is an exact match with the unique identifier we have for the document internally. It's usually the same as the URL, but it could be any string. See <a href="#get-indexed-documents">Get indexed documents</a>  for a way to obtain it.
+It's important that the pageid key is an exact match with the unique identifier we have for the document internally. It's usually the same as the URL, but it could be any string. See [Get indexed documents](#get-indexed-documents) for a way to obtain it.
 {{< /hint >}}
 
-A single ranking group. See <a href="#ranking-group">data structures</a> .
+A single ranking group. See [data structures](#ranking-group).
 
 
 
@@ -414,7 +414,7 @@ curl "https://api.cludo.com/api/rankings/1689348"
 {{< swagger-op operation="PageRankingUpdate" >}}
 
 ### Response
-Will return the updated ranking group. See <a href="#ranking-group">data structures</a>
+Will return the updated ranking group. See [data structures](#ranking-group)
 
 
 

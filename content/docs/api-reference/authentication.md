@@ -5,8 +5,8 @@ title: Authentication
 
 We offer different means of authentication depending on the action you're looking to perform.
 
-- For public facing search, we support our custom  <a href="/docs/authentication/sitekeyauthentication/">site key authentication</a>.
-- Otherwise, we support <a href="/docs/authentication/basicauthentication/">basic authentication</a>.
+- For public facing search, we support our custom  [site key authentication](#sitekey).
+- Otherwise, we support [basic authentication](#basic).
 
 ## Basic
 
@@ -40,7 +40,7 @@ curl "https://api.cludo.com/api/v3/someEndpoint"
 
 ## SiteKey
 
-Site key authentication is a means of authentication that can only be used for search, and exists to facilitate public facing search where you **don't** want to expose your API key, which is otherwise the case with  <a href="/docs/authentication/basicauthentication/">basic authentication</a>.
+Site key authentication is a means of authentication that can only be used for search, and exists to facilitate public facing search where you **don't** want to expose your API key, which is otherwise the case with [basic authentication](#basic).
 
 {{< hint warning >}}
 The credentials must be Base64-encoded as a single unit.

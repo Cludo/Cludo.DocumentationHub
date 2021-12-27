@@ -55,7 +55,7 @@ curl "https://api.cludo.com/api/synonymsgroup/en"
 {{< swagger-op operation="GetSynonymsGroupByLanguage" >}}
 
 ### Response
-Will return an array of synonyms groups. See <a href="#synonyms-group">data structures</a>
+Will return an array of synonyms groups. See [data structures](#synonyms-group)
 
 
 ## Get single synonyms group
@@ -84,7 +84,7 @@ curl "https://api.cludo.com/api/synonymsgroup/9457415"
 {{< swagger-op operation="GetSynonymsGroupByGroupId" >}}
 
 ### Response
-Will return a single synonyms group. See <a href="#synonyms-group">data structures</a>.
+Will return a single synonyms group. See [data structures](#synonyms-group).
 
 
 
@@ -111,14 +111,14 @@ curl "https://api.cludo.com/api/synonymsgroup"
 {{< /markdown-with-header >}} 
 
 ### Body
-A single synonyms group composed of multiple words which are synonyms. See <a href="#synonyms-group">data structures</a>.
+A single synonyms group composed of multiple words which are synonyms. See [data structures](#synonyms-group).
 
 
 ### TRY IT 
 {{< swagger-op operation="CreateSynonymsGroup" >}}
 
 ### Response
-Will return the created synonyms group. See <a href="#synonyms-group">data structures</a>
+Will return the created synonyms group. See [data structures](#synonyms-group)
 
 
 
@@ -153,14 +153,14 @@ curl "https://api.cludo.com/api/synonymsgroup"
 | language   |string | A two-letter ISO language code | 
 
 ### Body
-A single synonyms group. See <a href="#synonyms-group">data structures</a>.
+A single synonyms group. See [data structures](#synonyms-group).
 
 
 ### TRY IT 
 {{< swagger-op operation="UpdateSynonymsGroup" >}}
 
 ### Response
-Will return the updated synonyms group. See <a href="#synonyms-group">data structures</a>
+Will return the updated synonyms group. See [data structures](#synonyms-group)
 
 
 ## Delete synonym

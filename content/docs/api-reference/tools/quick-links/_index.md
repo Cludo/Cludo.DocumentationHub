@@ -68,7 +68,7 @@ curl "https://api.cludo.com/api/quicklinks/5807805"
 {{< swagger-op operation="GetQuicklinkById" >}}
 
 ### Response
-Will return a single quicklink. See <a href="#quicklink">data structures</a>
+Will return a single quicklink. See [data structures](#quicklink)
 
 
 
@@ -98,7 +98,7 @@ curl "https://api.cludo.com/api/engine/7578030/quicklinks"
 {{< swagger-op operation="GetQuicklinksByEngineId" >}}
 
 ### Response
-Will return an array of quicklinks. See <a href="#quicklink">data structures</a>
+Will return an array of quicklinks. See [data structures](#quicklink)
 
 
 ## Get quicklink by engine and term
@@ -133,7 +133,7 @@ curl "https://api.cludo.com/api/engine/7578030/quicklinkterms?searchword=contact
 {{< swagger-op operation="GetQuicklinksByEngineIdAndTerm" >}}
 
 ### Response
-Will return an array of quicklinks. See <a href="#quicklink">data structures</a>
+Will return an array of quicklinks. See [data structures](#quicklink)
 
 
 ## Create quicklink
@@ -151,7 +151,7 @@ POST https://api.cludo.com/api/quicklinks
 The id key must be omitted.
 {{< /hint >}}
 
-A single quicklink. See <a href="#quicklink">data structures</a>
+A single quicklink. See [data structures](#quicklink)
 
 {{< markdown-with-header title="Example">}}
 ```
@@ -174,7 +174,7 @@ curl "https://api.cludo.com/api/quicklinks"
 {{< button relref="#try-it-create-or-update-quicklink" class="btn btn-solid" >}}Try it with swagger{{< /button >}}
 
 ### Response
-Will return the created quicklink. See <a href="#quicklink">data structures</a>
+Will return the created quicklink. See [data structures](#quicklink)
 
 ## Update quicklink
 
@@ -203,7 +203,7 @@ The id key can be omitted with a PUT request, as it won't be respected.
 The id key **must** be included with a POST request.
 {{< /hint >}}
 
-A single quicklink. See <a href="#quicklink">data structures</a>
+A single quicklink. See [data structures](#quicklink)
 
 {{< markdown-with-header title="Example with a POST">}}
 ```
@@ -247,7 +247,7 @@ curl "https://api.cludo.com/api/quicklinks/5807805"
 {{< swagger-op operation="UpdateQuicklink" >}}
 
 ### Response
-Will return the updated quicklink. See <a href="#quicklink">data structures</a>
+Will return the updated quicklink. See [data structures](#quicklink)
 
 
 ## Delete quicklink
