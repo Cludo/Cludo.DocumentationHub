@@ -158,14 +158,17 @@ body {
     .book-header-custom {
         @include display-flex(space-between, center, wrap);
         width: 100%;
-        background: $purple22;
-        height: 156px;
+        background: white;
+        // height: 156px;
+        // padding-top: 15px;
+        padding: 15px;
+
         margin-bottom: 0;
         transition: all 0.5s ease-out;
 
         img {
-            width: 200px;
-            margin-left: 80px;
+            // width: 200px;
+            // margin-left: 80px;
         }
 
         .mobile-header-menu {
@@ -1715,10 +1718,10 @@ body {
     }
 
     .book-footer {
-        background-color: $black11;
+        background-color: #EAD1DC;
 
         div {
-            color: $greyCC;
+            // color: $greyCC;
             font-family: "Montserrat Medium";
             @include font-size(14, 22);
             padding: 30px;

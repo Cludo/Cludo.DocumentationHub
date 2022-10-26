@@ -4,7 +4,7 @@ title = "Cludo Docs"
 theme = "book"
 
 [params]
-    site_logo = "/img/cludo_docs_logo.svg"
+    site_logo = "/img/Cludo_2021_Black.png"
     BookSearch = false
     BookToC = true
     SideMenu = true
